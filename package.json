@@ -1,0 +1,27 @@
+{
+  "name": "fastify-api",
+  "version": "1.0.0",
+  "description": "A blazing fast REST APIs with Node.js, MongoDB, Fastify and Swagger.",
+  "main": "index.js",
+  "scripts": {
+    "seed": "node ./helpers/seed.js",
+    "starts": "./node_modules/nodemon/bin/nodemon.js ./app.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "startss": "./node_modules/nodemon/bin/nodemon.js ./scripts/productos.js",
+    "start": "nodemon app"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "fastify": "^4.6.0",
+    "fastify-cookie": "3.0.0",
+    "fastify-mongodb": "^1.0.1",
+    "fastify-session": "3.0.0",
+    "fastify-swagger": "^2.4.0",
+    "form-data": "^4.0.0",
+    "fs": "0.0.1-security",
+    "middie": "^7.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.0"
+  }
+}
