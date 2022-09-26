@@ -7,6 +7,12 @@ const routes = [
         path:"/insertar_valor",
         handler: arduino.insert_arduino_value
     },
+
+    {
+        method:"GET",
+        path:"/obtener_mediciones",
+        handler: arduino.obtener_mediciones
+    }
    
 ]
 
