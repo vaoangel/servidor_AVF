@@ -4,22 +4,16 @@ const fastify = require('./server.js')
 
 // Import Routes
 const routes = require('./routes')
+var cors = require('cors');
+fastify.use(cors());
 
 
-/* 	middleware = new Promise(() =>{});
+	middleware = new Promise(() =>{});
 	middleware.then(()=>{
 		fastify.register(require('middie'))
 		fastify.use(require('cors')())
 
-	})  */
-	require('middie')
-	fastify.register(require('middie')).then(()=>{
-		fastify.use(require('cors')())
-
-	})
-
-
-
+	}) 
 // Loop over each route
 routes.forEach((route, index) => {
 	fastify.route(route)
