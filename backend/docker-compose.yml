@@ -1,6 +1,6 @@
 version: "3"
 networks:
-  test8:
+  test9:
     driver: bridge
     ipam:
       config:
@@ -13,21 +13,21 @@ services:
 
   fastify:
     networks:
-      test8:
+      test9:
           ipv4_address: 15.0.0.3     
-    build: ../servidor_AVF
+    build: ../backend
  
     restart: always
     ports:
-      - 3050:3050
+      - 3000:3000
     volumes:
-      - ../servidor_AVF:/usr/src/app
+      - ../backend:/usr/src/app
 
   db:
     image: mysql:5.7
     restart: always
     networks:
-      test8:
+      test9:
           ipv4_address: 15.0.0.4
     environment:
       MYSQL_DATABASE: 'db'

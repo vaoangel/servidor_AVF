@@ -12,6 +12,11 @@ const routes = [
         method:"GET",
         path:"/obtener_mediciones",
         handler: arduino.obtener_mediciones
+    },
+    {
+        method:"GET",
+        path:"/obtener_mediciones_fake",
+        handler: arduino.obtener_mediciones_fake 
     }
    
 ]
