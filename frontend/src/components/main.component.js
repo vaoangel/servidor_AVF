@@ -1,5 +1,6 @@
 import React from "react";
-import AllTemperatures from "../hooks/getAllTemperatures";
+//import AllTemperatures from "../hooks/getAllTemperatures";
+import Mostrar_mediciones from '../hooks/informacion_adruino.hook'
 //import Upload from "../hooks/images.hook.js"
 class MainHome extends React.Component{
 
@@ -16,7 +17,7 @@ class MainHome extends React.Component{
         return(
             <div>
                 {this.state.test}
-                <AllTemperatures></AllTemperatures>
+                <Mostrar_mediciones></Mostrar_mediciones>
                {/*  <Upload></Upload> */}
                 </div>
         )

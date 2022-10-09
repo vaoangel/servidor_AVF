@@ -2,7 +2,7 @@ import axios from 'axios'
 
 let token = null
 let API = axios.create({
-    baseURL: 'http://localhost:8000/',
+    baseURL: 'http://localhost:3000/',
     headers: {
         'Authorization': token!==null ? `Token ${token}` : "",
     },
@@ -82,8 +82,8 @@ const request ={
 
 
 const TemperatureApi={
-    GetAll:()=>{
-        const info = request.get('temperatura/temperatura/').then(function(data){
+    Obtener_todas_mediciones:()=>{
+        const info = request.get('/obtener_mediciones').then(function(data){
             console.log(data);
 
             return data

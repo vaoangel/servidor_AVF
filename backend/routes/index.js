@@ -17,6 +17,12 @@ const routes = [
         method:"GET",
         path:"/obtener_mediciones_fake",
         handler: arduino.obtener_mediciones_fake 
+    },
+    {
+        method: "POST", 
+        path: "/eliminar_medidion_id",
+        handler: arduino.eliminar_medidion_id
+
     }
    
 ]

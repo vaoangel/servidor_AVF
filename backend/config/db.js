@@ -53,7 +53,7 @@ let method = {
     },
 
 
-    queryServer: function(sentence){
+/*     queryServer: function(sentence){
        
            let promise = new Promise((resolve, reject) =>{
 
@@ -98,7 +98,7 @@ let method = {
 
 
 
-    }
+    } */
 }
 
 

@@ -16,7 +16,7 @@ exports.insert_arduino_value = async req =>{
     //Comprobamos si req.body está lleno
 
     if (req.body!= '') {
-        
+         
 
         //Establecemos los datos en variables
         var valor = req.body.medida
@@ -96,7 +96,22 @@ exports.obtener_mediciones_fake = async ()=>{
 
     return data_fake
 
+}
+
+exports.eliminar_medidion_id = async req =>{
+    console.log("eliminar_medidion_id:          Entra");
 
 
+    try {
+        //Ejecución de la query a base de datos
+        await mysql.query("Delete from db.registros where idregistros = "+req.body.idregistros)
+    } catch (error) {
+        console.log(error);
+        return error
+    }
+
+    console.log("eliminar_medidion_id:          Termina");
+
+        return true
 }
 
