@@ -42,12 +42,17 @@ return true
 
 exports.obtener_mediciones = async ()=>{
     console.log("obtener_mediciones:          Comienza");
+ /*
+
+response = promseas asincrona a la base de datos
+ */
 //Ejecución de la query a base de datos
 
  try {
     var response = await mysql.query("SELECT * FROM db.registros;  ").then((data, err)=>{
 
         if(data.results){
+            //Si existe la información la devolvemos
             return data.results
         }else{
             return error
@@ -98,16 +103,21 @@ exports.obtener_mediciones_fake = async ()=>{
 
 }
 
-exports.eliminar_medidion_id = async req =>{
+exports.eliminar_medicion_id = async req =>{
     console.log("eliminar_medidion_id:          Entra");
+    if (req.body!= '') {
+// Comprobamos si existe el elemento body 
 
-
+        var id = req.body.idregistros
     try {
         //Ejecución de la query a base de datos
-        await mysql.query("Delete from db.registros where idregistros = "+req.body.idregistros)
+        await mysql.query("Delete from db.registros where idregistros = "+id)
     } catch (error) {
         console.log(error);
         return error
+    }
+}else{
+    return "Body de la petición vacio"
     }
 
     console.log("eliminar_medidion_id:          Termina");

@@ -1,6 +1,8 @@
 // Import our Controllers
 
 const arduino  = require("../controllers/arduino.controller")
+
+//Declaramos todas las rutas
 const routes = [
     {
         method:"POST",
