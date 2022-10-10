@@ -21,11 +21,11 @@ let method = {
 
             let connection = mysql.createConnection({
                 host: '15.0.0.4',
-                user: 'user',
+                user: 'root',
                 password: 'password',
                 port: '3306',
             });
-
+ 
             connection.connect();
             
             connection.query(sentence, function(error, results, fields) {

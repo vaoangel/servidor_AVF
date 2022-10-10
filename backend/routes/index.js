@@ -21,11 +21,11 @@ const routes = [
         handler: arduino.obtener_mediciones_fake 
     },
     {
-        method: "POST", 
-        path: "/eliminar_medidion_id",
-        handler: arduino.eliminar_medidion_id
-
+        method:"POST",
+        path: "/eliminar_medicion_id",
+        handler: arduino.eliminar_medicion_id
     }
+
    
 ]
 
