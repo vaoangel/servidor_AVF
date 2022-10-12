@@ -16,7 +16,7 @@ exports.insert_arduino_value = async req =>{
     //Comprobamos si req.body está lleno
 
     if (req.body!= '') {
-         
+          
 
         //Establecemos los datos en variables
         var valor = req.body.medida
@@ -25,7 +25,10 @@ exports.insert_arduino_value = async req =>{
 
         try {
             //Ejecución de la query a base de datos
-            await mysql.query("Insert into db.registros (`date_added`, `valor_arduino`) VALUES ('"+dataDef+"',"+ valor+");")
+            await mysql.query("Insert into db.mediciones (`date_added`, `valor_arduino`) VALUES ('"+dataDef+"',"+ valor+");").done(()=>{
+                return true
+
+            })
         } catch (error) {
             console.log(error);
         }
@@ -49,7 +52,7 @@ response = promseas asincrona a la base de datos
 //Ejecución de la query a base de datos
 
  try {
-    var response = await mysql.query("SELECT * FROM db.registros;  ").then((data, err)=>{
+    var response = await mysql.query("SELECT * FROM db.mediciones;  ").then((data, err)=>{
 
         if(data.results){
             //Si existe la información la devolvemos
@@ -76,10 +79,10 @@ exports.eliminar_medicion_id = async req =>{
     if (req.body!= '') {
 // Comprobamos si existe el elemento body 
 
-        var id = req.body.idregistros
+        var id = req.body.id
     try {
         //Ejecución de la query a base de datos
-        await mysql.query("Delete from db.registros where idregistros = "+id)
+        await mysql.query("Delete from db.mediciones where id = "+id)
     } catch (error) {
         console.log(error);
         return error
@@ -115,7 +118,7 @@ exports.obtener_medicion_id = async req =>{
    
            try {
                //Ejecución de la query a base de datos
-              var resuelta=   mysql.query("Select * from db.registros where idregistros =  "+valor).then((data)=>{
+              var resuelta=   mysql.query("Select * from db.mediciones where id =  "+valor).then((data)=>{
                 return data.results
                })
            } catch (error) {
@@ -155,7 +158,7 @@ exports.eliminar_medicion_valor = async req =>{
    
            try {
                //Ejecución de la query a base de datos
-              var resuelta=   mysql.query("Delete from db.registros where valor_arduino =  "+valor).then((data)=>{
+              var resuelta=   mysql.query("Delete from db.mediciones where valor_arduino =  "+valor).then((data)=>{
                 return data.results
                })
            } catch (error) {
@@ -168,6 +171,47 @@ exports.eliminar_medicion_valor = async req =>{
    
    
        console.log("obtener_medicion_valor:          Acaba");
+   //esperamos a la promesa y la devolvemos
+       await resuelta
+       return resuelta
+}
+
+
+
+exports.obtener_medicion_valor = async req =>{
+
+    console.log("obtener_medicion_id:          Comienza");
+    /*
+   
+       req = información de la petición al servidor
+       id = donde guardamos al información que llega de la petición
+     
+    */
+   
+       //Comprobamos si req.body está lleno
+   
+       if (req.body!= '') {
+            
+   
+           //Establecemos los datos en variables
+           var valor = req.body.medida
+          
+   
+           try {
+               //Ejecución de la query a base de datos
+              var resuelta=   mysql.query("Select * from db.mediciones where valor_arduino =  "+valor).then((data)=>{
+                return data.results
+               })
+           } catch (error) {
+               console.log(error);
+           }
+       }else{
+           //respuesta en caso de que la información que nos llega de la petición esté vacia
+           return "Body de la petición vacio"
+       }
+   
+   
+       console.log("obtener_medicion_id:          Acaba");
    //esperamos a la promesa y la devolvemos
        await resuelta
        return resuelta

@@ -60,13 +60,13 @@ function Mostrar_mediciones(){
         console.log(sort); */
         data.map((elements) => {
             return html = [...html, 
-                <div key={elements.idregistros} className="slide" style={{backgroundImage:"url(https://alca.tv/static/u/522d6a86-0dcf-4554-8b22-7655d65a1f66_opt.png)"}}>
+                <div key={elements.id} className="slide" style={{backgroundImage:"url(https://alca.tv/static/u/522d6a86-0dcf-4554-8b22-7655d65a1f66_opt.png)"}}>
                     <div style={style} className="number">Valor: {elements.valor_arduino}</div>
                     <div style={style} className="number">Fecha: {elements.date_added}</div>
     
     
                     <div className="body">
-                    <div style={style} className="headline">ID :{elements.idregistros}</div>
+                    <div style={style} className="headline">ID :{elements.id}</div>
                      
                     </div>
                     <hr></hr>
