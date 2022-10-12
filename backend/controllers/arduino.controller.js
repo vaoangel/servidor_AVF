@@ -69,39 +69,7 @@ response = promseas asincrona a la base de datos
 
 }
 
-exports.obtener_mediciones_fake = async ()=>{
-    console.log("obtener_mediciones_fake:          Comienza");
 
-
-    //Establecemos la información fake
-    var data_fake= [
-        {
-        "id":1,
-        "value": 55,
-        "nombre": "Pacoaa"
-
-        },
-          {
-            "id":2,
-            "value": 44,
-            "nombre": "Pacob"
-    
-            },
-            {
-                "id":4,
-                "value": 565,
-                "nombre": "Pacoa"
-        
-                }
-
-    ]
-
-    //Devolvemos la información fake
-    console.log("obtener_mediciones_fake:          Termina");
-
-    return data_fake
-
-}
 
 exports.eliminar_medicion_id = async req =>{
     console.log("eliminar_medidion_id:          Entra");
@@ -125,3 +93,82 @@ exports.eliminar_medicion_id = async req =>{
         return true
 }
 
+
+exports.obtener_medicion_id = async req =>{
+
+    console.log("obtener_medicion_id:          Comienza");
+    /*
+   
+       req = información de la petición al servidor
+       id = donde guardamos al información que llega de la petición
+     
+    */
+   
+       //Comprobamos si req.body está lleno
+   
+       if (req.body!= '') {
+            
+   
+           //Establecemos los datos en variables
+           var valor = req.body.id
+          
+   
+           try {
+               //Ejecución de la query a base de datos
+              var resuelta=   mysql.query("Select * from db.registros where idregistros =  "+valor).then((data)=>{
+                return data.results
+               })
+           } catch (error) {
+               console.log(error);
+           }
+       }else{
+           //respuesta en caso de que la información que nos llega de la petición esté vacia
+           return "Body de la petición vacio"
+       }
+   
+   
+       console.log("obtener_medicion_id:          Acaba");
+   //esperamos a la promesa y la devolvemos
+       await resuelta
+       return resuelta
+}
+
+
+exports.eliminar_medicion_valor = async req =>{
+
+    console.log("eliminar_medicion_valor:          Comienza");
+    /*
+   
+       req = información de la petición al servidor
+       id = donde guardamos al información que llega de la petición
+     
+    */
+   
+       //Comprobamos si req.body está lleno
+   
+       if (req.body!= '') {
+            
+   
+           //Establecemos los datos en variables
+           var valor = req.body.medida
+          
+   
+           try {
+               //Ejecución de la query a base de datos
+              var resuelta=   mysql.query("Delete from db.registros where valor_arduino =  "+valor).then((data)=>{
+                return data.results
+               })
+           } catch (error) {
+               console.log(error);
+           }
+       }else{
+           //respuesta en caso de que la información que nos llega de la petición esté vacia
+           return "Body de la petición vacio"
+       }
+   
+   
+       console.log("obtener_medicion_valor:          Acaba");
+   //esperamos a la promesa y la devolvemos
+       await resuelta
+       return resuelta
+}

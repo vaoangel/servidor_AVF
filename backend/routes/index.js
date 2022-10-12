@@ -15,15 +15,16 @@ const routes = [
         path:"/obtener_mediciones",
         handler: arduino.obtener_mediciones
     },
-    {
-        method:"GET",
-        path:"/obtener_mediciones_fake",
-        handler: arduino.obtener_mediciones_fake 
-    },
+
     {
         method:"POST",
         path: "/eliminar_medicion_id",
         handler: arduino.eliminar_medicion_id
+    },
+    {
+        method:"POST",
+        path: "/obtener_medicion_id",
+        handler: arduino.obtener_medicion_id
     }
 
    
