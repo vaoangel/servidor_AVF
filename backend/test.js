@@ -39,7 +39,7 @@ describe("Test 1: insertar una Medicion", function () {	//las pruebas se hacen d
 			
 			// assert.equal(res[0].valor_arduino, "777", "¿no es 777?") //EL EQUAL ES PARA COMPARAR A CON B
 			console.log(res);
-	})
+	}) 
 
 	it("Borro las mediciones añadidas en la BBDD",	//Esta prueba es importante porque usa assert
 	async function () {

@@ -2,6 +2,7 @@
 const { resolve } = require('promise');
 const mysql = require('../config/db')
 
+//Inserta una medida nueva en la base de datos
 exports.insert_arduino_value = async req =>{
 
     console.log("insert_arduino_value:          Comienza");
@@ -43,6 +44,7 @@ exports.insert_arduino_value = async req =>{
 return true
 }
 
+//Obtiene todas las mediciónes de la base de datos
 exports.obtener_mediciones = async ()=>{
     console.log("obtener_mediciones:          Comienza");
  /*
@@ -73,7 +75,7 @@ response = promseas asincrona a la base de datos
 }
 
 
-
+// Elimina una medición en específico filtrando por id
 exports.eliminar_medicion_id = async req =>{
     console.log("eliminar_medidion_id:          Entra");
     if (req.body!= '') {
@@ -96,7 +98,7 @@ exports.eliminar_medicion_id = async req =>{
         return true
 }
 
-
+// Obtiene una medición en específico filtrando por id
 exports.obtener_medicion_id = async req =>{
 
     console.log("obtener_medicion_id:          Comienza");
@@ -136,6 +138,7 @@ exports.obtener_medicion_id = async req =>{
        return resuelta
 }
 
+// Elimina una medición en específico filtrando por valor
 
 exports.eliminar_medicion_valor = async req =>{
 
@@ -177,6 +180,7 @@ exports.eliminar_medicion_valor = async req =>{
 }
 
 
+// Obtiene una medición en específico filtrando por valor
 
 exports.obtener_medicion_valor = async req =>{
 
