@@ -15,7 +15,7 @@ const routes = [
         path:"/obtener_mediciones",
         handler: arduino.obtener_mediciones
     },
-
+ 
     {
         method:"POST",
         path: "/eliminar_medicion_id",
