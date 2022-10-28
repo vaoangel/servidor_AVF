@@ -14,6 +14,9 @@ exports.insert_arduino_value = async req =>{
     dataDef = parseamos la fecha para que la acepte la base de datos
  */
 
+
+    
+
     //Comprobamos si req.body está lleno
 
     if (req.body!= '') {
