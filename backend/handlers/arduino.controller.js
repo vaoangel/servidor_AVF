@@ -55,7 +55,7 @@ response = promseas asincrona a la base de datos
 
  try {
     var response = await mysql.query("SELECT * FROM db.mediciones;  ").then((data, err)=>{
-
+ 
         if(data.results){
             //Si existe la información la devolvemos
             return data.results
