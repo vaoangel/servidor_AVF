@@ -2,6 +2,7 @@
 
 const arduino  = require("../handlers/arduino.controller")
 const login = require("../handlers/login.handler")
+const user = require("../handlers/user.handler")
 //Declaramos todas las rutas
 const routes = [
     {
@@ -27,12 +28,15 @@ const routes = [
         path: "/obtener_medicion_id",
         handler: arduino.obtener_medicion_id
     },
-    {
-
-          
+    {  
         method:"POST",
         path: "/login",
         handler: login.login_data_from_post
+    },
+    {  
+        method:"POST",
+        path: "/update_profile",
+        handler: user.update_user
     }
   
  
