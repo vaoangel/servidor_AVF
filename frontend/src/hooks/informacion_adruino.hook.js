@@ -3,6 +3,7 @@ import { Card, Box   } from 'react-bootstrap';
 import { Link, withRouter } from 'react-router-dom';
 import {  TemperatureApi } from '../router/agent';
 import ReactNextPaging from "react-next-paging";
+
 const style = {
  
   color: "white"
@@ -16,13 +17,12 @@ function Mostrar_mediciones(){
 
 
     useEffect(()=>{
-          TemperatureApi.Obtener_todas_mediciones().then((data)=>{
+       /*    TemperatureApi.Obtener_todas_mediciones().then((data)=>{
               updateinfo(data);
-          })
+          }) */
       }, [])
 
-      if ((info.length!=0) || (info.length >1)) {
-        console.log(info);
+      if ((info.length = 0) || (info.length >1)) {
 
         return (
       
@@ -39,6 +39,13 @@ function Mostrar_mediciones(){
           </div>
         );
       }else{
+        
+        try {        
+
+        } catch (error) {
+          
+        }
+
         return (
           <div>
             

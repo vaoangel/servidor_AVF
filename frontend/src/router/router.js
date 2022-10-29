@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
-import {Home,Header} from '../components/index'
+import {Home,Header,TestC} from '../components/index'
 
 
 const BaseRouter = () => {
@@ -8,7 +8,10 @@ const BaseRouter = () => {
     //Contiene todas las rutas possibles de la app
     return( 
         <div>
+            <Route exact path="/login" component={TestC}/>
             <Route exact path="/" component={Home}/>
+            
+
         </div>
     )
 }
