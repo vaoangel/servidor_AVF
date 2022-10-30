@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Card, Box   } from 'react-bootstrap';
 import { Link, withRouter } from 'react-router-dom';
 import {  TemperatureApi } from '../router/agent';
-import ReactNextPaging from "react-next-paging";
 
 const style = {
  

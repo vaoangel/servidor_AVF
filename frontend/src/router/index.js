@@ -1,6 +1,6 @@
-import{AnimalsApi,RiviaApi} from './agent'
+import{LoginApi,TemperatureApi} from './agent'
 
 const APIS = {
-    AnimalsApi,RiviaApi
+    LoginApi,TemperatureApi
 }
 export default APIS

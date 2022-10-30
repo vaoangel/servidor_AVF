@@ -95,7 +95,28 @@ const TemperatureApi={
     },
 }
 
+const LoginApi={
+     login:(data)=>{
+        console.log(data);
+        
+        const info = request.post('login', {
+            "username":data.username, 
+            "password": data.password
+        }).then(function(data){
+            
+            console.log(data);
+            return data.data 
+        }).catch(function(error){
+            return error
+        })
+        return info
+    
+        
+    }
+}
+
 
 export {
-    TemperatureApi
+    TemperatureApi,
+    LoginApi
 }
