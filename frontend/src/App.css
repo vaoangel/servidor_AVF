@@ -28,6 +28,150 @@
   color: #61dafb;
 }
 
+
+* {
+  font-family: "Poppins";
+}
+.screen-2 .h3{
+
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  float: left;
+  padding: 5px;
+  margin-top: auto;
+
+
+}
+
+.screen-1  {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  overflow-y: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #dde5f4;
+  height: 100vh;
+}
+
+.screen-1 {
+  background: rgb(255, 255, 255);
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+ 
+  box-shadow: 0 0 2em #0723c2;
+  gap: 2em;
+}
+
+.screen-2 {
+ 
+  background: transparent;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  border-radius: 0px;
+  border: 0.5px solid rgb(85, 61, 61);;
+ width: 50%;
+  gap: 2em;
+}
+
+
+
+.screen-1 .logo {
+  margin-top: -3em;
+}
+.screen-1 .email {
+  background: transparent;
+  margin-top: 5%;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  border-radius: 20px;
+  color: #4d4d4d;
+ 
+}
+.screen-1 .email input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #000000;
+}
+.screen-1 .email input::-moz-placeholder {
+  color: rgb(48, 27, 164);
+  font-size: 0.9em;
+}
+.screen-1 .email input:-ms-input-placeholder {
+  color: black;
+  font-size: 0.9em;
+}
+.screen-1 .email input::placeholder {
+  color: black;
+  font-size: 0.9em;
+}
+.screen-1 .email ion-icon {
+  color: #4d4d4d;
+  margin-bottom: -0.2em;
+}
+.screen-1 .password {
+ 
+ 
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  border-radius: none;
+  color: #4d4d4d;
+}
+.screen-1 .password input {
+  background: transparent;
+    border: none;
+    border-bottom: 1px solid #000000;
+}
+.screen-1 .password input::-moz-placeholder {
+  color: black;
+  font-size: 0.9em;
+}
+.screen-1 .password input:-ms-input-placeholder {
+  color: black;
+  font-size: 0.9em;
+}
+.screen-1 .password input::placeholder {
+  color: black;
+  font-size: 0.9em;
+}
+.screen-1 .password ion-icon {
+  color: #4d4d4d;
+  margin-bottom: -0.2em;
+}
+.screen-1 .password .show-hide {
+  margin-right: -5em;
+}
+.screen-2 .login {
+  
+  margin-left: 35%;
+  background: #00f83a;
+  color: white;
+  border: 2px;
+  border-radius: 20px;
+  font-weight: 600;
+  text-align:center;
+  padding: 1em;
+ width: 35%;
+ 
+
+ 
+ 
+
+}
+
+.foto-user{
+
+  width: 1px;
+}
+
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -35,4 +179,6 @@
   to {
     transform: rotate(360deg);
   }
+
+  
 }
