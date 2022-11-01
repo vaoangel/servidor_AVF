@@ -1,3 +1,4 @@
+
 .App {
   text-align: center;
 }
@@ -51,12 +52,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #dde5f4;
   height: 100vh;
+  background: linear-gradient(
+    to top,
+    rgb(255, 255, 255) 0%,
+    rgb(255, 255, 255) 50%,
+    rgb(72, 255, 0) 50%,
+    rgb(72, 255, 0) 100%
+  );
 }
 
 .screen-1 {
-  background: rgb(255, 255, 255);
+ 
   padding: 2em;
   display: flex;
   flex-direction: column;
@@ -67,7 +74,7 @@
 
 .screen-2 {
  
-  background: transparent;
+  background: rgb(255, 255, 255);
   padding: 1em;
   display: flex;
   flex-direction: column;
@@ -79,10 +86,29 @@
 
 
 
-.screen-1 .logo {
-  margin-top: -3em;
+.screen-1 .logoFoto {
+  margin-top: 3em;
+  width: 12%;
+ 
 }
+.screen-1 .email .userFoto{
+width: 8%;
+
+    margin: 0 auto;
+
+  
+
+}
+.screen-1 .password .contraFoto{
+  width: 8%;
+  
+      margin: 0 auto;
+  
+    
+  
+  }
 .screen-1 .email {
+  
   background: transparent;
   margin-top: 5%;
   padding: 1em;
@@ -94,6 +120,7 @@
  
 }
 .screen-1 .email input {
+  margin-top: 10px;
   background: transparent;
   border: none;
   border-bottom: 1px solid #000000;
@@ -125,6 +152,7 @@
   color: #4d4d4d;
 }
 .screen-1 .password input {
+  margin-top: 10px;
   background: transparent;
     border: none;
     border-bottom: 1px solid #000000;
@@ -166,10 +194,7 @@
 
 }
 
-.foto-user{
 
-  width: 1px;
-}
 
 
 @keyframes App-logo-spin {
