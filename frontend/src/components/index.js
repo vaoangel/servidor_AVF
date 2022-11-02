@@ -1,9 +1,10 @@
 import MainHeader from "./main_header.component";
 import MainHome from "./main.component";
 import Test from "./test.component"
-import MainFooter from "./footer.component";
-
+import LoginC from "./login_component";
+import ProfileC from "./profile_component";
  export const Header = MainHeader;
  export const Home = MainHome;
  export const TestC  = Test;
- export const Footer =MainFooter;
+ export const Login = LoginC
+ export const Profile = ProfileC

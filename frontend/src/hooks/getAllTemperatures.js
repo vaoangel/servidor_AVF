@@ -20,7 +20,6 @@ function AllTemperatures(){
     }, [])
 
     if ((info.length!=0) || (info.length >1)) {
-        console.log(info);
 
         return (
       
