@@ -5,15 +5,7 @@ import UselocalStorage from "../hooks/localStorage.hook"
 import contra  from '../assets/img/contra.png'
 
 
-import {
-  MDBFooter,
-  MDBContainer,
-  MDBIcon,
-  MDBInput,
-  MDBCol,
-  MDBRow,
-  MDBBtn
-} from 'mdb-react-ui-kit';
+
 
 class MainFooter extends React.Component{
 
