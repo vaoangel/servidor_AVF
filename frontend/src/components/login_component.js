@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux'
 import {LoginApi} from '../router/agent'
-import {Link } from "react-router-dom";
+import {Link, Redirect } from "react-router-dom";
 const mapDispatchToProps = dispatch => ({
     login: (username, password) =>
     dispatch({ type: "LOGIN",method:"login",api:"LoginApi", payload:{username,password},
@@ -14,13 +14,12 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const mapStateToProps = state => ({
-    //style: state.StyleReducer.style.auth_form
+    currentUser: state.LoginReducer.currentUser,
 });
 
 class LoginC extends React.Component {
     constructor(props){
 
-        console.log("ebtra");
         super(props);
         this.state = {
             loginData:{username: "", password:""}
@@ -44,13 +43,27 @@ class LoginC extends React.Component {
         }else{
              
         } */
-        this.props.login(this.state.loginData.username, this.state.loginData.password)
+       
+       var result =  this.props.login(this.state.loginData.username, this.state.loginData.password);
+
+       console.log(result);
+
     }
     handleChanges(data){
         this.setState({loginData:{...this.state.loginData, [data.target.name]: data.target.value}})
     }
    
     render(){
+
+
+    /*     if (this.props.currentUser) {
+            console.log("entra");
+            return(
+                <div>
+                <Redirect to="/profile" />
+                </div>
+            )
+        } */
 
         return(
             <div >

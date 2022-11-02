@@ -13,29 +13,18 @@ const user = (state,action) =>{
      }
  }
  
- const update_profile = (state,action) =>{
-    console.log(action.payload);
-    
-     return{
-         ...state,
-         currentUser:  action.error ? null : action.payload
-     }
- }
- const Action = ActionTypes.LOGIN_TYPE
 
-// eslint-disable-next-line import/no-anonymous-default-export
+ const Action = ActionTypes.PROFILE_TYPE
+
 export default (state = initialState, action) =>{
 
-    console.log(action.payload, action.type);
+    console.log(action.payload);
     switch(action.type){
-        case Action.LOGIN:
-            return user(state,action);
-        case Action.LOGIN_SUCCESS:
-            return {...state,currentUser:action.payload}
         case Action.UPDATE_PROFILE:
-            return update_profile(state,action)
+            return user(state,action);
         case Action.UPDATE_PROFILE_SUCCESS:
             return {...state,currentUser:action.payload}
+
              
        
         default:

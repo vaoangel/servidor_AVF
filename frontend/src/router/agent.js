@@ -2,7 +2,7 @@ import axios from 'axios'
 
 let token = null
 let API = axios.create({
-    baseURL: 'http://localhost:3000/',
+    baseURL: 'http://192.168.0.12:3000/',
     headers: {
         'Authorization': token!==null ? `Token ${token}` : "",
     },
@@ -116,7 +116,33 @@ const LoginApi={
 }
 
 
+const ProfileApi={
+    update_profile:(data)=>{
+       console.log(data);
+       
+       const info = request.post('update_profile', {
+
+        "usuario": data.username,
+        "nombre": data.name,
+        "mail": data.mail,
+        "telefono": data.phone
+       }).then(function(data){
+           
+           console.log(data);
+           return data.data 
+       }).catch(function(error){
+           return error
+       })
+       return info
+   
+       
+   }
+}
+
+
 export {
     TemperatureApi,
-    LoginApi
+    LoginApi,
+    ProfileApi
+    
 }
