@@ -44,9 +44,9 @@ class LoginC extends React.Component {
              
         } */
        
-       var result =  this.props.login(this.state.loginData.username, this.state.loginData.password);
+       this.props.login(this.state.loginData.username, this.state.loginData.password);
 
-       console.log(result);
+      
 
     }
     handleChanges(data){

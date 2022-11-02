@@ -19,6 +19,7 @@ exports.update_user = async req=>{
         }
 
         var results = await update_user_db_call.update_user_db_call(parsedData);
+        console.log(results);
         if (results != '') {
             return results
         }else{

@@ -18,7 +18,6 @@ class ProfileC extends React.Component{
     constructor(props){
         super(props);
 
-        console.log(this.props.currentUser);
         this.state = {
             profileData:{
             phone: this.props.currentUser[0].telefono, 
@@ -33,7 +32,6 @@ class ProfileC extends React.Component{
         this.validateData = this.validateData.bind(this);
     }
     getSnapshotBeforeUpdate(prevProps, prevState) {
-        console.log(prevProps.currentUser,this.props.currentUser);
         if (prevProps.currentUser !== this.props.currentUser) {
             // console.log(this.props.current);
             
@@ -43,13 +41,11 @@ class ProfileC extends React.Component{
         return null;
     } 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        console.log(snapshot);
         if(snapshot != null){
             this.setState({
                 profileData: snapshot
             })
             this.props.success(this.props.currentUser)
-            console.log(this.props.currentUser);
 
             this.setState({profileData:{...this.state.profileData,
           
@@ -76,7 +72,7 @@ class ProfileC extends React.Component{
        
        var result =  this.props.update(this.state.profileData);
 
-       console.log(result);
+       
 
     }
     handleChanges(data){
@@ -84,7 +80,6 @@ class ProfileC extends React.Component{
     }
    
     render(){
-        console.log(this.state);
 /*     if (!this.props.currentUser) {
             console.log("entra");
             return(

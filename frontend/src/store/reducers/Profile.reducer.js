@@ -18,7 +18,6 @@ const user = (state,action) =>{
 
 export default (state = initialState, action) =>{
 
-    console.log(action.payload);
     switch(action.type){
         case Action.UPDATE_PROFILE:
             return user(state,action);
