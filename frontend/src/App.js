@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 
 import { HashRouter as Router } from 'react-router-dom';
-import { Header } from './components';
+import { Footer, Header } from './components';
 import BaseRouter from './router/router';
 function App() {
   return (
@@ -13,10 +13,10 @@ function App() {
         <BaseRouter>
         </BaseRouter>
 
-        
+        <Footer></Footer>
       </Router>
      
-    
+      
     </div>
   );
 }

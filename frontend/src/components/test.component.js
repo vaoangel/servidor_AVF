@@ -39,7 +39,7 @@ class Test extends React.Component{
                     </div>
                 </div><button className="login">Entrar </button><div className="footer"><span>                   </span><span>   </span></div></>
         </div>
-       
+                
          </div>
 
              
