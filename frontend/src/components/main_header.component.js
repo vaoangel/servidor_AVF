@@ -22,7 +22,7 @@ class MainHeader extends React.Component{
                     <Nav.Link>
                         <Link to={`/`}>Home</Link>
                         <hr></hr>
-                        <Link to={`/login`}>Componente pruebas de maquetacion</Link>
+                        <Link to={`/maquetar_perfil`}>Componente pruebas de maquetacion perfil ivan</Link>
                     </Nav.Link>
         
                 </Nav>

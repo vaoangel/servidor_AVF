@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
-import {Home,Header,TestC} from '../components/index'
+import {Home,Header,TestC, Perfil} from '../components/index'
 
 
 const BaseRouter = () => {
@@ -10,7 +10,8 @@ const BaseRouter = () => {
         <div>
             <Route exact path="/login" component={TestC}/>
             <Route exact path="/" component={Home}/>
-            
+            <Route exact path="/maquetar_perfil" component={Perfil}/>
+
 
         </div>
     )
