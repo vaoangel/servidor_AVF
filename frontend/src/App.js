@@ -5,6 +5,7 @@ import { HashRouter as Router } from 'react-router-dom';
 import store from './store/store'
 import Header from './components/main_header.component'
 import BaseRouter from './router/router';
+import { FooterC } from './components';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Router>
         <Header/>
         <BaseRouter/>
+        <FooterC/>
         </Router>
       </Provider>
   );

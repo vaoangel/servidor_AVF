@@ -2,6 +2,9 @@ import React from 'react';
 import {connect} from 'react-redux'
 import {LoginApi} from '../router/agent'
 import {Link, Redirect } from "react-router-dom";
+import logo from '../assets/img/logo.png'
+import fotouser  from '../assets/img/usuario.png'
+import contra  from '../assets/img/contra.png'
 const mapDispatchToProps = dispatch => ({
     login: (username, password) =>
     dispatch({ type: "LOGIN",method:"login",api:"LoginApi", payload:{username,password},
@@ -44,6 +47,7 @@ class LoginC extends React.Component {
              
         } */
        
+        console.log(this.state.loginData);
        this.props.login(this.state.loginData.username, this.state.loginData.password);
 
       
@@ -54,40 +58,63 @@ class LoginC extends React.Component {
     }
    
     render(){
+        console.log(this.state.loginData);
 
 
-    /*     if (this.props.currentUser) {
+        if (this.props.currentUser) {
             console.log("entra");
             return(
                 <div>
                 <Redirect to="/profile" />
                 </div>
             )
-        } */
+        }
 
-        return(
-            <div >
-                <div >
-                    <div >
-                        <h2 >Welcome!</h2>
-                        
-                        <div>
-                            <span  > Username</span>
-                            <input  name="username" onChange={this.handleChanges} type="text" placeholder="Username"/>
-                            <span  > Password</span>
-                            <input  name="password" onChange={this.handleChanges} type="password" placeholder="Password"/>
-                            <div onClick={this.validateData}>
-                                <button component_type="auth_form" component_sub_type="formButton" text="Login" >Login</button>
-                            </div>
-                         
 
-                        </div>
-                        {/* 
-                        <a className="form-link" >I lost my password</a> */}
-                    </div>
-                </div>
+            return(
+
+               
+                <div className="screen-1"> 
+                <img src={logo} alt="image not found"className="logoFoto" />
+                   <div className="screen-2">
+                    
+                   
+    
+      
+                  
+             <><div className="email">
+             <h3>Iniciar sesión</h3>
+                       <img src={fotouser} alt="image not found"className="userFoto" />
+                       <div className="sec-2">
+                           <ion-icon name="mail-outline" />
+                           <input  name="username" onChange={this.handleChanges} type="text" placeholder="Username"/>
+                       </div>
+                   </div><div className="password">
+                   <img src={contra} alt="image not found"className="contraFoto" />
+                     
+                       <div className="sec-2">
+                           <ion-icon name="lock-closed-outline" />
+                           <input  name="password" className='pas' onChange={this.handleChanges} type="password" placeholder="Password"/>
+                           <ion-icon className="show-hide" name="eye-outline" />
+                       </div>
+                       
+                   </div>
+                   
+                   
+                   <button onClick={this.validateData} className="login">Entrar </button>
+
+                                         </>
+           </div>
+                   
             </div>
-        )
+    
+                
+           )
+        
+
+
+
+        
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(LoginC)

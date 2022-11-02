@@ -34,14 +34,13 @@
   font-family: "Poppins";
 }
 .screen-2 .h3{
-
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  float: left;
   padding: 5px;
   margin-top: auto;
 
 
 }
+
 
 .screen-1  {
   -webkit-user-select: none;
@@ -117,10 +116,12 @@ width: 8%;
   gap: 0.5em;
   border-radius: 20px;
   color: #4d4d4d;
+  align-items: center;
  
 }
 .screen-1 .email input {
   margin-top: 10px;
+  margin: 0 auto;
   background: transparent;
   border: none;
   border-bottom: 1px solid #000000;
@@ -143,7 +144,7 @@ width: 8%;
 }
 .screen-1 .password {
  
- 
+ align-items: center;
   padding: 1em;
   display: flex;
   flex-direction: column;
@@ -178,7 +179,7 @@ width: 8%;
 }
 .screen-2 .login {
   
-  margin-left: 35%;
+width: 80%;
   background: #00f83a;
   color: white;
   border: 2px;
@@ -187,6 +188,7 @@ width: 8%;
   text-align:center;
   padding: 1em;
  width: 35%;
+ align-self: center;
  
 
  
@@ -198,6 +200,10 @@ width: 8%;
 
 .site-footer
 {
+bottom: 0;    
+
+width: 100%;
+    
   background-color:#26272b;
   border-top-left-radius: 80px 80px;
   padding:45px 0 20px;
