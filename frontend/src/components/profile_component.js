@@ -28,6 +28,9 @@ class ProfileC extends React.Component{
             
                     
             }
+            , 
+
+            redirect :false
         }
         this.handleChanges = this.handleChanges.bind(this);
         this.validateData = this.validateData.bind(this);
@@ -60,9 +63,9 @@ class ProfileC extends React.Component{
     validateData(){
         const regexp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
-        var username_val = regexp.test(this.state.profileData.username)
+        var username_val = regexp.test(this.state.profileData.mail)
         
-     /*    if((this.state.loginData.username === "")||(username_val === false)){
+       /*  if((this.state.profileData.mail === "")||(username_val === false)){
             alert("El email introducido no es válido");
         }else if(this.state.loginData.password === ""){
             alert("El campo de password es requerido");
@@ -70,10 +73,11 @@ class ProfileC extends React.Component{
         }else{
              
         } */
-       
+        this.state.redirect= true;
+
        var result =  this.props.update(this.state.profileData);
 
-       
+    
 
     }
     handleChanges(data){
@@ -81,14 +85,24 @@ class ProfileC extends React.Component{
     }
    
     render(){
-/*     if (!this.props.currentUser) {
+
+        console.log(this.props.redirect);
+    if (!this.props.currentUser) {
             console.log("entra");
             return(
                 <div>
                 <Redirect to="/login" />
                 </div>
             )
-        } */
+        }
+
+    if (this.state.redirect==true) {
+        return(
+            <div>
+            <Redirect to="/area_usuario" />
+            </div>
+        )
+    }
         
         return(
             <div className="screen-3">
@@ -114,7 +128,7 @@ class ProfileC extends React.Component{
                         <input name="phone" type="text"onChange={this.handleChanges} placeholder={this.state.profileData.phone}/>
                     </div>
                     <div>
-                        <button type="button" value="enviar" onClick={this.validateData}>Guardar</button>
+                        <button type="button" value="enviar" className='button' onClick={this.validateData}>Guardar</button>
                     </div>
                     
                 </Form>

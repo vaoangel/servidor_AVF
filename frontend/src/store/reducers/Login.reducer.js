@@ -21,6 +21,13 @@ const user = (state,action) =>{
          currentUser:  action.error ? null : action.payload
      }
  }
+
+ const logout = ()=>{
+    return{
+       
+        currentUser: "false"
+    }
+ }
  const Action = ActionTypes.LOGIN_TYPE
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -36,7 +43,12 @@ export default (state = initialState, action) =>{
             return update_profile(state,action)
         case Action.UPDATE_PROFILE_SUCCESS:
             return {...state,currentUser:action.payload}
-             
+        case Action.LOGOUT:
+        
+        return logout
+        case Action.LOGOUT_SUCCESS:
+        
+        return logout
        
         default:
             return {...state}

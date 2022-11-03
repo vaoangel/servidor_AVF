@@ -196,11 +196,15 @@ width: 80%;
 
 }
 
+html{
+  height: auto;
+}
+
 /*FOOTER*/
 
 .site-footer
 {
-bottom: 0;    
+position:relative; 
 
 width: 100%;
     
@@ -426,6 +430,7 @@ width: 100%;
   display: flex;
   flex-direction: column;
   gap: 2em;
+  
 }
 
 .screen-3 .form-input {
