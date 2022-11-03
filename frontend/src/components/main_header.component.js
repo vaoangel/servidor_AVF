@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link,Redirect } from 'react-router-dom';
 import {connect} from 'react-redux'
 
 import { Nav, Navbar, NavLink, Form, FormControl, Button } from 'react-bootstrap';
@@ -14,29 +14,29 @@ import imagenlogin from '../../src/loginicon.png';
 const mapStateToProps = state => ({
     currentUser: state.LoginReducer.currentUser,
 });
-
 const mapDispatchToProps = dispatch => ({
-    logout: () =>
-   dispatch({ type: "LOGOUT",method:"logout"}),
-   success: () => dispatch({type:"LOGOUT_SUCCESS"}) 
+    logout:() => dispatch({ type: "LOGOUT" }),
 });
 class MainHeader extends React.Component {
 
     constructor(props) {
         super(props);
 
+        this.state = {
+
+            redirect :false
+        }
+
+
+
     }
 
-    reload(){
-        
-        
-    }
+
 
 
     render() {
 
-
-      
+     
 
         if (this.props.currentUser) {
             return (
@@ -52,7 +52,7 @@ class MainHeader extends React.Component {
                             <Button class="btn btn-outline" size="md" id="botonlogin" variant="info" as={Link} to="/profile">
                                 <img src={logo2} alt="imagen profile" width="30" />
                             </Button>
-                            <Button class="btn btn-outline" size="md" id="botonlogin" onClick={this.reload} variant="info" as={Link} to="/">
+                            <Button class="btn btn-outline" size="md" id="botonlogin" onClick={this.props.logout} variant="info" as={Link} to="/">
                                 <img src={imagenlogin} alt="imagen login" width="30" />
                             </Button>
                         </Nav>

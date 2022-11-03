@@ -5,7 +5,6 @@ const initialState = {
 }
 
 const user = (state,action) =>{
-    console.log(action.payload);
     
      return{
          ...state,
@@ -14,7 +13,6 @@ const user = (state,action) =>{
  }
  
  const update_profile = (state,action) =>{
-    console.log(action.payload);
     
      return{
          ...state,
@@ -22,18 +20,17 @@ const user = (state,action) =>{
      }
  }
 
- const logout = ()=>{
-    return{
-       
-        currentUser: "false"
-    }
+ const logout = (state)=>{
+    return { ...state, 
+        
+        currentUser: null,
+        };
  }
  const Action = ActionTypes.LOGIN_TYPE
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (state = initialState, action) =>{
 
-    console.log(action.payload, action.type);
     switch(action.type){
         case Action.LOGIN:
             return user(state,action);
@@ -45,10 +42,8 @@ export default (state = initialState, action) =>{
             return {...state,currentUser:action.payload}
         case Action.LOGOUT:
         
-        return logout
-        case Action.LOGOUT_SUCCESS:
-        
-        return logout
+        return logout(state,action)
+       
        
         default:
             return {...state}

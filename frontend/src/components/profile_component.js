@@ -86,7 +86,7 @@ class ProfileC extends React.Component{
    
     render(){
 
-        console.log(this.props.redirect);
+        console.log(this.state.redirect);
     if (!this.props.currentUser) {
             console.log("entra");
             return(
@@ -96,13 +96,7 @@ class ProfileC extends React.Component{
             )
         }
 
-    if (this.state.redirect==true) {
-        return(
-            <div>
-            <Redirect to="/area_usuario" />
-            </div>
-        )
-    }
+
         
         return(
             <div className="screen-3">
