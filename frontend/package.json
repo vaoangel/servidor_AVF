@@ -13,6 +13,7 @@
     "bootstrap": "^5.1.0",
     "react": "^17.0.2",
     "react-bootstrap": "^2.0.0-beta.6",
+    "react-bootstrap-icons": "^1.9.1",
     "react-dom": "^17.0.2",
     "react-hooks": "^1.0.1",
     "react-next-paging": "^7.0.7",
@@ -24,8 +25,8 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
-    "start": "react-scripts --openssl-legacy-provider start",
-    "starts": "react-scripts start",
+    "starts": "react-scripts --openssl-legacy-provider start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
