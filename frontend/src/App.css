@@ -36,3 +36,87 @@
     transform: rotate(360deg);
   }
 }
+
+/*Parte de la pagina de Editar Perfil */
+@font-face {
+  font-family: QuicksandMedium;
+  src: url(quicksandmedium.ttf);
+}
+
+* {
+  font-family: QuicksandMedium;
+}
+
+.label {
+  text-align: left; /*Este es el que desplaza el texto*/
+}
+
+.screen-3 .button {
+  background-color: #00f83a;
+  color: white;
+  border-radius: 5px;
+  border: none;
+  width: 50%;
+  height:40px;
+}
+
+.screen-3  {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  overflow-y: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+
+.screen-3 .form-input {
+  
+  background: transparent;
+  margin-bottom: 8%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+  color: #4d4d4d;
+ 
+}
+
+.screen-3 .form-input input {
+  margin-top: 5px;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #000000;
+  color: grey;
+}
+.screen-3 .form-input input::-moz-placeholder {
+  color: rgb(48, 27, 164);
+  font-size: 0.9em;
+}
+.screen-3 .form-input input:-ms-input-placeholder {
+  color: grey;
+  font-size: 0.9em;
+}
+.screen-3 .form-input input::placeholder {
+  color: grey;
+  font-size: 0.9em;
+}
+.screen-3 .form-input ion-icon {
+  color: #4d4d4d;
+  margin-bottom: -0.2em;
+}
+
+.screen-3 .form-input input::placeholder {
+  color: grey;
+  font-size: 0.9em;
+}
+
+.form {
+  width: 25%;
+}
+
