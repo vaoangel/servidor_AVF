@@ -3,6 +3,7 @@ import React from 'react';
 import {connect} from 'react-redux'
 import {Link, Redirect } from "react-router-dom";
 import Apis from '../router/index'
+import { Nav, Navbar, Form, FormControl, Button } from 'react-bootstrap';
 
 const mapDispatchToProps = dispatch => ({
      update: (data) =>
@@ -90,32 +91,40 @@ class ProfileC extends React.Component{
         } */
         
         return(
-            <div >
-                <div >
-                    <div >
-                        <h2 >Welcome!</h2>
-                        
-                        <div>
-                            <span  > Usuario</span>
-                            <input  name="username" onChange={this.handleChanges} type="text" placeholder={this.state.profileData.username} disabled/>
+            <div className="screen-3">
+                <h4 className="h4">Datos del perfil</h4>  
 
-                            <span  > Nombre</span>
-                            <input  name="name" onChange={this.handleChanges} type="text" placeholder={this.state.profileData.name}/>
-                            <span  > Email</span>
-                            <input  name="mail" onChange={this.handleChanges} type="text" placeholder={this.state.profileData.mail}/>
-                            <span  > Teléfono</span>
-                            <input  name="phone" type="text"onChange={this.handleChanges} placeholder={this.state.profileData.phone}/>
-                            <button type="button" value="enviar" onClick={this.validateData}>Enviar</button>
-
-                         
-
-                        </div>
-                        {/* 
-                        <a className="form-link" >I lost my password</a> */}
+                <Form className="form">
+                    <div className="label">
+                        <label className="label-text">Nombre</label>
                     </div>
-                </div>
+                    <div className="form-input">
+                        <input onChange={this.handleChanges} type="text" placeholder={this.state.profileData.name} name="name" />
+                    </div>
+                    <div className="label">
+                        <label className="label-text">Correo</label>
+                    </div>
+                    <div className="form-input">
+                        <input name="mail" onChange={this.handleChanges} type="text" placeholder={this.state.profileData.mail}/>
+                    </div>
+                    <div className="label">
+                        <label className="label-text">Número telefónico</label>
+                    </div>
+                    <div className="form-input">
+                        <input name="phone" type="text"onChange={this.handleChanges} placeholder={this.state.profileData.phone}/>
+                    </div>
+                    <div>
+                        <button type="button" value="enviar" onClick={this.validateData}>Guardar</button>
+                    </div>
+                    
+                </Form>
+
             </div>
+                
         )
+
+
+       
     }
 }
 
