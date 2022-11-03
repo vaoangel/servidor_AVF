@@ -45,18 +45,24 @@ describe("Test 1: Login de usuario", function () {	//las pruebas se hacen dentro
 	async function () {
 		//AQUI EMPIEZA LA PRUEBA
 		//aqui se puede poner trycatch para coger los errores de los awaits
-
-		var res = await user.update_user(               
-			{"body":{
-				"usuario": "eustaquio",
-				"nombre": "aser2je",
-				"mail": "update@gmail.com",
-				"telefono": "884888888"
-			}}
+try {
+	var res = await user.update_user(               
+		{"body":{
+			"usuario": "eustaquio",
+			"nombre": "aser2je",
+			"mail": "update@gmail.com",
+			"telefono": "884888888"
+		}}
 		
-		);
+	
+	);
+	console.log(res);
 
-		console.log(res);
+} catch (error) {
+	console.log(error);
+}
+
+
 		
 })
 	
