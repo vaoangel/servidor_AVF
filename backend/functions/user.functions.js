@@ -1,6 +1,6 @@
 const mysql = require('../config/db')
 
-
+//Recibe la información del handler en forma de JSON ya filtrada y realiza las querys de base de datos
 exports.update_user_db_call= async (data) =>{
     
 console.log("Update db.Usuarios set nombre = '"+data.name+"', mail = '"+data.mail+"', telefono = '" +data.phone+"' where usuario like '"+data.username+"';" );
@@ -33,3 +33,5 @@ console.log("Update db.Usuarios set nombre = '"+data.name+"', mail = '"+data.mai
    return query2
    
    }
+
+   //Si el update va bien devuelve la información de la query con los datos del usuario en formato JSON

@@ -1,6 +1,7 @@
 
 const login_functions = require("../functions/login.functions")
 
+// Recibe la información en el body del post en formato JSON
 exports.login_data_from_post = async req =>{
 
     
@@ -30,3 +31,4 @@ exports.login_data_from_post = async req =>{
      
    
 }
+//Si va todo bien  devuelve la información del usuario

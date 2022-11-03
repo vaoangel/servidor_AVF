@@ -1,6 +1,8 @@
 
 
 const mysql = require('../config/db')
+
+//Refibe la información filtrada en formato JSON
 exports.login_db_calls = async (data) =>{
     
 
@@ -19,3 +21,5 @@ await query
 return query
 
 }
+
+//Si vatodo bien devuelve la información de base de datos en formato JSON 
