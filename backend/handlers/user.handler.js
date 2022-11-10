@@ -1,6 +1,6 @@
 const user_functions = require("../functions/user.functions")
  
-
+ 
 // Recibe el body de una petición post
 exports.update_user = async req=>{
     if(!req.body){

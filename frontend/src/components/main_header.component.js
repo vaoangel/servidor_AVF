@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link,Redirect } from 'react-router-dom';
 import {connect} from 'react-redux'
 
 import { Nav, Navbar, NavLink, Form, FormControl, Button } from 'react-bootstrap';
@@ -14,22 +14,33 @@ import imagenlogin from '../../src/loginicon.png';
 const mapStateToProps = state => ({
     currentUser: state.LoginReducer.currentUser,
 });
+const mapDispatchToProps = dispatch => ({
+    logout:() => dispatch({ type: "LOGOUT" }),
+});
 class MainHeader extends React.Component {
 
     constructor(props) {
         super(props);
 
+        this.state = {
+
+            redirect :false
+        }
+
+
+
     }
+
 
 
 
     render() {
 
-
-      
+     
 
         if (this.props.currentUser) {
             return (
+              
                 <Navbar className="color-nav">
                     <Nav className="container-fluid" >
                         <img id="imglogo" src={logo} alt='imagenicono' width={"50"}></img>
@@ -41,13 +52,13 @@ class MainHeader extends React.Component {
                             <Button class="btn btn-outline" size="md" id="botonlogin" variant="info" as={Link} to="/profile">
                                 <img src={logo2} alt="imagen profile" width="30" />
                             </Button>
-                            <Button class="btn btn-outline" size="md" id="botonlogin" variant="info" as={Link} to="/logout">
+                            <Button class="btn btn-outline" size="md" id="botonlogin" onClick={this.props.logout} variant="info" as={Link} to="/">
                                 <img src={imagenlogin} alt="imagen login" width="30" />
                             </Button>
                         </Nav>
                     </Nav>
                 </Navbar>
-    
+               
             )
         }
 
@@ -74,4 +85,4 @@ class MainHeader extends React.Component {
 }
 
 
-export default connect(mapStateToProps)(MainHeader)
+export default connect(mapStateToProps,mapDispatchToProps)(MainHeader)
