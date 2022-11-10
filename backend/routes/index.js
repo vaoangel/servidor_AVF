@@ -37,6 +37,11 @@ const routes = [
         method:"POST",
         path: "/update_profile",
         handler: user.update_user
+    },
+    {
+        method:"POST",
+        path: "/change_password",
+        handler: user.update_password
     }
   
  
