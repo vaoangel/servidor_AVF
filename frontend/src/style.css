@@ -1,0 +1,29 @@
+@font-face {
+    font-family: fuenteweb;
+    src: url(quicksandmedium.ttf);
+}
+
+.color-nav{
+    background-color: #65DF48;
+}
+
+#imglogo{
+    margin-left: 20px;
+}
+
+Nav.Link{
+    color: white;
+}
+
+
+#botonlogin{
+    background-color: transparent;
+    border: transparent;
+    box-shadow: none;
+    
+}
+
+.linkText{
+    color: black;
+    font-family: fuenteweb;
+}
