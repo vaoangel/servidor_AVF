@@ -55,12 +55,14 @@ exports.modificar_pass_db_call = async (data) => {
     var esp = await query;
 
     var json_error = {};
+    var json_result = {};
+
     var oldpass_db = esp[0].contrasena
     if(data.oldpass !== oldpass_db){
         json_error = {
 
-            tipo:"Contraseña incorrecta",
-            code: 666
+            "tipo":"Contraseña incorrecta",
+            "code": 666
         }
         return json_error
     }
@@ -68,11 +70,13 @@ exports.modificar_pass_db_call = async (data) => {
         
         json_error = {
 
-            tipo:"Contraseña igual",
-            code: 504
+            "tipo":"Contraseña igual",
+            "code": 504
         }
 
         return json_error
+
+
     }
 
 
@@ -87,10 +91,16 @@ exports.modificar_pass_db_call = async (data) => {
                 return error
             }
          })
+
+         json_result = {
+
+            "tipo":"Contraseña cambiada correctamente",
+            "code": 200
+        }
      }
 
     await query2
-    return query2
+    return json_result
 }
 
 
