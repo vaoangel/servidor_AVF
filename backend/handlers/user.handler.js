@@ -8,10 +8,10 @@ exports.update_user = async req=>{
         return false
     }else{
 
-        var username = req.body.usuario
-        var name = req.body.nombre
+        var username = req.body.username
+        var name = req.body.name
         var mail = req.body.mail
-        var phone = req.body.telefono
+        var phone = req.body.phone
 
         var parsedData = {
             "username":username,
@@ -42,7 +42,7 @@ exports.update_password = async req=>{
         return false
     }else{
 
-        var username = req.body.usuario
+        var username = req.body.username
         var oldpass = req.body.oldpass
         var newpass = req.body.newpass
 
@@ -63,3 +63,77 @@ exports.update_password = async req=>{
     }
    
 }
+
+exports.add_user  = async req=>{
+
+    if(!req.body){
+
+        return false
+    }else{
+
+        var username = req.body.username
+        var name = req.body.name
+        var mail = req.body.mail
+        var phone = req.body.phone
+        var password = req.body.password
+        var enterprise = req.body.enterprise
+        var type = req.body.type
+ 
+
+        var parsedData = {
+            "username":username,
+            "name":name,
+            "mail":mail,
+
+            "phone":phone,
+            "password":password,
+            "enterprise":enterprise,
+            "type":type,
+
+           
+        }
+
+        var results = await user_functions.add_user_db_call(parsedData);
+         console.log(results);
+        if (results != '') {
+            return results
+        }else{
+            return false
+        }
+
+    }
+   
+}
+
+exports.delete_user  = async req=>{
+
+    if(!req.body){
+
+        return false
+    }else{
+
+        var user_id = req.body.user_id
+
+ 
+
+        var parsedData = {
+            "user_id":user_id,
+ 
+
+           
+        }
+
+        var results = await user_functions.delete_user_db_call(parsedData);
+         console.log(results);
+        if (results != '') {
+            return results
+        }else{
+            return false
+        }
+
+    }
+   
+}
+
+
+

@@ -3,6 +3,7 @@
 const arduino  = require("../handlers/arduino.controller")
 const login = require("../handlers/login.handler")
 const user = require("../handlers/user.handler")
+const sensor = require("../handlers/sensor.handler")
 //Declaramos todas las rutas
 const routes = [
     {
@@ -42,9 +43,29 @@ const routes = [
         method:"POST",
         path: "/change_password",
         handler: user.update_password
+    },
+    {
+        method:"POST",
+        path: "/insert_sensor",
+        handler: sensor.insert_sensor
+    },
+
+    {
+        method:"POST",
+        path: "/add_user",
+        handler: user.add_user 
     }
-  
- 
+  ,
+    {
+        method:"POST",
+        path: "/get_one_sensor",
+        handler: sensor.get_one_sensor 
+    },
+    {
+        method:"POST",
+        path: "/delete_user",
+        handler: user.delete_user 
+    }
    
 ]
 

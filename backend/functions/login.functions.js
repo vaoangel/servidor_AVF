@@ -7,7 +7,7 @@ exports.login_db_calls = async (data) =>{
     
 
     
- var  query = mysql.query("Select nombre,telefono,mail,usuario from db.Usuarios where usuario like '"+ data.username+"' and contrasena like '"+data.password+"';").then((data,error)=>{
+ var  query = mysql.query("Select Nombre,Telefono,mail,Usuario from db.usuarios where Usuario like '"+ data.username+"' and Contrasena like '"+data.password+"';").then((data,error)=>{
 
 
     if (data) {

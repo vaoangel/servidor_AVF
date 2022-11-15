@@ -3,9 +3,9 @@ const mysql = require('../config/db')
 //Recibe la información del handler en forma de JSON ya filtrada y realiza las querys de base de datos
 exports.update_user_db_call = async (data) => {
 
-    console.log("Update db.Usuarios set nombre = '" + data.name + "', mail = '" + data.mail + "', telefono = '" + data.phone + "' where usuario like '" + data.username + "';");
+    console.log("Update db.usuarios set nombre = '" + data.name + "', mail = '" + data.mail + "', telefono = '" + data.phone + "' where usuario like '" + data.username + "';");
 
-    var query = mysql.query("Update db.Usuarios set nombre = '" + data.name + "', mail = '" + data.mail + "', telefono = '" + data.phone + "' where usuario like '" + data.username + "';").then((data, error) => {
+    var query = mysql.query("Update db.usuarios set Nombre = '" + data.name + "', Mail = '" + data.mail + "', Telefono = '" + data.phone + "' where Usuario like '" + data.username + "';").then((data, error) => {
 
 
         if (data) {
@@ -16,7 +16,7 @@ exports.update_user_db_call = async (data) => {
     })
 
     if (await query) {
-        var query2 = mysql.query("Select nombre,telefono,mail,usuario from db.Usuarios where usuario like '" + data.username + "'").then((data, error) => {
+        var query2 = mysql.query("Select Usuario, Tipo, IdEmpresa, mail, Nombre , Telefono from db.usuarios where usuario like '" + data.username + "'").then((data, error) => {
             if (data) {
                 return data.results
             } else {
@@ -41,7 +41,7 @@ exports.modificar_pass_db_call = async (data) => {
 
 
 
-    var query = mysql.query("Select contrasena from db.Usuarios where usuario like '" + data.username + "';").then((response, error) => {
+    var query = mysql.query("Select Contrasena from db.usuarios where usuario like '" + data.username + "';").then((response, error) => {
         if (response) {
 
             return response.results
@@ -57,7 +57,7 @@ exports.modificar_pass_db_call = async (data) => {
     var json_error = {};
     var json_result = {};
 
-    var oldpass_db = esp[0].contrasena
+    var oldpass_db = esp[0].Contrasena
     if(data.oldpass !== oldpass_db){
         json_error = {
 
@@ -83,7 +83,7 @@ exports.modificar_pass_db_call = async (data) => {
      if (oldpass_db) {
         
 
-         var query2 = mysql.query("Update db.Usuarios set contrasena = '" + data.newpass + "' where usuario like '"+data.username+"' and contrasena like '"+data.oldpass +"';").then((data, error) => {
+         var query2 = mysql.query("Update db.usuarios set Contrasena = '" + data.newpass + "' where Usuario like '"+data.username+"' and Contrasena like '"+data.oldpass +"';").then((data, error) => {
     
             if (data) {
                return data.results
@@ -103,6 +103,41 @@ exports.modificar_pass_db_call = async (data) => {
     return json_result
 }
 
+
+exports.add_user_db_call = async (data) =>{
+
+
+    var query = mysql.query("Insert into db.usuarios (Tipo, idEmpresa, Nombre, Telefono,mail, Usuario, Contrasena ) VALUES('"+data.type+"','"+data.enterprise+"','"+data.name+"','"+data.phone+"','"+data.mail+"','"+data.username+"', '"+data.password+"'  )").then((data, error) => {
+
+
+        if (data) {
+            return true
+        } else {
+            return false
+        }
+    })
+
+    await query
+    return query
+}
+
+
+exports.delete_user_db_call = async (data) =>{
+
+
+    var query = mysql.query("Delete from db.usuarios WHERE  idUsuario = "+data.user_id+" ").then((data, error) => {
+
+
+        if (data) {
+            return true
+        } else {
+            return false
+        }
+    })
+
+    await query
+    return query
+}
 
 
    
