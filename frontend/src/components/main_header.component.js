@@ -38,6 +38,32 @@ class MainHeader extends React.Component {
     render() {
 
 
+        //MENU USUARIO ADMINISTRADOR MASTER
+        if (this.props.currentUser) {
+            return (
+
+                <div class="Header">
+                    <Navbar className="color-nav">
+                        <Nav className="container-fluid" >
+                            <img id="imglogo" src={logo} alt='imagenicono' width={"50"}></img>
+
+                            <Nav className="ml-auto menu">
+                                <Button class="btn btn-outline" id="botoninicio" size="md" variant="info" as={Link} to="/area_admin_master"><h5 className="linkText">Inicio</h5></Button>
+                                <Button class="btn btn-outline" id="botonprofile" size="md" variant="info" as={Link} to="/profile"><h5 className="linkText">Editar perfil</h5></Button>
+                                <Button class="btn btn-outline" id="botonuserlist" size="md" variant="info" as={Link} to="/admin_list_master"><h5 className="linkText">Lista de administradores</h5></Button>
+                                <Button class="btn btn-outline" size="md" id="botonlogin" onClick={this.props.logout} variant="info" as={Link} to="/">
+                                    <img src={imagenlogin} alt="imagen login" width="30" />
+                                </Button>
+                            </Nav>
+                        </Nav>
+                    </Navbar>
+                </div>
+
+
+
+            )
+        }
+
         //MENU USUARIO USER
         if (this.props.currentUser) {
             return (
@@ -65,31 +91,7 @@ class MainHeader extends React.Component {
             )
         }
 
-        //MENU USUARIO ADMINISTRADOR MASTER
-        if (this.props.currentUser) {
-            return (
 
-                <div class="Header">
-                    <Navbar className="color-nav">
-                        <Nav className="container-fluid" >
-                            <img id="imglogo" src={logo} alt='imagenicono' width={"50"}></img>
-
-                            <Nav className="ml-auto menu">
-                                <Button class="btn btn-outline" id="botoninicio" size="md" variant="info" as={Link} to="/area_admin_master"><h5 className="linkText">Inicio</h5></Button>
-                                <Button class="btn btn-outline" id="botonprofile" size="md" variant="info" as={Link} to="/profile"><h5 className="linkText">Editar perfil</h5></Button>
-                                <Button class="btn btn-outline" id="botonuserlist" size="md" variant="info" as={Link} to="/user_list_master"><h5 className="linkText">Lista de usuarios</h5></Button>
-                                <Button class="btn btn-outline" size="md" id="botonlogin" onClick={this.props.logout} variant="info" as={Link} to="/">
-                                    <img src={imagenlogin} alt="imagen login" width="30" />
-                                </Button>
-                            </Nav>
-                        </Nav>
-                    </Navbar>
-                </div>
-
-
-
-            )
-        }
 
 
         //MENU USUARIO ADMINISTRADOR
