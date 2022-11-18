@@ -71,6 +71,7 @@ class MainHeader extends React.Component {
                         <Nav.Link class="prueba" as={Link} to="/"><h5 className="linkText">Inicio</h5></Nav.Link>
                         <Nav.Link class="prueba" as={Link} to="/acercadenosotros"><h5 className="linkText">Acerca de nosotros</h5></Nav.Link>
                         <Nav.Link class="prueba" as={Link} to="/contactanos"><h5 className="linkText">Contáctanos</h5></Nav.Link>
+                        <Nav.Link class="prueba" as={Link} to="/admin_page"><h5 className="linkText">Administrar usuarios</h5></Nav.Link>
                         <Button class="btn btn-outline" size="md" id="botonlogin" variant="info" as={Link} to="/login">
                             <img src={imagenlogin} alt="imagen login" width="30" />
                         </Button>
