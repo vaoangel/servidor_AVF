@@ -52,7 +52,7 @@ class MainHeader extends React.Component {
                                 <Button class="btn btn-outline" id="botonacercade" size="md" variant="info" as={Link} to="/acercadenosotros"><h5 className="linkText">Acerca de nosotros</h5></Button>
                                 <Button class="btn btn-outline" id="botoncontactanos" size="md" variant="info" as={Link} to="/contactanos"><h5 className="linkText">Contáctanos</h5></Button>
                                 <Button class="btn btn-outline" id="botonprofile" size="md" variant="info" as={Link} to="/profile"><h5 className="linkText">Editar perfil</h5></Button>
-                                <Button class="btn btn-outline" size="md" id="botonlogin" variant="info" as={Link} to="/login">
+                                <Button class="btn btn-outline" size="md" id="botonlogin" onClick={this.props.logout} variant="info" as={Link} to="/">
                                     <img src={imagenlogin} alt="imagen login" width="30" />
                                 </Button>
                             </Nav>
@@ -78,7 +78,7 @@ class MainHeader extends React.Component {
                                 <Button class="btn btn-outline" id="botoninicio" size="md" variant="info" as={Link} to="/area_admin_master"><h5 className="linkText">Inicio</h5></Button>
                                 <Button class="btn btn-outline" id="botonprofile" size="md" variant="info" as={Link} to="/profile"><h5 className="linkText">Editar perfil</h5></Button>
                                 <Button class="btn btn-outline" id="botonuserlist" size="md" variant="info" as={Link} to="/user_list_master"><h5 className="linkText">Lista de usuarios</h5></Button>
-                                <Button class="btn btn-outline" size="md" id="botonlogin" variant="info" as={Link} to="/login">
+                                <Button class="btn btn-outline" size="md" id="botonlogin" onClick={this.props.logout} variant="info" as={Link} to="/">
                                     <img src={imagenlogin} alt="imagen login" width="30" />
                                 </Button>
                             </Nav>
@@ -107,7 +107,7 @@ class MainHeader extends React.Component {
                                 <Button class="btn btn-outline" id="botoncontactanos" size="md" variant="info" as={Link} to="/contactanos"><h5 className="linkText">Contáctanos</h5></Button>
                                 <Button class="btn btn-outline" id="botonprofile" size="md" variant="info" as={Link} to="/profile"><h5 className="linkText">Editar perfil</h5></Button>
                                 <Button class="btn btn-outline" id="botonuserlist" size="md" variant="info" as={Link} to="/user_list_admin"><h5 className="linkText">Lista de usuarios</h5></Button>
-                                <Button class="btn btn-outline" size="md" id="botonlogin" variant="info" as={Link} to="/login">
+                                <Button class="btn btn-outline" size="md" id="botonlogin" onClick={this.props.logout} variant="info" as={Link} to="/">
                                     <img src={imagenlogin} alt="imagen login" width="30" />
                                 </Button>
                             </Nav>
