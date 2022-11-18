@@ -1,0 +1,102 @@
+@font-face {
+    font-family: fuenteweb;
+    src: url(quicksandmedium.ttf);
+}
+
+.color-nav{
+    background-color: black;
+    
+}
+
+body{
+    padding-top: 50px; 
+}
+
+.Header{
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+#imglogo{
+    margin-left: 20px;
+}
+
+Nav.Link{
+    color: white;
+}
+
+h5:hover{
+    color: #65DF48;
+}
+
+#botonacercade{
+    background-color: transparent;
+    border: 2px #b0b0b0 solid;
+    border-bottom: none;
+    border-top: none;
+    border-right: none;
+    border-radius: 0;
+}
+
+#botonprofile{
+    background-color: transparent;
+    border: 2px #b0b0b0 solid;
+    border-bottom: none;
+    border-top: none;
+    border-right: none;
+    border-radius: 0;
+}
+
+#botonuserlist{
+    background-color: transparent;
+    border: 2px #b0b0b0 solid;
+    border-bottom: none;
+    border-top: none;
+    border-right: none;
+    border-radius: 0;
+}
+
+#botonlogin{
+    background-color: transparent;
+    border: transparent;
+    box-shadow: none;
+    border: 2px #b0b0b0 solid;
+    border-bottom: none;
+    border-top: none;
+    border-right: none;
+    border-radius: 0;
+    
+}
+
+#botoncontactanos{
+    background-color: transparent;
+    border: 2px #b0b0b0 solid;
+    border-bottom: none;
+    border-top: none;
+    border-right: none;
+    border-radius: 0;
+}
+
+#botoninicio{
+    background-color: transparent;
+    border: 2px #b0b0b0 solid;
+    border-bottom: none;
+    border-top: none;
+    border-right: none;
+    border-radius: 0;
+}
+
+#botonmapa{
+    background-color: transparent;
+    border: 2px #b0b0b0 solid;
+    border-bottom: none;
+    border-top: none;
+    border-right: none;
+    border-radius: 0;
+}
+
+.linkText{
+    color: white;
+    font-family: fuenteweb;
+}
