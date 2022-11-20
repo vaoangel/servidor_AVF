@@ -3,7 +3,7 @@ const promiseMiddleware = store => next => action => {
 
 
   if(action.method !== undefined){   
-
+    
        
           store.dispatch({type:action.type+"_PENDING"})
           APIS[action.api][action.method](action.payload).then(res=>{

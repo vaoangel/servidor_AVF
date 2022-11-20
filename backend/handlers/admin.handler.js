@@ -2,12 +2,10 @@
 
 const admin_functions = require("../functions/admin.functions")
 
+
+//Este método no recibe nada, solo devuelve info
 exports.get_all_enterprises = async ()=>{
 
-
-
-
-    
 
 
         var results = await admin_functions.get_all_enterprises_db_call();
@@ -20,3 +18,5 @@ exports.get_all_enterprises = async ()=>{
 
     
 }
+
+//Devuelve un JSON con la info de las empresas

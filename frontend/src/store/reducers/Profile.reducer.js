@@ -5,7 +5,6 @@ const initialState = {
 }
 
 const user = (state,action) =>{
-    console.log(action.payload);
     
      return{
          ...state,

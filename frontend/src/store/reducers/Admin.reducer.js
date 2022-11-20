@@ -1,11 +1,10 @@
 import ActionTypes from '../ActionTypes'
 
 const initialState = {
-    allEnterprises: null
+    allEnterprises: undefined
 }
 
 const get_enterprise = (state,action) =>{
-    console.log(action.payload);
     
      return{
          ...state,
@@ -17,13 +16,13 @@ const get_enterprise = (state,action) =>{
  const Action = ActionTypes.ADMIN_TYPE
 
 export default (state = initialState, action) =>{
-    console.log(action.payload);
+
 
     switch(action.type){
         case Action.GET_ENTERPRISE:
             return get_enterprise(state,action);
         case Action.GET_ENTERPRISE_SUCCESS:
-            return {...state,allEnterprises:action.payload}
+        return {...state,allEnterprises:action.payload}
 
              
        

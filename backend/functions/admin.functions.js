@@ -2,6 +2,7 @@
 const mysql = require('../config/db')
 
 
+//No recibe nada
 exports.get_all_enterprises_db_call = async () =>{
     console.log("get_all_enterprises:          Entra");
 
@@ -24,3 +25,5 @@ exports.get_all_enterprises_db_call = async () =>{
 
         return results
 }
+
+//Devuelve la info de la base de datos
