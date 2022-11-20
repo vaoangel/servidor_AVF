@@ -4,7 +4,18 @@
 }
 
 .color-nav{
-    background-color: #65DF48;
+    background-color: black;
+    
+}
+
+body{
+    padding-top: 50px; 
+}
+
+.Header{
+    position: fixed;
+    top: 0;
+    width: 100%;
 }
 
 #imglogo{
@@ -15,15 +26,77 @@ Nav.Link{
     color: white;
 }
 
+h5:hover{
+    color: #65DF48;
+}
+
+#botonacercade{
+    background-color: transparent;
+    border: 2px #b0b0b0 solid;
+    border-bottom: none;
+    border-top: none;
+    border-right: none;
+    border-radius: 0;
+}
+
+#botonprofile{
+    background-color: transparent;
+    border: 2px #b0b0b0 solid;
+    border-bottom: none;
+    border-top: none;
+    border-right: none;
+    border-radius: 0;
+}
+
+#botonuserlist{
+    background-color: transparent;
+    border: 2px #b0b0b0 solid;
+    border-bottom: none;
+    border-top: none;
+    border-right: none;
+    border-radius: 0;
+}
 
 #botonlogin{
     background-color: transparent;
     border: transparent;
     box-shadow: none;
+    border: 2px #b0b0b0 solid;
+    border-bottom: none;
+    border-top: none;
+    border-right: none;
+    border-radius: 0;
     
 }
 
+#botoncontactanos{
+    background-color: transparent;
+    border: 2px #b0b0b0 solid;
+    border-bottom: none;
+    border-top: none;
+    border-right: none;
+    border-radius: 0;
+}
+
+#botoninicio{
+    background-color: transparent;
+    border: 2px #b0b0b0 solid;
+    border-bottom: none;
+    border-top: none;
+    border-right: none;
+    border-radius: 0;
+}
+
+#botonmapa{
+    background-color: transparent;
+    border: 2px #b0b0b0 solid;
+    border-bottom: none;
+    border-top: none;
+    border-right: none;
+    border-radius: 0;
+}
+
 .linkText{
-    color: black;
+    color: white;
     font-family: fuenteweb;
 }

@@ -204,7 +204,8 @@ html{
 
 .site-footer
 {
-position:relative; 
+  position: fixed;
+  bottom: 0; 
 
 width: 100%;
     
@@ -414,6 +415,8 @@ width: 100%;
   border: none;
   width: 50%;
   height:40px;
+  margin-left: 90px;
+  margin-top: 20px;
 }
 
 .screen-3  {
@@ -475,5 +478,91 @@ width: 100%;
 
 .form {
   width: 25%;
+}
+
+/*CSS para la pagina de los administradores*/
+.admin_page{
+  margin-top: 20px;
+}
+
+/* Popup container */
+.popup {
+  position: absolute;
+  margin-left: 500px;
+  display: inline-block;
+  cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+  visibility: hidden;
+  height: 200px;
+  width: 400px;
+  background-color: white;
+  border-radius: 5px;
+  border-color: #000000;
+  color: black;
+  text-align: center;
+  border: black 3px solid;
+  border-radius: 20px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -80px;
+}
+
+.popup .popuptext .input{
+  margin-top: 20px;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #000000;
+  color: grey;
+}
+
+.popup .popuptext .button{
+  background-color: #00f83a;
+  color: white;
+  border-radius: 5px;
+  border: none;
+  width: 50%;
+  height:40px;
+  /*margin-left: 90px;*/
+  margin-top: 40px;
+}
+
+
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
+}
+
+/*Codigo para la pagina de registrar usuarios*/
+.page_body{
+  height: 850px;
+  margin-bottom: 250px;
+}
+
+.radio_button{
+  margin-left: 10px;
+}
+
+.radio_button_text{
+  font-size: small;
 }
 
