@@ -1,5 +1,7 @@
 import React from 'react';
 import {  Link } from 'react-router-dom';
+import {connect} from 'react-redux'
+
 import { Nav, Navbar, Form, FormControl, Button } from 'react-bootstrap';
 import UselocalStorage from "../hooks/localStorage.hook"
 import ojo from '../assets/img/ojo.png'
@@ -7,14 +9,35 @@ import x from '../assets/img/x_roja.png'
 import boton_verde from '../assets/img/boton_cruz_verde.png'
 
 
+const mapDispatchToProps = dispatch => ({
+    login: (username, password) =>
+    dispatch({ type: "LOGIN",method:"login",api:"LoginApi", payload:{username,password}}),
 
+    onload:()=>dispatch({type: "GET_ENTERPRISE", method:"get_enterprise",api: "AdminApi"}),
+    success: () => dispatch({type:"GET_ENTERPRISE_SUCCESS"}),
+
+});
+
+const mapStateToProps = state => ({
+    currentUser: state.LoginReducer.currentUser,
+
+    enterprise_list: state.AdminReducer.allEnterprises
+});
 
 
 class AdminPage extends React.Component{
 
     constructor(props){
         super(props);
-     
+        this.props.onload();
+        this.props.success();
+
+        this.state = {
+            enterprises:this.props.enterprise_list
+        }
+        this.enterprise_list = this.enterprise_list.bind(this)
+
+        
     }
 
     showPopup() {
@@ -34,6 +57,39 @@ class AdminPage extends React.Component{
     }
 
      
+
+    enterprise_list(){
+        // console.log(this.state.animals);
+
+        let html =[]
+               
+        this.state.enterprises.map((elements) =>{
+            return html = [
+                ...html,
+                <tr>
+                <td>{elements.idEmpresa}</td>
+                <td>{elements.Nombre}</td>
+                <td className='text-center'>
+                    <Link to='/admin_page2'>
+                        <img src={ojo} alt="ojo verde" height="20" width="20"></img>
+                    </Link>
+                </td>
+                <td className='text-center'>
+                    <img src={x} alt="x roja" height="20" width="20"></img>
+                </td>
+            </tr>
+
+            ]
+        })
+     
+        return html
+    }
+
+
+
+
+
+
 
     render(){
         
@@ -57,36 +113,10 @@ class AdminPage extends React.Component{
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Ayuntamiento X</td>
-                        <td className='text-center'>
-                            <Link to='/admin_page2'>
-                                <img src={ojo} alt="ojo verde" height="20" width="20"></img>
-                            </Link>
-                        </td>
-                        <td className='text-center'>
-                            <img src={x} alt="x roja" height="20" width="20"></img>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Ayuntamiento Y</td>
-                        <td className='text-center'>
-                            <Link to='/admin_page2'>
-                                <img src={ojo} alt="ojo verde" height="20" width="20"></img>
-                            </Link>
-                        </td>
-                        <td className='text-center'>
-                            <img src={x} alt="x roja" height="20" width="20"></img>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td class="text-left"></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
+                    
+                            {this.enterprise_list()}
+
+                    
                     </tbody>
                 </table>
 
@@ -108,4 +138,4 @@ class AdminPage extends React.Component{
 }
 
 
-export default AdminPage
+export default connect(mapStateToProps, mapDispatchToProps)(AdminPage)

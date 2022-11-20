@@ -4,6 +4,9 @@ const arduino  = require("../handlers/arduino.controller")
 const login = require("../handlers/login.handler")
 const user = require("../handlers/user.handler")
 const sensor = require("../handlers/sensor.handler")
+
+const admin = require("../handlers/admin.handler")
+
 //Declaramos todas las rutas
 const routes = [
     {
@@ -65,6 +68,11 @@ const routes = [
         method:"POST",
         path: "/delete_user",
         handler: user.delete_user 
+    },
+    {
+        method: "GET",
+        path: "/get_enterprises",
+        handler: admin.get_all_enterprises
     }
    
 ]

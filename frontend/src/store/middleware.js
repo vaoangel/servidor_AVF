@@ -3,9 +3,8 @@ const promiseMiddleware = store => next => action => {
 
 
   if(action.method !== undefined){   
-      // console.log(APIS[action.api])
 
-        //console.log(action.payload);
+       
           store.dispatch({type:action.type+"_PENDING"})
           APIS[action.api][action.method](action.payload).then(res=>{
               // console.log(res);

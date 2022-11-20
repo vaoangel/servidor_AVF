@@ -2,7 +2,7 @@ import axios from 'axios'
 
 let token = null
 let API = axios.create({
-    baseURL: 'http://10.236.17.207:3000/',
+    baseURL: 'http://localhost:3000/',
     headers: {
         'Authorization': token!==null ? `Token ${token}` : "",
     },
@@ -139,10 +139,27 @@ const ProfileApi={
    }
 }
 
+const AdminApi={
+    get_enterprise:()=>{
+       
+       const info = request.get('get_enterprises').then(function(data){
+           
+        console.log(data);
+           return data 
+       }).catch(function(error){
+           return error
+       })
+       return info
+   
+       
+   }
+}
+
 
 export {
     TemperatureApi,
     LoginApi,
-    ProfileApi
+    ProfileApi,
+    AdminApi
     
 }
