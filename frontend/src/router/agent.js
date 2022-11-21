@@ -152,7 +152,33 @@ const AdminApi={
        return info
    
        
-   }
+   },
+
+   delete_enterprise:(data)=>{
+       
+    const info = request.post('delete_enterprise',{"idEmpresa":data}).then(function(data){
+        
+        return data.data
+    }).catch(function(error){
+        return error
+    })
+    return info
+
+    
+},
+
+    add_enterprise:(data)=>{
+       
+    const info = request.post('add_enterprise',{"nombreEmpresa":data}).then(function(data){
+        
+        return data.data
+    }).catch(function(error){
+        return error
+    })
+    return info
+
+    
+}
 }
 
 

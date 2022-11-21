@@ -13,6 +13,10 @@ const mapDispatchToProps = dispatch => ({
 
     onload:()=>dispatch({type: "GET_ENTERPRISE", method:"get_enterprise",api: "AdminApi"}),
 
+    delete:(data)=>dispatch({type: "DELETE_ENTERPRISE", method:"delete_enterprise",api: "AdminApi", payload:(data)}),
+    add:(data)=>dispatch({type: "ADD_ENTERPRISE", method:"add_enterprise",api: "AdminApi", payload:(data)}),
+
+
 
 });
 
@@ -31,11 +35,23 @@ class AdminPage extends React.Component{
         this.state = {
             enterprises:this.props.enterprise_list,
 
-            new_enterprise_name: ""
+           
+            current:"",
+
+            add_data:{
+                input: "",
+            }
+
+
         }
 
         this.enterprise_list = this.enterprise_list.bind(this)
+        this.enterprise_delete = this.enterprise_delete.bind(this)
+        this.enterprise_add = this.enterprise_add.bind(this)
+
         this.getSnapshotBeforeUpdate = this.getSnapshotBeforeUpdate.bind(this)
+        this.handleChanges = this.handleChanges.bind(this);
+        this.hidePopup = this.hidePopup.bind(this);
 
         this.componentDidUpdate = this.componentDidUpdate.bind(this)
 
@@ -90,6 +106,10 @@ class AdminPage extends React.Component{
         
     }
 
+    handleChanges(data){
+        this.setState({add_data:{...this.state.add_data, [data.target.name]: data.target.value}})
+    }
+
     //Función que  renderiza las empresas
     enterprise_list(){
         // console.log(this.state.animals);
@@ -110,7 +130,7 @@ class AdminPage extends React.Component{
                     </Link>
                 </td>
                 <td className='text-center'>
-                    <img src={x} alt="x roja" height="20" width="20"></img>
+                    <img id={elements.idEmpresa} src={x} alt="x roja" height="20" width="20"  onClick={this.enterprise_delete}></img>
                 </td>
             </tr>
 
@@ -120,9 +140,40 @@ class AdminPage extends React.Component{
         return html
     }
 
+
+
+    enterprise_delete = event =>{
+
+      console.log(event.currentTarget.id);
+
+
+      this.props.delete(event.currentTarget.id)
+    }
+
+
+
+    enterprise_add(){
+
+
+        var popup = document.getElementById("myPopup");
+        /*if(popup.style.visibility == "hidden")*/
+       console.log("hide" + popup.classList.contains("show"));
+        popup.classList.remove("show");
+        console.log("hide" + popup.classList.contains("show"));
+
+
+
+        if (this.state.add_data.input=== '') {
+            alert("El campo de nombre no puede estar vacio")
+        }else{
+            this.props.add(this.state.add_data.input);
+
+        }
+
+    }
+
     render(){
         
-
 //si el state está vacio devuelve un Cargando 
         if (this.state.enterprises === undefined) {
             
@@ -160,9 +211,9 @@ class AdminPage extends React.Component{
                     <div class="popup">
                         <span class="popuptext" id="myPopup">
                             <h5>Nombre nueva empresa</h5>
-                            <input type="text" placeholder="Escribir nuevo nombre" className='input'/>
+                            <input type="text"onChange={this.handleChanges} name ='input'   placeholder="Escribir nuevo nombre" className='input'/>
                             <div>
-                                <button class="button" onClick={this.hidePopup}>Guardar</button>
+                                <button class="button"   onClick={this.enterprise_add}>Guardar</button>
                             </div>
                             
                         </span>

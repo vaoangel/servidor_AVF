@@ -73,9 +73,19 @@ const routes = [
         method: "GET",
         path: "/get_enterprises",
         handler: admin.get_all_enterprises
+    },
+    {
+        method: "POST",
+        path: "/delete_enterprise",
+        handler: admin.delete_one_enterprise
+    },
+    {
+        method: "POST",
+        path: "/add_enterprise",
+        handler: admin.add_one_enterprise
     }
    
 ]
-
+ 
   
 module.exports = routes
