@@ -2,8 +2,8 @@
 // mainTest1.js
 // ........................................................
 const arduino = require('./controllers/arduino.controller')
-const login = require("./handlers/login.handler")
-const user = require("./handlers/user.handler")
+const login = require("../handlers/login.handler")
+const user = require("../handlers/user.handler")
 var assert = require("assert")	//El mocha necesita esta clase para hacer las pruebas
 // ........................................................
 // main ()

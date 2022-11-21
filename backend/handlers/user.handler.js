@@ -105,7 +105,9 @@ exports.add_user  = async req=>{
    
 }
 
+//Recibe el id del usuario por el body 
 exports.delete_user  = async req=>{
+    //Si el body está vacio devuelve un false;
 
     if(!req.body){
 
@@ -134,6 +136,8 @@ exports.delete_user  = async req=>{
     }
    
 }
+
+//Devuelve true o false dependiendo de si ha ido bien la operación
 
 
 
