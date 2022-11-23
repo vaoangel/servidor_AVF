@@ -88,6 +88,12 @@ const routes = [
         method: "POST",
         path: "/recover_password",
         handler: login.recuperar_contrasena
+        
+    }, 
+    {
+        method: "POST",
+        path: "/average_measurements",
+        handler: sensor.average_measurements
     }
 
    
