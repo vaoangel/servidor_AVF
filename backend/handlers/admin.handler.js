@@ -48,3 +48,19 @@ exports.add_one_enterprise = async req=>{
 
 }
 //Devuelve un JSON con la info de las empresas
+
+
+exports.get_all_users_by_enterprise = async req=>{
+
+
+
+    var results = await admin_functions.get_all_users_by_enterprise_db_call(req.body.idEmpresa);
+     console.log(results);
+    if (results != '') {
+        return results
+    }else{
+        return false
+    }
+
+
+}

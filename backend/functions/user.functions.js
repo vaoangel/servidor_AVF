@@ -107,7 +107,7 @@ exports.modificar_pass_db_call = async (data) => {
 exports.add_user_db_call = async (data) =>{
 
 
-    var query = mysql.query("Insert into db.usuarios (Tipo, idEmpresa, Nombre, Telefono,mail, Usuario, Contrasena ) VALUES('"+data.type+"','"+data.enterprise+"','"+data.name+"','"+data.phone+"','"+data.mail+"','"+data.username+"', '"+data.password+"'  )").then((data, error) => {
+    var query = mysql.query("Insert into db.usuarios (Tipo, idEmpresa, Nombre, Telefono,mail, Usuario, Contrasena ) VALUES('"+data.type+"','"+data.enterprise+"','"+data.name+"','"+data.phone+"','"+data.mail+"','"+data.username+"', '"+data.password+"')").then((data, error) => {
 
 
         if (data) {

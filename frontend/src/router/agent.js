@@ -178,6 +178,21 @@ const AdminApi={
     return info
 
     
+},
+
+
+get_all_users_by_enterprise:(data)=>{
+       
+    const info = request.post('get_all_users_by_enterprise',{"idEmpresa":data}).then(function(data){
+        
+        console.log(data.data);
+        return data.data
+    }).catch(function(error){
+        return error
+    })
+    return info
+
+    
 }
 }
 

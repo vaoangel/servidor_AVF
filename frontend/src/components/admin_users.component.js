@@ -6,16 +6,46 @@ import ojo from '../assets/img/ojo.png'
 import x from '../assets/img/x_roja.png'
 import boton_verde from '../assets/img/boton_cruz_verde.png'
 import lapiz from '../assets/img/lapiz.png'
+import {connect} from 'react-redux'
+import {
+    useParams
+  } from "react-router-dom";
+
+  const mapDispatchToProps = dispatch => ({
+
+
+    onload:(data)=>dispatch({type: "GET_USERS_BY_ENTERPRISE", method:"get_all_users_by_enterprise",api: "AdminApi", payload:data}),
+
+    delete:(data)=>dispatch({type: "DELETE_ENTERPRISE", method:"delete_enterprise",api: "AdminApi", payload:(data)}),
+    add:(data)=>dispatch({type: "ADD_ENTERPRISE", method:"add_enterprise",api: "AdminApi", payload:(data)}),
 
 
 
+});
 
+const mapStateToProps = state => ({
+    users_by_enterprise: state.AdminReducer.users_by_enterprise
+
+});
 
 class AdminPage2 extends React.Component{
 
     constructor(props){
+        
         super(props);
-     
+        this.props.onload(this.props.match.params.param)
+        this.state = {
+            users_by_enterprise:this.props.users_by_enterprise,
+
+           
+            current:"",
+
+            add_data:{
+                input: "",
+            }
+
+
+        }
     }
 
     showPopup() {
@@ -34,10 +64,43 @@ class AdminPage2 extends React.Component{
     console.log("hide" + popup.classList.contains("show"));
     }
 
-     
+    getSnapshotBeforeUpdate(prevProps, prevState) {
+        console.log(prevProps.users_by_enterprise);
+        console.log(this.props.users_by_enterprise);
+
+        if (prevProps.users_by_enterprise !== this.props.users_by_enterprise) {
+        console.log(this.props.users_by_enterprise);
+
+
+          const snapshot = this.props.users_by_enterprise;
+          return snapshot
+        }    
+        return null;
+    } 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if(snapshot != null){
+
+            //console.log(snapshot);
+
+            this.setState({
+                users_by_enterprise: snapshot
+            })
+
+           // this.props.success()
+
+         /*    this.setState({enterprises:{...this.props.enterprise_list,
+          
+            // modificar todo el state cuando llegue el raw exacto del backend
+            }}) */
+
+            
+        }
+        
+    }
 
     render(){
-        
+
+        console.log(this.props.users_by_enterprise);
 
         
         return(
@@ -106,4 +169,4 @@ class AdminPage2 extends React.Component{
 }
 
 
-export default AdminPage2
+export default connect(mapStateToProps, mapDispatchToProps)(AdminPage2)
