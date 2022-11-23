@@ -83,6 +83,11 @@ const routes = [
         method: "POST",
         path: "/add_enterprise",
         handler: admin.add_one_enterprise
+    },
+    {
+        method: "POST",
+        path: "/average_measurements",
+        handler: sensor.average_measurements
     }
    
 ]

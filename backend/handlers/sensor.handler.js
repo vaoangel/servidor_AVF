@@ -2,6 +2,39 @@
 //Recibe los datos del body, los parsea a JSON y lo manda a la funcón en cuestión para insertarlo
 const sensor_function = require("../functions/sensor.functions")
 
+exports.average_measurements = async req=>{
+    //Si el body está vacio devuelve un false;
+
+    if(!req.body){
+
+        return false
+    }else{
+
+        //Se reciben los datos del body
+        var date = req.body.date
+        var id_sensor = req.body.id_sensor
+
+    
+        //Se parsean los datos
+        var parsedData = {
+            "date":date,
+            "id_sensor":id_sensor,
+
+        }
+
+
+        var results = await sensor_function.average_measurements_db_call(parsedData);
+         console.log(results);
+        if (results != '') {
+            return results
+        }else{
+            return false
+        }
+
+    }
+}
+
+
 //Recibe los valores en formato JSON
 
 exports.insert_sensor = async req=>{
