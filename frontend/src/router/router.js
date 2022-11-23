@@ -1,7 +1,7 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
 import AreaUSuario from '../components/area_usuario.component'
-import {Home,Header,TestC, Login, Profile, AdminPageC, AdminPage2C, UserRegisterC, UserEditC} from '../components/index'
+import {Home,Header,TestC, Login, Profile, AdminPageC, AdminPage2C, UserRegisterC, UserEditC,LandingC} from '../components/index'
 
 
 const BaseRouter = () => {
@@ -17,7 +17,7 @@ const BaseRouter = () => {
             <Route exact path="/admin_page2" component={AdminPage2C}/>
             <Route exact path="/user_register" component={UserRegisterC}/>
             <Route exact path="/user_edit" component={UserEditC}/>
-
+            <Route exact path="/landing" component={LandingC}/>
 
             
 
