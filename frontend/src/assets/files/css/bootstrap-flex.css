@@ -84,7 +84,13 @@ dfn {
 
 h1 {
   font-size: 2em;
-  margin: 0.67em 0;
+  margin: 0.67em 0.67em 0.67em;
+  margin-left: 30%;
+  margin-bottom: 50%;
+  position: absolute;
+  bottom:400px;
+  text-align: center;
+  
 }
 
 mark {

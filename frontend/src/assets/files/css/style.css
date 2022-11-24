@@ -13,7 +13,7 @@ body{
 }
 .slider-1{
 	background-image:url("../../img/foto1.png");
-	background-size: 100%;
+	background-size: 100% 100% ;
 background-repeat: no-repeat;
 }
 
@@ -25,25 +25,25 @@ background-repeat: no-repeat;
 }
 .slider-3{
 	background-image:url("../../img/fondodevices.png");
-	background-size: 100%;
+	background-size: 100% 100%;
 	background-repeat: no-repeat;
 }
 .slider-4{
 	
 	background-image:url("../../img/mapa.png");
-	background-size: 100%;
+	background-size: 100% 100%;
 background-repeat: no-repeat;
 }
 .slider-5{
 	
 	background-image:url("../../img/foto67.png");
-	background-size: 100%;
+	background-size:100%;
 	background-repeat: no-repeat;
 }
 .slider-6{
 	
 	background-image:url("../../img/futo.png");
-	background-size:100%;
+	background-size:100% 100%;
 	background-repeat: no-repeat;
 }
 
