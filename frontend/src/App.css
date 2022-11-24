@@ -431,6 +431,9 @@ width: 80%;
   display: flex;
   flex-direction: column;
   gap: 2em;
+  background-color: #FFF;
+  background-size: 100% 100%;
+  size: 100vh 100vh;
   
 }
 
@@ -455,6 +458,7 @@ width: 80%;
 .screen-3 .form-input input::-moz-placeholder {
   color: rgb(48, 27, 164);
   font-size: 0.9em;
+
 }
 .screen-3 .form-input input:-ms-input-placeholder {
   color: grey;

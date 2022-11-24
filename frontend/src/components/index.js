@@ -8,6 +8,9 @@ import AdminPage from "./admin_enterprise.component";
 import AdminPage2 from "./admin_users.component";
 import UserRegister from "./admin_user_register.component";
 import UserEdit from "./admin_user_edit.component";
+import Landing from "./landing.component";
+import Contactanos from "./contact_us.component";
+
  export const Header = MainHeader;
  export const Home = MainHome;
  export const Login = LoginC
@@ -18,3 +21,5 @@ export const AdminPageC = AdminPage
 export const AdminPage2C = AdminPage2
 export const UserRegisterC = UserRegister
 export const UserEditC = UserEdit
+export const LandingC= Landing
+export const ContactanosC = Contactanos
