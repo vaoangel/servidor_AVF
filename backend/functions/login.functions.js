@@ -6,8 +6,9 @@ const mysql = require('../config/db')
 exports.login_db_calls = async (data) =>{
     
 
+    console.log("Select Nombre,Telefono,mail,Usuario from db.usuarios where Usuario like '"+ data.username+"' and Contrasena like '"+data.password+"';");
     
- var  query = mysql.query("Select Nombre,Telefono,mail,Usuario from db.usuarios where Usuario like '"+ data.username+"' and Contrasena like '"+data.password+"';").then((data,error)=>{
+ var  query = mysql.query("Select Nombre,Telefono,mail,Usuario,Tipo,idEmpresa from db.usuarios where Usuario like '"+ data.username+"' and Contrasena like '"+data.password+"';").then((data,error)=>{
 
 
     if (data) {

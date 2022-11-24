@@ -6,7 +6,9 @@ import {connect} from 'react-redux'
 import ojo from '../assets/img/ojo.png'
 import x from '../assets/img/x_roja.png'
 import boton_verde from '../assets/img/boton_cruz_verde.png'
-
+import {
+    useParams
+  } from "react-router-dom";
 
 const mapDispatchToProps = dispatch => ({
 
@@ -117,7 +119,7 @@ class AdminPage extends React.Component{
         let html =[]
                
 
-
+       
         this.state.enterprises.map((elements) =>{
             return html = [
                 ...html,
@@ -125,7 +127,7 @@ class AdminPage extends React.Component{
                 <td>{elements.idEmpresa}</td>
                 <td>{elements.Nombre}</td>
                 <td className='text-center'>
-                    <Link to='/admin_page2'>
+                    <Link to={`${"admin_page2"}${elements.idEmpresa}`}>
                         <img src={ojo} alt="ojo verde" height="20" width="20"></img>
                     </Link>
                 </td>
