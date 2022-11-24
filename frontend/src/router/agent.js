@@ -2,7 +2,8 @@ import axios from 'axios'
 
 let token = null
 let API = axios.create({
-    baseURL: 'http://192.168.1.65:3000/',
+    //baseURL: 'http://192.168.1.65:3000/',
+    baseURL: 'http://localhost:3000/',
     headers: {
         'Authorization': token!==null ? `Token ${token}` : "",
     },
