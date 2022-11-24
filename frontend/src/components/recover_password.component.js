@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import {Link, Redirect } from "react-router-dom";
 import Apis from '../router/index'
 import { Nav, Navbar, Form, FormControl, Button } from 'react-bootstrap';
+import emailjs from 'emailjs-com';
 
 const mapDispatchToProps = dispatch => ({
     recover_password: (mail,password) =>
@@ -20,13 +21,14 @@ class RecoverPassC extends React.Component{
         super(props);
 
         this.state = {
-            recover_passwordData:{mail: "update@gmail.com", password:"pinocho2"}
+            recover_passwordData:{mail: "", password:"pepe2"}
         }
         this.handleChanges = this.handleChanges.bind(this);
         this.validateData = this.validateData.bind(this);
+        this.enviarEmail = this.enviarEmail.bind(this);
     }
    
-    generatePasswordRand(length,type) {
+    /*generatePasswordRand(length,type) {
         var characters;
         switch(type){
             case 'num':
@@ -57,9 +59,9 @@ class RecoverPassC extends React.Component{
         console.log(pass);
         //console.log(this.state.recover_passwordData);
         });
-    }
+    }*/
 
-    validateData(){
+    validateData(e){
         const regexp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
         var json = {
             mail: this.state.recover_passwordData.mail,
@@ -69,16 +71,26 @@ class RecoverPassC extends React.Component{
         //console.log(this.state.recover_passwordData);
         console.log("Probando"); 
         Apis.RecoverApi.recover_password(json)
+
     }
     handleChanges(data){
         this.setState({recover_passwordData:{...this.state.recover_passwordData, [data.target.name]: data.target.value}})
     }
 
-    
+    enviarEmail(e){
+        e.preventDefault();
+
+        emailjs.sendForm('service_ba16zgs','template_pmcu1rn',e.target,"RaNn5pwPTicq8RbnW").then(res=>{
+            alert("se ha enviado correctamente");
+            console.log(res);
+        })
+
+    }
    
     render(){
         console.log(this.state.recover_passwordData);
         return(
+            /*
             <div>
                 <h1>HOLA</h1>
                 <h1>HOLA</h1>
@@ -110,7 +122,30 @@ class RecoverPassC extends React.Component{
                    <button onClick={this.validateData} className="login"> </button>
 
                                         
-           </div>
+           </div>*/
+
+           <div className="screen-3">
+            <h4 className="h4">Recuperar contraseña</h4>  
+
+            <form className="form" onSubmit={this.enviarEmail}>
+                <div className="label">
+                    <label className="label-text">Correo electrónico</label>
+                </div>
+                <div className="form-input">
+                <input type="text" id="mail" name="email" onChange={this.handleChanges}></input>
+                </div>
+                <div className="form-input">
+                <input type="text" id="password_rc" name="password" value={this.state.recover_passwordData.password}></input>
+                </div>
+                
+                
+                <div>
+                <button type="submit" className='button' onClick={this.validateData}>Generar contraseña</button>
+                </div>
+                
+            </form>
+
+        </div>
 
             
                 

@@ -102,11 +102,12 @@ class LoginC extends React.Component {
                    </div>
                    
                    
-                   <button onClick={this.validateData} className="login">Entrar </button>
+                   <button onClick={this.validateData} className="login">Entrar</button>
 
                                          </>
+                                        
            </div>
-                   
+           <Link to="/recover_pass" className='text-center link_recuperar'>He olvidado mi contraseña</Link>
             </div>
     
                 

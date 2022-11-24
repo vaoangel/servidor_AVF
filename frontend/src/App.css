@@ -568,3 +568,22 @@ width: 80%;
   font-size: small;
 }
 
+.screen-3 .form-input textarea {
+  margin-top: 5px;
+  background: transparent;
+  border: none;
+  border: 1px solid #000000;
+  color: grey;
+}
+
+.link_recuperar{
+  margin-bottom: 100px;
+  color: black;
+}
+
+#password_rc{
+  display: none
+}
+
+
+
