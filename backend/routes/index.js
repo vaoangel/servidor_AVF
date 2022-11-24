@@ -86,14 +86,16 @@ const routes = [
     },
     {
         method: "POST",
-        path: "/get_all_users_by_enterprise",
-        handler: admin.get_all_users_by_enterprise
-    },
+        path: "/recover_password",
+        handler: login.recuperar_contrasena
+        
+    }, 
     {
         method: "POST",
-        path: "/delete_users_by_enterprise",
-        handler: admin.delete_users_by_enterprise
+        path: "/average_measurements",
+        handler: sensor.average_measurements
     }
+
    
 ]
  
