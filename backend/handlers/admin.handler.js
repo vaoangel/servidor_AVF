@@ -64,3 +64,19 @@ exports.get_all_users_by_enterprise = async req=>{
 
 
 }
+
+
+exports.delete_users_by_enterprise = async req=>{
+
+
+
+    var results = await admin_functions.delete_users_by_enterprise_db_call(req.body);
+     console.log(results);
+    if (results != '') {
+        return results
+    }else{
+        return false
+    }
+
+
+}

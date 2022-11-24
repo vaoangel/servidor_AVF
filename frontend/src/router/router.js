@@ -15,7 +15,7 @@ const BaseRouter = () => {
             <Route exact path="/area_usuario" component={AreaUSuario}/>
             <Route exact path="/admin_page" component={AdminPageC}/>
             <Route exact path="/admin_page2:param" component={AdminPage2C}/>
-            <Route exact path="/user_register" component={UserRegisterC}/>
+            <Route exact path="/user_register:param" component={UserRegisterC}/>
             <Route exact path="/user_edit" component={UserEditC}/>
 
 

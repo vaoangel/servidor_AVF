@@ -15,7 +15,7 @@ const request ={
             console.log(data);
             
             if(data!==undefined){
-                alert("Operación realizada correctamente")
+                //alert("Operación realizada correctamente")
                    resolve(data)
                    
             }else{
@@ -193,7 +193,33 @@ get_all_users_by_enterprise:(data)=>{
     return info
 
     
+},
+delete_users_by_enterprise:(data)=>{
+       
+    const info = request.post('delete_users_by_enterprise',{"idUsuario":data.idUsuario, "idEmpresa":data.idEmpresa}).then(function(data){
+        
+        return data.data
+    }).catch(function(error){
+        return error
+    })
+    return info
+
+    
 }
+,
+
+add_user:(data)=>{
+       
+    const info = request.post('add_user',{data}).then(function(data){
+        
+        return data.data
+    }).catch(function(error){
+        return error
+    })
+    return info
+
+    
+},
 }
 
 

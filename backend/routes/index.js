@@ -88,6 +88,11 @@ const routes = [
         method: "POST",
         path: "/get_all_users_by_enterprise",
         handler: admin.get_all_users_by_enterprise
+    },
+    {
+        method: "POST",
+        path: "/delete_users_by_enterprise",
+        handler: admin.delete_users_by_enterprise
     }
    
 ]

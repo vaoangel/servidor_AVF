@@ -17,6 +17,9 @@ exports.login_data_from_post = async req =>{
             "username":username,
             "password":password
         }
+
+        console.log(parsedData);
+
         var test = await login_functions.login_db_calls(parsedData)
 
         if (test != '') {

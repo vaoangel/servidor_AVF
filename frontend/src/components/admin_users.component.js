@@ -16,8 +16,8 @@ import {
 
     onload:(data)=>dispatch({type: "GET_USERS_BY_ENTERPRISE", method:"get_all_users_by_enterprise",api: "AdminApi", payload:data}),
 
-    delete:(data)=>dispatch({type: "DELETE_ENTERPRISE", method:"delete_enterprise",api: "AdminApi", payload:(data)}),
-    add:(data)=>dispatch({type: "ADD_ENTERPRISE", method:"add_enterprise",api: "AdminApi", payload:(data)}),
+    delete:(data)=>dispatch({type: "DELETE_USERS_BY_ENTERPRISE", method:"delete_users_by_enterprise",api: "AdminApi", payload:(data)}),
+    add:(data)=>dispatch({type: "ADD_ENTERPRISE", method:"add_enterprise",api: "AdminApi", payload:(data.data)}),
 
 
 
@@ -46,6 +46,8 @@ class AdminPage2 extends React.Component{
 
 
         }
+        this.users_list = this.users_list.bind(this)
+
     }
 
     showPopup() {
@@ -65,11 +67,9 @@ class AdminPage2 extends React.Component{
     }
 
     getSnapshotBeforeUpdate(prevProps, prevState) {
-        console.log(prevProps.users_by_enterprise);
-        console.log(this.props.users_by_enterprise);
+
 
         if (prevProps.users_by_enterprise !== this.props.users_by_enterprise) {
-        console.log(this.props.users_by_enterprise);
 
 
           const snapshot = this.props.users_by_enterprise;
@@ -88,26 +88,108 @@ class AdminPage2 extends React.Component{
 
            // this.props.success()
 
-         /*    this.setState({enterprises:{...this.props.enterprise_list,
+            this.setState({enterprises:{...this.props.enterprise_list,
           
             // modificar todo el state cuando llegue el raw exacto del backend
-            }}) */
+            }})
 
             
         }
         
     }
 
+
+    users_list(){
+        // console.log(this.state.animals);
+
+        let html =[]
+               
+
+       
+        this.state.users_by_enterprise.map((elements) =>{
+            return html = [
+                ...html,
+                <tr key={elements.idUsuario}>
+                    <td>{elements.Nombre}</td>
+                        <td>{elements.mail}</td>
+                        <td>{elements.Telefono}</td>
+                        <td>{elements.Usuario}</td>
+                        <td>{elements.Tipo}</td>
+                        <td>{elements.idEmpresa}</td>
+                        <td className='text-center'>
+                    <img id={elements.idUsuario} src={x} alt="x roja" name={elements.idEmpresa}height="20" width="20"  onClick={this.user_delete}></img>
+                        </td>
+                    </tr>
+
+            ]
+        })
+     
+        return html
+    }
+
+   user_delete = event =>{
+
+  
+        var data = {
+            idUsuario:event.currentTarget.id,
+            idEmpresa:event.currentTarget.name
+        }
+        console.log(data);
+
+        this.props.delete(data)
+      }
+  
+  
+  
+      enterprise_add(){
+  
+  
+          var popup = document.getElementById("myPopup");
+          /*if(popup.style.visibility == "hidden")*/
+         console.log("hide" + popup.classList.contains("show"));
+          popup.classList.remove("show");
+          console.log("hide" + popup.classList.contains("show"));
+  
+  
+  
+          if (this.state.add_data.input=== '') {
+              alert("El campo de nombre no puede estar vacio")
+          }else{
+              this.props.add(this.state.add_data.input);
+  
+          }
+  
+      }
+
+
+
+
+
+
+
+
+
+
+
     render(){
 
-        console.log(this.props.users_by_enterprise);
+
+        if (this.state.users_by_enterprise===undefined) {
+            return (
+                <h1>
+                    Cargando
+                </h1>
+            )
+        }else{
+
+      
 
         
         return(
             <div class="container admin_page">
                 <div className='row'>
                     <h2 className='col-11 text-center my-auto'>Lista de perfiles de usuarios</h2>
-                    <Link class="col-1" to='/user_register'><img src={boton_verde} alt="anyadir empresas" height={86} width={86}></img></Link>
+                    <Link class="col-1" to={`${"user_register"}${this.props.match.params.param}`}><img src={boton_verde} alt="anyadir empresas" height={86} width={86}></img></Link>
                   
                     
                     
@@ -124,47 +206,20 @@ class AdminPage2 extends React.Component{
                         <th class="col bg-success">Usuario</th>
                         <th class="col bg-success">Tipo de usuario</th>
                         <th class="col bg-success">Empresa</th>
-                        <th class="col">Editar</th>
                         <th class="col">Eliminar</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>Alvaro Escribano</td>
-                        <td>alvaro@gmail.com</td>
-                        <td>656565655</td>
-                        <td>alvaroes</td>
-                        <td>administrador</td>
-                        <td>Ayuntamiento de Chester</td>
-                        <td><Link to='/user_edit'><img src={lapiz} alt="editar usuarios" height="20" width="20"></img></Link></td>
-                        <td><img src={x} alt="x roja" height="20" width="20"></img></td>
-                    </tr>
-                    <tr>
-                    <td>Alvaro Escribano</td>
-                        <td>alvaro@gmail.com</td>
-                        <td>656565655</td>
-                        <td>alvaroes</td>
-                        <td>administrador</td>
-                        <td>Ayuntamiento de Chester</td>
-                        <td><Link to='/user_edit'><img src={lapiz} alt="editar usuarios" height="20" width="20"></img></Link></td>
-                        <td><img src={x} alt="x roja" height="20" width="20"></img></td>
-                    </tr>
-                    <tr>
-                    <td>Alvaro Escribano</td>
-                        <td>alvaro@gmail.com</td>
-                        <td>656565655</td>
-                        <td>alvaroes</td>
-                        <td>administrador</td>
-                        <td>Ayuntamiento de Chester</td>
-                        <td><Link to='/user_edit'><img src={lapiz} alt="editar usuarios" height="20" width="20"></img></Link></td>
-                        <td><img src={x} alt="x roja" height="20" width="20"></img></td>
-                    </tr>
+
+                        {this.users_list()}
+    
                     </tbody>
                 </table>
 
             </div>
             
         )
+    }
     }
 }
 

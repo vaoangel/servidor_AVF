@@ -36,14 +36,19 @@ const get_enterprise = (state,action) =>{
         users_by_enterprise:  action.error ? null : action.payload
     }
  }
- 
+ const delete_users_by_enterprise = (state,action)=>{
+    return{
+        ...state,
+        allEnterprises:  action.error ? null : action.payload
+    }
+ }
 
  const Action = ActionTypes.ADMIN_TYPE
 
 export default (state = initialState, action) =>{
 
 
-        console.log(action);
+
     switch(action.type){
         case Action.GET_ENTERPRISE:
             return get_enterprise(state,action);
@@ -59,10 +64,15 @@ export default (state = initialState, action) =>{
             return add_enterprise(state,action);
         case Action.ADD_ENTERPRISE_SUCCESS:
             return {...state,allEnterprises:action.payload}  
-
             case Action.GET_USERS_BY_ENTERPRISE:
             return get_all_users_by_enterprise(state,action);
             case Action.GET_USERS_BY_ENTERPRISE_SUCCESS:
+            return {...state,users_by_enterprise:action.payload}  
+
+
+            case Action.DELETE_USERS_BY_ENTERPRISE:
+            return delete_users_by_enterprise(state,action);
+        case Action.DELETE_USERS_BY_ENTERPRISE_SUCCESS:
             return {...state,users_by_enterprise:action.payload}  
         default:
             return {...state}
