@@ -5,8 +5,8 @@ import {Link, Redirect } from "react-router-dom";
 import Apis from '../router/index'
 import { Nav, Navbar, Form, FormControl, Button } from 'react-bootstrap';
 
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.bundle";
+//import "bootstrap/dist/css/bootstrap.min.css";
+//import "bootstrap/dist/js/bootstrap.bundle";
 import emailjs from 'emailjs-com';
 
 

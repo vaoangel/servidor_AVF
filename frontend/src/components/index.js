@@ -10,7 +10,7 @@ import UserRegister from "./admin_user_register.component";
 import UserEdit from "./admin_user_edit.component";
 import Landing from "./landing.component";
 import Contactanos from "./contact_us.component";
-
+import RecoverPass from "./recover_password.component";
  export const Header = MainHeader;
  export const Home = MainHome;
  export const Login = LoginC
@@ -23,3 +23,5 @@ export const UserRegisterC = UserRegister
 export const UserEditC = UserEdit
 export const LandingC= Landing
 export const ContactanosC = Contactanos
+export const RecoverPassC = RecoverPass
+

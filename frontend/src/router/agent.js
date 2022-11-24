@@ -2,7 +2,7 @@ import axios from 'axios'
 
 let token = null
 let API = axios.create({
-    baseURL: 'http://localhost:3000/',
+    baseURL: 'http://192.168.1.65:3000/',
     headers: {
         'Authorization': token!==null ? `Token ${token}` : "",
     },
@@ -222,11 +222,28 @@ add_user:(data)=>{
 },
 }
 
+const RecoverApi={
+    recover_password:(data)=>{
+       
+    const info = request.post('recover_password',{"mail":data.mail, "password":data.password}).then(function(data){
+        
+        return data.data
+    }).catch(function(error){
+        return error
+    })
+    return info
+
+    
+   console.log(data);
+}
+}
+
 
 export {
     TemperatureApi,
     LoginApi,
     ProfileApi,
-    AdminApi
+    AdminApi,
+    RecoverApi
     
 }
