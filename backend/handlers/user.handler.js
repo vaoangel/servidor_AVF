@@ -66,18 +66,20 @@ exports.update_password = async req=>{
 
 exports.add_user  = async req=>{
 
+console.log(req.body);
+
     if(!req.body){
 
         return false
     }else{
 
-        var username = req.body.username
-        var name = req.body.name
-        var mail = req.body.mail
-        var phone = req.body.phone
-        var password = req.body.password
-        var enterprise = req.body.enterprise
-        var type = req.body.type
+        var username = req.body.data.username
+        var name = req.body.data.name
+        var mail = req.body.data.mail
+        var phone = req.body.data.phone
+        var password = req.body.data.password
+        var enterprise = req.body.data.enterprise
+        var type = req.body.data.type
  
 
         var parsedData = {
