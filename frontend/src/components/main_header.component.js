@@ -104,8 +104,8 @@ class MainHeader extends React.Component {
                             <img id="imglogo" src={logo} alt='imagenicono' width={"50"}></img>
 
                             <Nav className="ml-auto menu">
-                                <Button class="btn btn-outline" id="botoninicio" size="md" variant="info" as={Link} to="/area_admin"><h5 className="linkText">Inicio</h5></Button>
-                                <Button class="btn btn-outline" id="botonacercade" size="md" variant="info" as={Link} to="/acercadenosotros"><h5 className="linkText">Acerca de nosotros</h5></Button>
+{/*                                 <Button class="btn btn-outline" id="botoninicio" size="md" variant="info" as={Link} to="/"><h5 className="linkText">Inicio</h5></Button>
+ */}                                <Button class="btn btn-outline" id="botonacercade" size="md" variant="info" as={Link} to="/acercadenosotros"><h5 className="linkText">Acerca de nosotros</h5></Button>
 
                                 <Button class="btn btn-outline" id="botoncontactanos" size="md" variant="info" as={Link} to="/contactanos"><h5 className="linkText">Contáctanos</h5></Button>
 
@@ -143,8 +143,6 @@ class MainHeader extends React.Component {
                             <Button class="btn btn-outline" id="botonmapa" size="md" variant="info" as={Link} to="/mapa"><h5 className="linkText">Ver mapa</h5></Button>
                             <Button class="btn btn-outline" id="botonacercade" size="md" variant="info" as={Link} to="/acercadenosotros"><h5 className="linkText">Acerca de nosotros</h5></Button>
                             <Button class="btn btn-outline" id="botoncontactanos" size="md" variant="info" as={Link} to="/contactanos"><h5 className="linkText">Contáctanos</h5></Button>
-                            <Button class="btn btn-outline" id="botonadministrar" size="md" variant="info" as={Link} to="/admin_page"><h5 className="linkText">Lista de usuarios</h5></Button>
-
                             <Button class="btn btn-outline" size="md" id="botonlogin" variant="info" as={Link} to="/login">
                                 <img src={imagenlogin} alt="imagen login" width="30" />
                             </Button>

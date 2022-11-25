@@ -199,7 +199,9 @@ width: 80%;
 
 
 /*FOOTER*/
-
+.form{
+  height: 100%;
+}
 .site-footer
 {
   position:relative;
@@ -556,7 +558,7 @@ width: 80%;
 
 /*Codigo para la pagina de registrar usuarios*/
 .page_body{
-  height: 850px;
+  height: 100%;
   margin-bottom: 250px;
 }
 

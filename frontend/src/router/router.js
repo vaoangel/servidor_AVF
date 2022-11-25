@@ -13,7 +13,7 @@ const BaseRouter = () => {
     return( 
         <div>
             <Route exact path="/login" component={Login}/>
-            <Route exact path="/" component={Login}/>
+            <Route exact path="/" component={LandingC}/>
             <Route exact path="/profile" component={Profile}/>
             <Route exact path="/area_usuario" component={AreaUSuario}/>
             <Route exact path="/admin_page" component={AdminPageC}/>
