@@ -7,8 +7,8 @@ import { Nav, Navbar, Form, FormControl, Button } from 'react-bootstrap';
 import emailjs from 'emailjs-com';
 
 const mapDispatchToProps = dispatch => ({
-    recover_password: (mail,password) =>
-    dispatch({ type: "RECOVER",method:"recover_password",api:"RecoverApi", payload:{mail, password},})
+    recover_password: (email,password) =>
+    dispatch({ type: "RECOVER",method:"recover_password",api:"RecoverApi", payload:{email, password},})
     //success: (data) => dispatch({type:"UPDATE_PROFILE_SUCCESS",payload:data}) 
 });
 
@@ -21,7 +21,7 @@ class RecoverPassC extends React.Component{
         super(props);
 
         this.state = {
-            recover_passwordData:{mail: "", password:"pepe2"}
+            recover_passwordData:{email: "", password:"pepe2"}
         }
         this.handleChanges = this.handleChanges.bind(this);
         this.validateData = this.validateData.bind(this);
@@ -64,7 +64,7 @@ class RecoverPassC extends React.Component{
     validateData(e){
         const regexp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
         var json = {
-            mail: this.state.recover_passwordData.mail,
+            email: this.state.recover_passwordData.email,
             password: this.state.recover_passwordData.password
         }
         //var username_val = regexp.test(this.state.loginData.username)

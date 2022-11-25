@@ -27,6 +27,7 @@ return query
 //{mail: Texto, password: Texto} -> recuperar_contrasena_db_calls() -> Texto | Error 
 exports.recuperar_contrasena_db_calls = async (data) =>{
     //Actualiza la contraseña del usuario cuyo correo sea el que se ha indicado
+    console.log("Update db.usuarios set Contrasena = '" + data.password + "' where Mail like '" + data.mail + "';");
     var  query = mysql.query("Update db.usuarios set Contrasena = '" + data.password + "' where Mail like '" + data.mail + "';").then((data,error)=>{
    
        if (data) {

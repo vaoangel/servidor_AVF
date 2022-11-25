@@ -37,13 +37,13 @@ exports.login_data_from_post = async req =>{
 //Si va todo bien  devuelve la información del usuario
 //{mail: Texto, password: Texto} -> recuperar_contrasena() -> Texto | VoF 
 exports.recuperar_contrasena = async req =>{
-
+console.log(req.body);
     //Si el body está vacio devuelve un false;
     if(!req.body){
         return false
     }else{
 
-        var mail = req.body.mail
+        var mail = req.body.email
         var password = req.body.password
 
         var parsedData = {

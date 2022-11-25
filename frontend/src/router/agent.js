@@ -2,8 +2,8 @@ import axios from 'axios'
 
 let token = null
 let API = axios.create({
-    //baseURL: 'http://192.168.1.65:3000/',
-    baseURL: 'http://localhost:3000/',
+    baseURL: 'http://172.20.10.2:3000/',
+   // baseURL: 'http://localhost:3000/',
     headers: {
         'Authorization': token!==null ? `Token ${token}` : "",
     },
@@ -137,27 +137,7 @@ const ProfileApi={
        return info
    
        
-   },
-
-   change_password:(data)=>{
-    console.log(data);
-    
-    const info = request.post('change_password', {
-
-     "username": data.username,
-     "oldpass": data.oldpass,
-     "newpass": data.newpass
-    }).then(function(data){
-        
-        console.log(data);
-        return data.data 
-    }).catch(function(error){
-        return error
-    })
-    return info
-
-    
-}
+   }
 }
 
 const AdminApi={
@@ -245,8 +225,8 @@ add_user:(data)=>{
 
 const RecoverApi={
     recover_password:(data)=>{
-       
-    const info = request.post('recover_password',{"mail":data.mail, "password":data.password}).then(function(data){
+       console.log(data);
+    const info = request.post('recover_password',{"email":data.email, "password":data.password}).then(function(data){
         
         return data.data
     }).catch(function(error){
