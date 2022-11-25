@@ -137,7 +137,27 @@ const ProfileApi={
        return info
    
        
-   }
+   },
+
+   change_password:(data)=>{
+    console.log(data);
+    
+    const info = request.post('change_password', {
+
+     "username": data.username,
+     "oldpass": data.oldpass,
+     "newpass": data.newpass
+    }).then(function(data){
+        
+        console.log(data);
+        return data.data 
+    }).catch(function(error){
+        return error
+    })
+    return info
+
+    
+}
 }
 
 const AdminApi={

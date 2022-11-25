@@ -35,7 +35,7 @@ exports.update_user = async req=>{
 //Si la petición ha sido correcta devuelve la información modificada del usuario
 
 
-exports.update_password = async req=>{
+exports.change_password = async req=>{
 
     if(!req.body){
 

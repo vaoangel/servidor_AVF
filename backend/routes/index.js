@@ -44,8 +44,8 @@ const routes = [
     },
     {
         method:"POST",
-        path: "/change_password",
-        handler: user.update_password
+        path: "/update_password",
+        handler: user.change_password
     },
     {
         method:"POST",

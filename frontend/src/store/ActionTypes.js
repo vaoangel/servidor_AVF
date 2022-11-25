@@ -49,6 +49,13 @@ const ActionTypes={
         RECOVER_SUCCESS: "RECOVER_SUCCESS",
         RECOVER_PENDING: "RECOVER_PENDING"
 
+    },
+
+    CHANGE_TYPE:{
+        CHANGE:"CHANGE",
+        CHANGE_SUCCESS: "CHANGE_SUCCESS",
+        CHANGE_PENDING: "CHANGE_PENDING"
+
     }
 }
 
