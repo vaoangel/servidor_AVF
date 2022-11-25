@@ -124,7 +124,7 @@ class RecoverPassC extends React.Component{
                                         
            </div>*/
 
-           <div className="screen-3">
+           <div id="screen-3" className="screen-3">
             <h4 className="h4">Recuperar contraseña</h4>  
 
             <form className="form" onSubmit={this.enviarEmail}>
