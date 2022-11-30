@@ -20,7 +20,7 @@ class ChangePassC extends React.Component{
         super(props);
 
         this.state = {
-            change_passwordData:{username: this.props.currentUser[0].Usuario, oldpass:"", newpass:""}
+            change_passwordData:{username: /*"asereje2"*/this.props.currentUser[0].Usuario, oldpass:"", newpass:""}
         }
         this.handleChanges = this.handleChanges.bind(this);
         this.validateData = this.validateData.bind(this);
@@ -34,10 +34,24 @@ class ChangePassC extends React.Component{
             oldpass: this.state.change_passwordData.oldpass,
             newpass: this.state.change_passwordData.newpass
         }
-        //var username_val = regexp.test(this.state.loginData.username)
-        //console.log(this.state.recover_passwordData);
-        console.log("Probando"); 
-        Apis.ProfileApi.change_password(json)
+ 
+        if(document.getElementById("oldpass1").value == "" || document.getElementById("oldpass2").value == "" || document.getElementById("newpass").value == ""){
+            alert("Hay campos vacíos")
+        } else if(document.getElementById("oldpass1").value != document.getElementById("oldpass2").value){
+            alert("Las contraseñas actuales no coinciden")
+        } else{
+            var result = Apis.ProfileApi.change_password(json)
+            result.then(value => {
+                if (value.code == 666){
+                    alert("La contraseña introducida es incorrecta")
+                } else if(value.code == 504){
+                    alert("La nueva contraseña es igual a la antigua")
+                } else{
+                    alert("La contraseña se ha actualizado correctamente")
+                }
+                })
+        }
+
 
     }
     handleChanges(data){
@@ -45,7 +59,7 @@ class ChangePassC extends React.Component{
     }
    
     render(){
-       
+        console.log(this.state.change_passwordData);
         return(
 
            <div className="screen-3">
@@ -56,23 +70,23 @@ class ChangePassC extends React.Component{
                     <label className="label-text">Antigua contraseña</label>
                 </div>
                 <div className="form-input">
-                    <input type="password" id="mail"></input>
+                    <input type="password" name="oldpass" onChange={this.handleChanges} id="oldpass1"></input>
                 </div>
                 <div className="label">
                     <label className="label-text">Antigua contraseña</label>
                 </div>
                 <div className="form-input">
-                    <input type="password" name="oldpass" onChange={this.handleChanges}></input>
+                    <input type="password" name="oldpass" onChange={this.handleChanges} id="oldpass2"></input>
                 </div>
                 <div className="label">
                     <label className="label-text">Nueva contraseña</label>
                 </div>
                 <div className="form-input">
-                <input type="password" name="newpass" onChange={this.handleChanges}></input>
+                <input type="password" name="newpass" onChange={this.handleChanges} id="newpass"></input>
                 </div>
                 
                 <div>
-                <button type="submit" className='button' onClick={this.validateData}>Actualizar</button>
+                <button type="button" className='button' onClick={this.validateData}>Actualizar</button>
                 </div>
                 
             </form>
@@ -83,8 +97,6 @@ class ChangePassC extends React.Component{
                 
         )
 
-
-       
     }
 }
 
