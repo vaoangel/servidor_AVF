@@ -64,7 +64,7 @@ exports.modificar_pass_db_call = async (data) => {
             "tipo":"Contraseña incorrecta",
             "code": 666
         }
-        alert("pepe")
+        
         return json_error
     }
     else if (data.newpass === oldpass_db) {
