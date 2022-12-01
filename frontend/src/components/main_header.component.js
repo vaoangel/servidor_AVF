@@ -9,6 +9,7 @@ import logo2 from '../assets/img/user.png'
 
 import logo from '../../src/icono1.png'; // Tell webpack this JS file uses this image
 import imagenlogin from '../../src/loginicon.png';
+import menu from '../assets/img/menu.jpg';
 
 
 const mapStateToProps = state => ({
@@ -23,7 +24,7 @@ class MainHeader extends React.Component {
         super(props);
 
         this.state = {
-
+            
             redirect: false
         }
 
@@ -31,12 +32,55 @@ class MainHeader extends React.Component {
 
     }
 
+    hide_menu(){
+        var nav = document.getElementById("nav");
+        var header = document.getElementById("Header")
+        var clientWidth = document.documentElement.clientWidth;
+
+        if(nav.style.display != "flex"){
+            header.style.display = "flex"
+            header.style.justifyContent = "baseline"
+            header.style.flexDirection = "column"
+            header.style.height = "100vh"
+            header.style.alignItems = "center"
+            header.style.paddingTop = "50px"
+            nav.style.display = "flex"
+            nav.style.justifyContent = "baseline"
+            nav.style.flexDirection = "column"
+            nav.style.height = "100vh"
+            nav.style.alignItems = "center"
+            nav.style.paddingTop = "100px"
+            nav.style.paddingBottom = "100px"
+        } else{
+            header.style.flexDirection = "row"
+            header.style.height = "7.5vh"
+            header.style.paddingBottom = "0px"
+            header.style.paddingTop = "0px"
+            nav.style.display = "none"
+        }
+        
+        
+
+    }
+    
+
 
 
 
 
     render() {
+       
+        window.onresize = function() {
+            var nav = document.getElementById("nav");
+            var header = document.getElementById("Header");
 
+           if(document.documentElement.clientWidth > 700 && nav.style.display != "flex" && nav.style.flexDirection == "column"){
+            console.log("PC");
+            nav.style.display = "flex"
+            nav.style.flexDirection = "row"
+        } 
+           console.log(document.documentElement.clientWidth)
+        };
 
         //MENU USUARIO ADMINISTRADOR MASTER
         if (this.props.currentUser) {
@@ -133,22 +177,21 @@ class MainHeader extends React.Component {
                 //MENU USUARIO SIN LOGUEAR
 
         return (
-            <div class="Header">
-                <Navbar className="color-nav">
-                    <Nav className="container-fluid" >
-                        <img id="imglogo" src={logo} alt='imagenicono' width={"50"}></img>
-
-                        <Nav className="ml-auto menu">
-                            <Button class="btn btn-outline" id="botoninicio" size="md" variant="info" as={Link} to="/"><h5 className="linkText">Inicio</h5></Button>
-                            <Button class="btn btn-outline" id="botonmapa" size="md" variant="info" as={Link} to="/mapa"><h5 className="linkText">Ver mapa</h5></Button>
-                            <Button class="btn btn-outline" id="botonacercade" size="md" variant="info" as={Link} to="/acercadenosotros"><h5 className="linkText">Acerca de nosotros</h5></Button>
-                            <Button class="btn btn-outline" id="botoncontactanos" size="md" variant="info" as={Link} to="/contactanos"><h5 className="linkText">Contáctanos</h5></Button>
-                            <Button class="btn btn-outline" size="md" id="botonlogin" variant="info" as={Link} to="/login">
-                                <img src={imagenlogin} alt="imagen login" width="30" />
-                            </Button>
-                        </Nav>
-                    </Nav>
-                </Navbar>
+            <div class="Header container-fluid color-nav flex" id="Header">
+                <div className='logo'>
+                    <img id="imglogo" src={logo} alt='imagenicono' width={"50"}></img>
+                </div>
+                <Nav className="flex" id="nav">
+                    <Button id="botoninicio" size="md" variant="info" as={Link} to="/"><h5 className="linkText">Inicio</h5></Button>
+                    <Button id="botonmapa" size="md" variant="info" as={Link} to="/mapa"><h5 className="linkText">Ver mapa</h5></Button>
+                    <Button id="botonacercade" size="md" variant="info" as={Link} to="/acercadenosotros"><h5 className="linkText">Acerca de nosotros</h5></Button>
+                    <Button id="botoncontactanos" size="md" variant="info" as={Link} to="/contactanos"><h5 className="linkText">Contáctanos</h5></Button>
+                    <Button size="md" id="botonlogin" variant="info" as={Link} to="/login">
+                        <img src={imagenlogin} alt="imagen login" width="30" />
+                    </Button>
+                    
+                </Nav>
+                <button src="menu" id="btn-menu" height="30px" width="30px" onClick={this.hide_menu}>HOLA</button>
             </div>
 
         )

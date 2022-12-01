@@ -22,7 +22,7 @@ class ProfileC extends React.Component{
         this.state = {
             profileData:{
             phone: this.props.currentUser[0].telefono, 
-            username: this.props.currentUser[0].usuario,
+            username: this.props.currentUser[0].Usuario,
             name:this.props.currentUser[0].nombre,
             mail:this.props.currentUser[0].mail
             
