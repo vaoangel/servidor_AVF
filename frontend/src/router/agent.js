@@ -123,10 +123,10 @@ const ProfileApi={
        
        const info = request.post('update_profile', {
 
-        "usuario": data.username,
-        "nombre": data.name,
+        "username": data.username,
+        "name": data.name,
         "mail": data.mail,
-        "telefono": data.phone
+        "phone": data.phone
        }).then(function(data){
            
            console.log(data);
