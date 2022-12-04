@@ -9,7 +9,7 @@ import logo2 from '../assets/img/user.png'
 
 import logo from '../../src/icono1.png'; // Tell webpack this JS file uses this image
 import imagenlogin from '../../src/loginicon.png';
-import menu from '../assets/img/menu.jpg';
+import menu from '../assets/img/menu.png';
 
 
 const mapStateToProps = state => ({
@@ -31,12 +31,16 @@ class MainHeader extends React.Component {
 
 
     }
-
+    /*
+    * Ajusta el css de la página para ocultar y mostrar el menú cuando la página web se encuentra en la vista de móvil
+    *
+    * hide_menu()
+    */ 
     hide_menu(){
         var nav = document.getElementById("nav");
-        var header = document.getElementById("Header")
-        var clientWidth = document.documentElement.clientWidth;
+        var header = document.getElementById("Header");
 
+        //Configuración al pulsar el boton cuando el menú esta oculto
         if(nav.style.display != "flex"){
             header.style.display = "flex"
             header.style.justifyContent = "baseline"
@@ -51,7 +55,9 @@ class MainHeader extends React.Component {
             nav.style.alignItems = "center"
             nav.style.paddingTop = "100px"
             nav.style.paddingBottom = "100px"
-        } else{
+        } 
+        //Configuración al pulsar el boton cuando el menú está a la vista
+        else{
             header.style.flexDirection = "row"
             header.style.height = "7.5vh"
             header.style.paddingBottom = "0px"
@@ -62,25 +68,52 @@ class MainHeader extends React.Component {
         
 
     }
-    
 
-
-
-
-
-    render() {
-       
-        window.onresize = function() {
+    /*
+    * Ajusta el css de la página para ocultar el menú en la vista de móvil al cambiar de página
+    *
+    * change_page()
+    */ 
+    change_page(){
+        if(document.documentElement.clientWidth < 700){
             var nav = document.getElementById("nav");
             var header = document.getElementById("Header");
 
-           if(document.documentElement.clientWidth > 700 && nav.style.display != "flex" && nav.style.flexDirection == "column"){
-            console.log("PC");
-            nav.style.display = "flex"
-            nav.style.flexDirection = "row"
+            header.style.flexDirection = "row"
+            header.style.height = "7.5vh"
+            header.style.paddingBottom = "0px"
+            header.style.paddingTop = "0px"
+            nav.style.display = "none"
+        }
+    }
+    
+    render() {
+        var device = "PC";
+       //Ajustes al header cuando cambia de anchura
+        window.onresize = function() {
+            var nav = document.getElementById("nav");
+            var header = document.getElementById("Header");
+            
+            //Cuando nos encontramos en la resolución de PC, configuramos la cabecera y el menú para que se vea para PC 
+            if(document.documentElement.clientWidth > 700){
+            device = "PC";
+            console.log(device);
+            nav.style.display = "flex";
+            nav.style.flexDirection = "row";
+            header.style.flexDirection = "row";
+            header.style.height = "7.5vh"
+            header.style.paddingBottom = "0px"
+            header.style.paddingTop = "0px"
+            
         } 
-           console.log(document.documentElement.clientWidth)
+        //Cuando nos encontramos en la resolución de movil y acabamos de cambiar desde la de PC, configuramos la cabecera y el menú para que se vea para movil
+        else if(document.documentElement.clientWidth < 700 && device == "PC"){
+            device = "Mobile";
+            console.log(device);
+            nav.style.display = "none";
+        }
         };
+
 
         //MENU USUARIO ADMINISTRADOR MASTER
         if (this.props.currentUser) {
@@ -181,17 +214,19 @@ class MainHeader extends React.Component {
                 <div className='logo'>
                     <img id="imglogo" src={logo} alt='imagenicono' width={"50"}></img>
                 </div>
-                <Nav className="flex" id="nav">
-                    <Button id="botoninicio" size="md" variant="info" as={Link} to="/"><h5 className="linkText">Inicio</h5></Button>
-                    <Button id="botonmapa" size="md" variant="info" as={Link} to="/mapa"><h5 className="linkText">Ver mapa</h5></Button>
-                    <Button id="botonacercade" size="md" variant="info" as={Link} to="/acercadenosotros"><h5 className="linkText">Acerca de nosotros</h5></Button>
-                    <Button id="botoncontactanos" size="md" variant="info" as={Link} to="/contactanos"><h5 className="linkText">Contáctanos</h5></Button>
-                    <Button size="md" id="botonlogin" variant="info" as={Link} to="/login">
+                <Nav className="flex main-menu" id="nav">
+                    <Button id="botoninicio" className="nav_button" onClick={this.change_page} size="md" variant="info" as={Link} to="/"><h5 className="linkText">Inicio</h5></Button>
+                    <Button id="botonmapa" className="nav_button" onClick={this.change_page} size="md" variant="info" as={Link} to="/mapa"><h5 className="linkText">Ver mapa</h5></Button>
+                    <Button id="botonacercade" className="nav_button" onClick={this.change_page} size="md" variant="info" as={Link} to="/acercadenosotros"><h5 className="linkText">Acerca de nosotros</h5></Button>
+                    <Button id="botoncontactanos" className="nav_button" onClick={this.change_page} size="md" variant="info" as={Link} to="/contactanos"><h5 className="linkText">Contáctanos</h5></Button>
+                    <Button size="md" className="nav_button" onClick={this.change_page} id="botonlogin" variant="info" as={Link} to="/login">
                         <img src={imagenlogin} alt="imagen login" width="30" />
                     </Button>
                     
                 </Nav>
-                <button src="menu" id="btn-menu" height="30px" width="30px" onClick={this.hide_menu}>HOLA</button>
+                
+               
+                <img className='toggle_menu' id="toggle-menu" src={menu} height="30px" onClick={this.hide_menu}></img>
             </div>
 
         )

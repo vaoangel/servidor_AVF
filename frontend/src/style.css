@@ -15,7 +15,7 @@ body{
     position: fixed;
     top: 0;
     width: 100%;
-
+    z-index: 1;
 }
 
 #imglogo{
@@ -106,31 +106,22 @@ h5:hover{
     justify-content: space-between;
 }
 
-#btn-menu{
+.toggle_menu{
     display: none;
 }
 
-
-
 @media (max-width:700px){
-    .flex{
-        /*justify-content: baseline;
-        flex-direction: column;
-        height: 100vh;
-        align-items: center;
-        padding-bottom: 100px;*/
-        transition: 0.5s;
+    .toggle_menu{
+        display: block;
+        position: absolute;
+        right: 1rem;
+        top: 1rem;
     }
-    #btn-menu{
-        display: flex;
-        position:absolute;
-        right: 10px;
-        top: 10px;
-    }
+    
 
-    #nav{
-        display: none;
-    }
+   #nav{
+    display: none;
+   }
       
     #imglogo{
         margin-left: 0;
