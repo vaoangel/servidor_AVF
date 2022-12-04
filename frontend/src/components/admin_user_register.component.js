@@ -51,43 +51,46 @@ class UserRegister extends React.Component{
 
 
 
-
-
-
         if (this.state.add_data.name=== '') {
             alert("El campo de nombre no puede estar vacio")
         }else if(this.state.add_data.mail=== ''){
-            alert("El campo de mail no puede estar vacio")
+            alert("El campo de correo no puede estar vacio")
 
 
 
 
         }else if(this.state.add_data.phone=== ''){
-            alert("El campo de phone no puede estar vacio")
+            alert("El campo de telefono no puede estar vacio")
 
 
 
 
         }
         else if(this.state.add_data.username=== ''){
-            alert("El campo de username no puede estar vacio")
+            alert("El campo de usuario no puede estar vacio")
 
 
 
 
         }else if(this.state.add_data.password=== ''){
-            alert("El campo de password no puede estar vacio")
+            alert("El campo de contraseña no puede estar vacio")
 
 
 
 
-        }else{
+        }else if(this.state.add_data.type=== ''){
+            alert("El campo de tipo usuario no puede estar vacio")
+        }
+        else{
 
+           
             console.log(this.state.add_data);
 
-            Apis.AdminApi.add_user(this.state.add_data);
-/*             <Redirect to={`${"admin_page2"}${this.props.match.params.param}`} />
- */           
+            var result = Apis.AdminApi.add_user(this.state.add_data);
+            //<Redirect to={`${"admin_page2"}${this.props.match.params.param}`} />
+            result.then(value => {
+                alert("Usuario añadido correctamente")
+            })
 
         }
 
@@ -175,7 +178,8 @@ class UserRegister extends React.Component{
                 </div>
                     
             )
-        }
+        }else if(this.props.currentUser[0].Tipo=== "admin_c")
+        {
         return(
             <div className="screen-3 page_body">
                 <h4 className="h4">Registrar nuevos perfiles</h4>  
@@ -254,6 +258,7 @@ class UserRegister extends React.Component{
             </div>
                 
         )
+        }
 
 
        

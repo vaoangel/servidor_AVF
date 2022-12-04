@@ -219,6 +219,7 @@ class AdminPage2 extends React.Component{
             </div>
             
         )
+        
     }
     }
 }
