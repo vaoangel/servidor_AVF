@@ -20,16 +20,27 @@ exports.average_measurements_db_call = async (data) => {
     
     var esp = await query
     var suma = 0;
+    var valoralto = 0;
+    var json_result = {};
 
 
     for (let i = 0; i < esp.length; i++) {
         suma += esp[i].Valor
+        if(esp[i].Valor > valoralto)
+        {
+            valoralto = esp[i].Valor;
+        }
     
     }
     var media = suma/esp.length;
- 
+
+    json_result = {
+
+        "media":media,
+        "valoralto": valoralto
+    }
     
-    return media
+    return json_result
     
     
 
