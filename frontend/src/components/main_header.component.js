@@ -48,13 +48,18 @@ class MainHeader extends React.Component {
             header.style.height = "100vh"
             header.style.alignItems = "center"
             header.style.paddingTop = "50px"
-            nav.style.display = "flex"
+            header.style.transition = "0.5s"
+            setTimeout(function(){
+                nav.style.display = "flex"
             nav.style.justifyContent = "baseline"
             nav.style.flexDirection = "column"
             nav.style.height = "100vh"
             nav.style.alignItems = "center"
             nav.style.paddingTop = "100px"
             nav.style.paddingBottom = "100px"
+            }, 200);
+            
+           
         } 
         //Configuración al pulsar el boton cuando el menú está a la vista
         else{
@@ -75,27 +80,34 @@ class MainHeader extends React.Component {
     * change_page()
     */ 
     change_page(){
-        if(document.documentElement.clientWidth < 700){
-            var nav = document.getElementById("nav");
-            var header = document.getElementById("Header");
-
+        var nav = document.getElementById("nav");
+        var header = document.getElementById("Header");
+        if(document.documentElement.clientWidth < 850 && header.style.flexDirection == "column"){
             header.style.flexDirection = "row"
             header.style.height = "7.5vh"
             header.style.paddingBottom = "0px"
             header.style.paddingTop = "0px"
+            header.style.transition = "none"
             nav.style.display = "none"
         }
     }
     
     render() {
         var device = "PC";
+        if (this.props.currentUser == null) var max_width = 670;
+        else if(this.props.currentUser[0].Tipo == "admin") var max_width = 810;
+        else if(this.props.currentUser[0].Tipo == "admin_c") var max_width = 525;
+        else var max_width = 837;
+        console.log("Anchura maxima actual" + max_width);
+   
        //Ajustes al header cuando cambia de anchura
         window.onresize = function() {
             var nav = document.getElementById("nav");
             var header = document.getElementById("Header");
+            var menu = document.getElementById("toggle-menu");
             
             //Cuando nos encontramos en la resolución de PC, configuramos la cabecera y el menú para que se vea para PC 
-            if(document.documentElement.clientWidth > 700){
+            if(document.documentElement.clientWidth > max_width){
             device = "PC";
             console.log(device);
             nav.style.display = "flex";
@@ -104,13 +116,19 @@ class MainHeader extends React.Component {
             header.style.height = "7.5vh"
             header.style.paddingBottom = "0px"
             header.style.paddingTop = "0px"
+            header.style.transition = "none"
+            menu.style.display = "none";
             
         } 
         //Cuando nos encontramos en la resolución de movil y acabamos de cambiar desde la de PC, configuramos la cabecera y el menú para que se vea para movil
-        else if(document.documentElement.clientWidth < 700 && device == "PC"){
+        else if(document.documentElement.clientWidth < max_width && device == "PC"){
             device = "Mobile";
             console.log(device);
             nav.style.display = "none";
+            menu.style.display = "block";
+            menu.style.position = "absolute";
+            menu.style.right = "0.5rem";
+            menu.style.top = "0.6rem";
         }
         };
 
@@ -123,46 +141,40 @@ class MainHeader extends React.Component {
         //MENU USUARIO ADMINISTRADOR
          if (this.props.currentUser[0].Tipo === "admin") {
             return (
-
-                <div class="Header">
-                    <Navbar className="color-nav">
-                        <Nav className="container-fluid" >
-                            <img id="imglogo" src={logo} alt='imagenicono' width={"50"}></img>
-
-                            <Nav className="ml-auto menu">
-                                <Button class="btn btn-outline" id="botoncontactanos" size="md" variant="info" as={Link} to="/contactanos"><h5 className="linkText">Contáctanos</h5></Button>
-                                <Button class="btn btn-outline" id="botonprofile" size="md" variant="info" as={Link} to="/profile"><h5 className="linkText">Editar perfil</h5></Button>
-                                <Button class="btn btn-outline" id="botoncontactanos" size="md" variant="info" as={Link} to="/change_pass"><h5 className="linkText">Cambiar Contraseña</h5></Button>
-                                <Button class="btn btn-outline" id="botonuserlist" size="md" variant="info" as={Link}to={`${"admin_page2"}${this.props.currentUser[0].idEmpresa}`}><h5 className="linkText">Lista de usuarios</h5></Button>
-                                <Button class="btn btn-outline" size="md" id="botonlogin" onClick={this.props.logout} variant="info" as={Link} to="/">
-                                    <img src={imagenlogin} alt="imagen login" width="30" />
-                                </Button>
-                            </Nav>
-                        </Nav>
-                    </Navbar>
+                <div class="Header container-fluid color-nav flex" id="Header">
+                    <div className='logo'>
+                        <img id="imglogo" src={logo} alt='imagenicono' width={"50"}></img>
+                    </div>
+                    <Nav className="flex main-menu" id="nav">
+                        <Button id="botoncontactanos" onClick={this.change_page} size="md" variant="info" as={Link} to="/contactanos"><h5 className="linkText">Contáctanos</h5></Button>
+                        <Button id="botonprofile" onClick={this.change_page} size="md" variant="info" as={Link} to="/profile"><h5 className="linkText">Editar perfil</h5></Button>
+                        <Button id="botoncontactanos" onClick={this.change_page} size="md" variant="info" as={Link} to="/change_pass"><h5 className="linkText">Cambiar Contraseña</h5></Button>
+                        <Button id="botonuserlist" onClick={this.change_page} size="md" variant="info" as={Link}to={`${"admin_page2"}${this.props.currentUser[0].idEmpresa}`}><h5 className="linkText">Lista de usuarios</h5></Button>
+                        <Button size="md" id="botonlogin" onClick={this.props.logout} variant="info" as={Link} to="/">
+                            <img src={imagenlogin} onClick={this.change_page} alt="imagen login" width="30" />
+                        </Button>    
+                    </Nav>
+                    
+                    <img className='toggle_menu' id="toggle-menu" src={menu} height="30px" onClick={this.hide_menu}></img>
                 </div>
-
-
 
             )
         }
         if (this.props.currentUser[0].Tipo=== "admin_c") {
             return (
+                <div class="Header container-fluid color-nav flex" id="Header">
+                    <div className='logo'>
+                        <img id="imglogo" src={logo} alt='imagenicono' width={"50"}></img>
+                    </div>
+                    <Nav className="flex main-menu" id="nav">
+                        <Button id="botonprofile" onClick={this.change_page} size="md" variant="info" as={Link} to="/profile"><h5 className="linkText">Editar perfil</h5></Button>
+                        <Button id="botoncontactanos" onClick={this.change_page} size="md" variant="info" as={Link} to="/admin_page"><h5 className="linkText">Lista de administradores</h5></Button>
+                        <Button size="md" id="botonlogin" onClick={this.props.logout} variant="info" as={Link} to="/">
+                            <img src={imagenlogin} onClick={this.change_page} alt="imagen login" width="30" />
+                        </Button>  
+                    </Nav>
 
-                <div class="Header">
-                    <Navbar className="color-nav">
-                        <Nav className="container-fluid" >
-                            <img id="imglogo" src={logo} alt='imagenicono' width={"50"}></img>
-
-                            <Nav className="ml-auto menu">
-                                <Button class="btn btn-outline" id="botonprofile" size="md" variant="info" as={Link} to="/profile"><h5 className="linkText">Editar perfil</h5></Button>
-                                <Button class="btn btn-outline" id="botonuserlist" size="md" variant="info" as={Link} to="/admin_page"><h5 className="linkText">Lista de administradores</h5></Button>
-                                <Button class="btn btn-outline" size="md" id="botonlogin" onClick={this.props.logout} variant="info" as={Link} to="/">
-                                    <img src={imagenlogin} alt="imagen login" width="30" />
-                                </Button>
-                            </Nav>
-                        </Nav>
-                    </Navbar>
+                    <img className='toggle_menu' id="toggle-menu" src={menu} height="30px" onClick={this.hide_menu}></img>
                 </div>
 
 
@@ -174,29 +186,21 @@ class MainHeader extends React.Component {
        if (this.props.currentUser[0].Tipo === "user") {
         console.log("entra");
             return (
-
-                <div class="Header">
-                    <Navbar className="color-nav">
-                        <Nav className="container-fluid" >
-                            <img id="imglogo" src={logo} alt='imagenicono' width={"50"}></img>
-
-                            <Nav className="ml-auto menu">
-{/*                                 <Button class="btn btn-outline" id="botoninicio" size="md" variant="info" as={Link} to="/"><h5 className="linkText">Inicio</h5></Button>
- */}                                <Button class="btn btn-outline" id="botonacercade" size="md" variant="info" as={Link} to="/acercadenosotros"><h5 className="linkText">Acerca de nosotros</h5></Button>
-
-                                <Button class="btn btn-outline" id="botoncontactanos" size="md" variant="info" as={Link} to="/contactanos"><h5 className="linkText">Contáctanos</h5></Button>
-
-                                <Button class="btn btn-outline" id="botonprofile" size="md" variant="info" as={Link} to="/profile"><h5 className="linkText">Editar perfil</h5></Button>
-                                <Button class="btn btn-outline" id="botonadministrar" size="md" variant="info" as={Link} to="/change_pass"><h5 className="linkText">Cambiar Contraseña</h5></Button>
-                                <Button class="btn btn-outline" size="md" id="botonlogin" onClick={this.props.logout} variant="info" as={Link} to="/">
-                                    <img src={imagenlogin} alt="imagen login" width="30" />
-                                </Button>
-                            </Nav>
-                        </Nav>
-                    </Navbar>
+                <div class="Header container-fluid color-nav flex" id="Header">
+                <div className='logo'>
+                    <img id="imglogo" src={logo} alt='imagenicono' width={"50"}></img>
                 </div>
-
-
+                <Nav className="flex main-menu" id="nav">
+                <Button id="botonacercade" onClick={this.change_page} size="md" variant="info" as={Link} to="/acercadenosotros"><h5 className="linkText">Acerca de nosotros</h5></Button>
+                <Button id="botoncontactanos" onClick={this.change_page} size="md" variant="info" as={Link} to="/contactanos"><h5 className="linkText">Contáctanos</h5></Button>
+                <Button id="botonprofile" onClick={this.change_page} size="md" variant="info" as={Link} to="/profile"><h5 className="linkText">Editar perfil</h5></Button>
+                <Button id="botoninicio" onClick={this.change_page} size="md" variant="info" as={Link} to="/change_pass"><h5 className="linkText">Cambiar Contraseña</h5></Button>
+                <Button size="md" id="botonlogin" onClick={this.props.logout} variant="info" as={Link} to="/">
+                    <img src={imagenlogin} onClick={this.change_page} alt="imagen login" width="30" />
+                </Button>    
+                </Nav>    
+                <img className='toggle_menu' id="toggle-menu" src={menu} height="30px" onClick={this.hide_menu}></img>
+            </div>
 
             )
         }
@@ -215,11 +219,11 @@ class MainHeader extends React.Component {
                     <img id="imglogo" src={logo} alt='imagenicono' width={"50"}></img>
                 </div>
                 <Nav className="flex main-menu" id="nav">
-                    <Button id="botoninicio" className="nav_button" onClick={this.change_page} size="md" variant="info" as={Link} to="/"><h5 className="linkText">Inicio</h5></Button>
-                    <Button id="botonmapa" className="nav_button" onClick={this.change_page} size="md" variant="info" as={Link} to="/mapa"><h5 className="linkText">Ver mapa</h5></Button>
-                    <Button id="botonacercade" className="nav_button" onClick={this.change_page} size="md" variant="info" as={Link} to="/acercadenosotros"><h5 className="linkText">Acerca de nosotros</h5></Button>
-                    <Button id="botoncontactanos" className="nav_button" onClick={this.change_page} size="md" variant="info" as={Link} to="/contactanos"><h5 className="linkText">Contáctanos</h5></Button>
-                    <Button size="md" className="nav_button" onClick={this.change_page} id="botonlogin" variant="info" as={Link} to="/login">
+                    <Button id="botoninicio" onClick={this.change_page} size="md" variant="info" as={Link} to="/"><h5 className="linkText">Inicio</h5></Button>
+                    <Button id="botonmapa" onClick={this.change_page} size="md" variant="info" as={Link} to="/mapa"><h5 className="linkText">Ver mapa</h5></Button>
+                    <Button id="botonacercade" onClick={this.change_page} size="md" variant="info" as={Link} to="/acercadenosotros"><h5 className="linkText">Acerca de nosotros</h5></Button>
+                    <Button id="botoncontactanos" onClick={this.change_page} size="md" variant="info" as={Link} to="/contactanos"><h5 className="linkText">Contáctanos</h5></Button>
+                    <Button size="md" onClick={this.change_page} id="botonlogin" variant="info" as={Link} to="/login">
                         <img src={imagenlogin} alt="imagen login" width="30" />
                     </Button>
                     

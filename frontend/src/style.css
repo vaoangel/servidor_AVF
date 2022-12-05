@@ -19,7 +19,10 @@ body{
 }
 
 #imglogo{
-    margin-left: 20px;
+   /*margin-left: 20px;*/
+    /*position: absolute;
+    left: 1rem;
+    top: 0;*/
 }
 
 Nav.Link{
@@ -32,68 +35,39 @@ h5:hover{
 
 #botonacercade{
     background-color: transparent;
-    border: 2px #b0b0b0 solid;
-    border-bottom: none;
-    border-top: none;
-    border-right: none;
-    border-radius: 0;
+    border: none;
 }
 
 #botonprofile{
     background-color: transparent;
-    border: 2px #b0b0b0 solid;
-    border-bottom: none;
-    border-top: none;
-    border-right: none;
-    border-radius: 0;
+    border: none;
+
 }
 
 #botonuserlist{
     background-color: transparent;
-    border: 2px #b0b0b0 solid;
-    border-bottom: none;
-    border-top: none;
-    border-right: none;
-    border-radius: 0;
+    border: none;
 }
 
 #botonlogin{
     background-color: transparent;
-    border: transparent;
-    box-shadow: none;
-    border: 2px #b0b0b0 solid;
-    border-bottom: none;
-    border-top: none;
-    border-right: none;
-    border-radius: 0;
+    border: none;
     
 }
 
 #botoncontactanos{
     background-color: transparent;
-    border: 2px #b0b0b0 solid;
-    border-bottom: none;
-    border-top: none;
-    border-right: none;
-    border-radius: 0;
+    border: none;
 }
 
 #botoninicio{
     background-color: transparent;
-    border: 2px #b0b0b0 solid;
-    border-bottom: none;
-    border-top: none;
-    border-right: none;
-    border-radius: 0;
+    border: none;
 }
 
 #botonmapa{
     background-color: transparent;
-    border: 2px #b0b0b0 solid;
-    border-bottom: none;
-    border-top: none;
-    border-right: none;
-    border-radius: 0;
+    border: none;
 }
 
 .linkText{
@@ -110,12 +84,12 @@ h5:hover{
     display: none;
 }
 
-@media (max-width:700px){
+@media (max-width: 850px){
     .toggle_menu{
         display: block;
         position: absolute;
-        right: 1rem;
-        top: 1rem;
+        right: 0.5rem;
+        top: 0.6rem;
     }
     
 

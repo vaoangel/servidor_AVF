@@ -186,14 +186,14 @@ class AdminPage extends React.Component{
             )
         }else{
             return(
-                <div class="container admin_page">
+                <div class="container-fluid admin_page">
                     <div className='row'>
                         <h2 className=' col-11 text-center my-auto'>Lista de empresas</h2>
                         <img class="col-1" src={boton_verde} onClick={this.showPopup} alt="anyadir empresas"></img>
                     </div>
                     
     
-                    <table class="table table-bordered admin_page">
+                    <table class="table table-bordered">
                         <thead className='text-center'>
                         <tr>
                             <th class="col-2"></th>

@@ -489,12 +489,13 @@ width: 80%;
 /*CSS para la pagina de los administradores*/
 .admin_page{
   margin-top: 20px;
+  width: 100vw;
 }
 
 /* Popup container */
 .popup {
   position: absolute;
-  margin-left: 500px;
+  margin-left: 50%;
   display: inline-block;
   cursor: pointer;
 }
@@ -503,7 +504,7 @@ width: 80%;
 .popup .popuptext {
   visibility: hidden;
   height: 200px;
-  width: 400px;
+  width: 40%;
   background-color: white;
   border-radius: 5px;
   border-color: #000000;
@@ -514,9 +515,6 @@ width: 80%;
   padding: 8px 0;
   position: absolute;
   z-index: 1;
-  bottom: 125%;
-  left: 50%;
-  margin-left: -80px;
 }
 
 .popup .popuptext .input{
