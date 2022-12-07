@@ -589,5 +589,8 @@ width: 80%;
   display: none
 }
 
-
-
+/*Codigo de la página de area_usuario*/
+.mapa{
+  margin-top: 20px;
+  height: 60vh;
+}

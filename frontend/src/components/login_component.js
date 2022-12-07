@@ -67,7 +67,7 @@ class LoginC extends React.Component {
             console.log("entra");
             return(
                 <div>
-                <Redirect to="/profile" />
+                <Redirect to="/area_usuario" />
                 </div>
             )
         }
