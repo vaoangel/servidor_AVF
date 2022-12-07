@@ -104,6 +104,11 @@ const routes = [
         method: "POST",
         path: "/delete_users_by_enterprise",
         handler: admin.delete_users_by_enterprise
+    },
+    {
+        method: "POST",
+        path: "/get_measurements_by_type",
+        handler: sensor.get_measurements_by_type
     }
    
 
