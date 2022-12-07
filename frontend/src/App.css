@@ -417,8 +417,7 @@ width: 80%;
   width: 50%;
   height: 100%;
 
-  margin-left: 90px;
-  margin-top: 20px;
+  padding: 2.5%;
 }
 
 .screen-3  {
@@ -440,9 +439,20 @@ width: 80%;
   size: 100vh 100vh;
   
 }
-
-.screen-3 .form-input {
+.contenedor_recover{
+  width: 100%;
+  display: flex;
+  justify-content: center;
   
+}
+.contenedor_recover div{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  
+}
+
+.screen-3 .form-input { /*insertar email*/
   background: transparent;
   margin-bottom: 8%;
   display: flex;
@@ -452,12 +462,13 @@ width: 80%;
  
 }
 
-.screen-3 .form-input input {
+.screen-3 .form-input input {/*insertar email campo texto*/
   margin-top: 5px;
   background: transparent;
   border: none;
   border-bottom: 1px solid #000000;
   color: grey;
+
 }
 .screen-3 .form-input input::-moz-placeholder {
   color: rgb(48, 27, 164);
@@ -483,7 +494,7 @@ width: 80%;
 }
 
 .form {
-  width: 25%;
+  width: 50%;
 }
 
 /*CSS para la pagina de los administradores*/

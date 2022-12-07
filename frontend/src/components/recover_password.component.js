@@ -1,33 +1,33 @@
 
 import React from 'react';
-import {connect} from 'react-redux'
-import {Link, Redirect } from "react-router-dom";
+import { connect } from 'react-redux'
+import { Link, Redirect } from "react-router-dom";
 import Apis from '../router/index'
 import { Nav, Navbar, Form, FormControl, Button } from 'react-bootstrap';
 import emailjs from 'emailjs-com';
 
 const mapDispatchToProps = dispatch => ({
-    recover_password: (email,password) =>
-    dispatch({ type: "RECOVER",method:"recover_password",api:"RecoverApi", payload:{email, password},})
+    recover_password: (email, password) =>
+        dispatch({ type: "RECOVER", method: "recover_password", api: "RecoverApi", payload: { email, password }, })
     //success: (data) => dispatch({type:"UPDATE_PROFILE_SUCCESS",payload:data}) 
 });
 
 const mapStateToProps = state => ({
     currentUser: state.RecoverReducer.currentUser,
 });
-class RecoverPassC extends React.Component{
+class RecoverPassC extends React.Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
 
         this.state = {
-            recover_passwordData:{email: "", password:"pepe2"}
+            recover_passwordData: { email: "", password: "pepe2" }
         }
         this.handleChanges = this.handleChanges.bind(this);
         this.validateData = this.validateData.bind(this);
         this.enviarEmail = this.enviarEmail.bind(this);
     }
-   
+
     /*generatePasswordRand(length,type) {
         var characters;
         switch(type){
@@ -61,7 +61,7 @@ class RecoverPassC extends React.Component{
         });
     }*/
 
-    validateData(e){
+    validateData(e) {
         const regexp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
         var json = {
             email: this.state.recover_passwordData.email,
@@ -69,27 +69,27 @@ class RecoverPassC extends React.Component{
         }
         //var username_val = regexp.test(this.state.loginData.username)
         //console.log(this.state.recover_passwordData);
-        console.log("Probando"); 
+        console.log("Probando");
         Apis.RecoverApi.recover_password(json)
 
     }
-    handleChanges(data){
-        this.setState({recover_passwordData:{...this.state.recover_passwordData, [data.target.name]: data.target.value}})
+    handleChanges(data) {
+        this.setState({ recover_passwordData: { ...this.state.recover_passwordData, [data.target.name]: data.target.value } })
     }
 
-    enviarEmail(e){
+    enviarEmail(e) {
         e.preventDefault();
 
-        emailjs.sendForm('service_ba16zgs','template_pmcu1rn',e.target,"RaNn5pwPTicq8RbnW").then(res=>{
+        emailjs.sendForm('service_ba16zgs', 'template_pmcu1rn', e.target, "RaNn5pwPTicq8RbnW").then(res => {
             alert("se ha enviado correctamente");
             console.log(res);
         })
 
     }
-   
-    render(){
+
+    render() {
         console.log(this.state.recover_passwordData);
-        return(
+        return (
             /*
             <div>
                 <h1>HOLA</h1>
@@ -124,35 +124,34 @@ class RecoverPassC extends React.Component{
                                         
            </div>*/
 
-           <div id="screen-3" className="screen-3">
-            <h4 className="h4">Recuperar contraseña</h4>  
+            <div id="screen-3" className="screen-3">
+                <h4 className="h4">Recuperar contraseña</h4>
 
-            <form className="form" onSubmit={this.enviarEmail}>
-                <div className="label">
-                    <label className="label-text">Correo electrónico</label>
-                </div>
-                <div className="form-input">
-                <input type="text" id="mail" name="email" onChange={this.handleChanges}></input>
-                </div>
-                <div className="form-input">
-                <input type="text" id="password_rc" name="password" value={this.state.recover_passwordData.password}></input>
-                </div>
-                
-                
-                <div>
-                <button type="submit" className='button' onClick={this.validateData}>Generar contraseña</button>
-                </div>
-                
-            </form>
+                <div className='contenedor_recover'>
+                    <form className="form" onSubmit={this.enviarEmail}>
+                        <div className="label">
+                            <label className="label-text">Correo electrónico</label>
+                        </div>
 
-        </div>
+                        <div className="form-input">
+                            <input type="text" id="mail" name="email" onChange={this.handleChanges}></input>
+                        </div>
 
-            
-                
+                        <div>
+                            <button type="submit" className='button' id='botonrecover' onClick={this.validateData}>Generar contraseña</button>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+
+
+
         )
 
 
-       
+
     }
 }
 
