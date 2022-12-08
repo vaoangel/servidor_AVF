@@ -124,10 +124,10 @@ class RecoverPassC extends React.Component {
                                         
            </div>*/
 
-            <div id="screen-3" className="screen-3">
+            <div id="screen-3" className="screen-profile">
                 <h4 className="h4">Recuperar contraseña</h4>
 
-                <div className='contenedor_recover'>
+                <div className='form-profile'>
                     <form className="form" onSubmit={this.enviarEmail}>
                         <div className="label">
                             <label className="label-text">Correo electrónico</label>
@@ -137,8 +137,8 @@ class RecoverPassC extends React.Component {
                             <input type="text" id="mail" name="email" onChange={this.handleChanges}></input>
                         </div>
 
-                        <div>
-                            <button type="submit" className='button' id='botonrecover' onClick={this.validateData}>Generar contraseña</button>
+                        <div className='button-div'>
+                            <button type="submit" className='button' id='botonrecover' onClick={this.validateData}>Enviar</button>
                         </div>
 
                     </form>

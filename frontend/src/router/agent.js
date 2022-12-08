@@ -3,7 +3,7 @@ import axios from 'axios'
 let token = null
 let API = axios.create({
     //baseURL: 'http://172.20.10.2:3000/',
-    baseURL: 'http://localhost:3000/',
+    baseURL: 'http://192.168.100.119:3000/',
     headers: {
         'Authorization': token!==null ? `Token ${token}` : "",
     },

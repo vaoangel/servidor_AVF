@@ -1,7 +1,7 @@
-
 .App {
   text-align: center;
 }
+
 
 .App-logo {
   height: 40vmin;
@@ -34,7 +34,8 @@
 * {
   font-family: "Poppins";
 }
-.screen-2 .h3{
+
+.screen-2 .h3 {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   padding: 5px;
   margin-top: auto;
@@ -43,342 +44,319 @@
 }
 
 
-.screen-1  {
+.screen-1 {
   -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   overflow-y: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: linear-gradient(
-    to top,
-    rgb(255, 255, 255) 0%,
-    rgb(255, 255, 255) 50%,
-    rgb(72, 255, 0) 50%,
-    rgb(72, 255, 0) 100%
-  );
+  background: linear-gradient(to top,
+      rgb(255, 255, 255) 0%,
+      rgb(255, 255, 255) 50%,
+      rgb(72, 255, 0) 50%,
+      rgb(72, 255, 0) 100%);
 }
 
 .screen-1 {
- 
+
   padding: 2em;
   display: flex;
   flex-direction: column;
- height: 100%;
-  
+  height: 100%;
+
   gap: 2em;
 }
 
-.screen-2 {
- 
-  background: rgb(255, 255, 255);
-  padding: 1em;
-  display: flex;
-  flex-direction: column;
-  border-radius: 0px;
-  border: 0.5px solid rgb(85, 61, 61);;
- width: 50%;
-  gap: 2em;
-}
 
 
 
 .screen-1 .logoFoto {
   margin-top: 3em;
   width: 12%;
- 
-}
-.screen-1 .email .userFoto{
-width: 8%;
-
-    margin: 0 auto;
-
-  
 
 }
-.screen-1 .password .contraFoto{
-  width: 8%;
-  
-      margin: 0 auto;
-  
-    
-  
-  }
-.screen-1 .email {
-  
-  background: transparent;
-  margin-top: 5%;
-  padding: 1em;
+
+.screen-1 .userFoto , .screen-1 .contraFoto {
+  width: 10%;
+  height: 10%;
+  margin: 0 auto;
+
+}
+
+
+
+.contenedor-login {
+border: 1px solid black;
+background-color: white;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+padding-right: 10%;
+padding-left: 10%;
+}
+
+.contenedor-login div{
+  width: 100%;
+  height: 100%;
   display: flex;
-  flex-direction: column;
-  gap: 0.5em;
-  border-radius: 20px;
-  color: #4d4d4d;
+  justify-content: center;
   align-items: center;
- 
+  flex-direction: column;
+  padding-top: 20px;
 }
-.screen-1 .email input {
+
+ .screen-1 .sec-2 input {
   margin-top: 10px;
   margin: 0 auto;
   background: transparent;
   border: none;
   border-bottom: 1px solid #000000;
 }
-.screen-1 .email input::-moz-placeholder {
+
+.screen-1 .sec-2 input::-moz-placeholder {
   color: rgb(48, 27, 164);
   font-size: 0.9em;
 }
-.screen-1 .email input:-ms-input-placeholder {
+
+.screen-1 .sec-2 input:-ms-input-placeholder {
   color: black;
   font-size: 0.9em;
 }
-.screen-1 .email input::placeholder {
+
+.screen-1 .sec-2 input::placeholder {
   color: black;
   font-size: 0.9em;
 }
-.screen-1 .email ion-icon {
+
+.screen-1 .sec-2 ion-icon {
   color: #4d4d4d;
   margin-bottom: -0.2em;
 }
-.screen-1 .password {
- 
- align-items: center;
-  padding: 1em;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5em;
-  border-radius: none;
-  color: #4d4d4d;
-}
-.screen-1 .password input {
-  margin-top: 10px;
-  background: transparent;
-    border: none;
-    border-bottom: 1px solid #000000;
-}
-.screen-1 .password input::-moz-placeholder {
-  color: black;
-  font-size: 0.9em;
-}
-.screen-1 .password input:-ms-input-placeholder {
-  color: black;
-  font-size: 0.9em;
-}
-.screen-1 .password input::placeholder {
-  color: black;
-  font-size: 0.9em;
-}
-.screen-1 .password ion-icon {
-  color: #4d4d4d;
-  margin-bottom: -0.2em;
-}
-.screen-1 .password .show-hide {
-  margin-right: -5em;
-}
-.screen-2 .login {
-  
-width: 80%;
+
+
+.contenedor-login .login {
+  /*boton login*/
+  width: 80%;
   background: #00f83a;
   color: white;
   border: 2px;
   border-radius: 20px;
   font-weight: 600;
-  text-align:center;
+  text-align: center;
   padding: 1em;
- width: 35%;
- align-self: center;
- 
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 35%;
+  align-self: center;
 
- 
- 
 
 }
 
+
+/*FIN LOGIN*/
 
 
 /*FOOTER*/
-.form{
+.form {
   height: 100%;
 }
-.site-footer
-{
-  position:relative;
-  bottom:0;
-  width:100%;
 
-    
-  background-color:#26272b;
+.site-footer {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+
+
+  background-color: #26272b;
   border-top-left-radius: 80px 80px;
-  padding:45px 0 20px;
-  font-size:15px;
-  line-height:21px;
-  color:#737373;
+  padding: 45px 0 20px;
+  font-size: 15px;
+  line-height: 21px;
+  color: #737373;
 }
-.site-footer hr
-{
-  border-top-color:#bbb;
-  opacity:0.5
+
+.site-footer hr {
+  border-top-color: #bbb;
+  opacity: 0.5
 }
-.site-footer hr.small
-{
-  margin:20px 0
+
+.site-footer hr.small {
+  margin: 20px 0
 }
-.site-footer h6
-{
-  color:#fff;
-  font-size:16px;
-  text-transform:uppercase;
-  margin-top:5px;
-  letter-spacing:2px
+
+.site-footer h6 {
+  color: #fff;
+  font-size: 16px;
+  text-transform: uppercase;
+  margin-top: 5px;
+  letter-spacing: 2px
 }
-.site-footer a
-{
-  color:#737373;
+
+.site-footer a {
+  color: #737373;
 }
-.site-footer a:hover
-{
-  color:#3366cc;
-  text-decoration:none;
+
+.site-footer a:hover {
+  color: #3366cc;
+  text-decoration: none;
 }
-.footer-links
-{
-  padding-left:0;
-  list-style:none
+
+.footer-links {
+  padding-left: 0;
+  list-style: none
 }
-.footer-links li
-{
-  display:block
+
+.footer-links li {
+  display: block
 }
-.footer-links a
-{
-  color:#737373
+
+.footer-links a {
+  color: #737373
 }
-.footer-links a:active,.footer-links a:focus,.footer-links a:hover
-{
-  color:#3366cc;
-  text-decoration:none;
+
+.footer-links a:active,
+.footer-links a:focus,
+.footer-links a:hover {
+  color: #3366cc;
+  text-decoration: none;
 }
-.footer-links.inline li
-{
-  display:inline-block
+
+.footer-links.inline li {
+  display: inline-block
 }
-.site-footer .social-icons
-{
-  text-align:right
+
+.site-footer .social-icons {
+  text-align: right
 }
-.site-footer .social-icons a
-{
-  width:40px;
-  height:40px;
-  line-height:40px;
-  margin-left:6px;
-  margin-right:0;
-  border-radius:100%;
-  background-color:#33353d
+
+.site-footer .social-icons a {
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  margin-left: 6px;
+  margin-right: 0;
+  border-radius: 100%;
+  background-color: #33353d
 }
-.copyright-text
-{
-  margin:0
+
+.copyright-text {
+  margin: 0
 }
-@media (max-width:991px)
-{
-  .site-footer [class^=col-]
-  {
-    margin-bottom:30px
+
+@media (max-width:991px) {
+  .site-footer [class^=col-] {
+    margin-bottom: 30px
   }
-}
-@media (max-width:767px)
-{
-  .site-footer
-  {
-    padding-bottom:0
+  .screen-1 .logoFoto {
+    margin-top: 3em;
+    width: 30%;
+  
   }
-  .site-footer .copyright-text,.site-footer .social-icons
-  {
-    text-align:center
+
+  .screen-profile{
+    margin-top: 10%;
   }
+
 }
-.social-icons
-{
-  padding-left:0;
-  margin-bottom:0;
-  list-style:none
+
+@media (max-width:767px) {
+  .site-footer {
+    padding-bottom: 0
+  }
+
+  .site-footer .copyright-text,
+  .site-footer .social-icons {
+    text-align: center
+  }
+  
+
+  
 }
-.social-icons li
-{
-  display:inline-block;
-  margin-bottom:4px
+
+.social-icons {
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none
 }
-.social-icons li.title
-{
-  margin-right:15px;
-  text-transform:uppercase;
-  color:#96a2b2;
-  font-weight:700;
-  font-size:13px
+
+.social-icons li {
+  display: inline-block;
+  margin-bottom: 4px
 }
-.social-icons a{
-  background-color:#eceeef;
-  color:#818a91;
-  font-size:16px;
-  display:inline-block;
-  line-height:44px;
-  width:44px;
-  height:44px;
-  text-align:center;
-  margin-right:8px;
-  border-radius:100%;
-  -webkit-transition:all .2s linear;
-  -o-transition:all .2s linear;
-  transition:all .2s linear
+
+.social-icons li.title {
+  margin-right: 15px;
+  text-transform: uppercase;
+  color: #96a2b2;
+  font-weight: 700;
+  font-size: 13px
 }
-.social-icons a:active,.social-icons a:focus,.social-icons a:hover
-{
-  color:#fff;
-  background-color:#29aafe
+
+.social-icons a {
+  background-color: #eceeef;
+  color: #818a91;
+  font-size: 16px;
+  display: inline-block;
+  line-height: 44px;
+  width: 44px;
+  height: 44px;
+  text-align: center;
+  margin-right: 8px;
+  border-radius: 100%;
+  -webkit-transition: all .2s linear;
+  -o-transition: all .2s linear;
+  transition: all .2s linear
 }
-.social-icons.size-sm a
-{
-  line-height:34px;
-  height:34px;
-  width:34px;
-  font-size:14px
+
+.social-icons a:active,
+.social-icons a:focus,
+.social-icons a:hover {
+  color: #fff;
+  background-color: #29aafe
 }
-.social-icons a.facebook
-{
+
+.social-icons.size-sm a {
+  line-height: 34px;
+  height: 34px;
+  width: 34px;
+  font-size: 14px
+}
+
+.social-icons a.facebook {
   background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/LinkedIn_icon_circle.svg/2048px-LinkedIn_icon_circle.svg.png");
-  background-size: 100% 100% ;
+  background-size: 100% 100%;
   background-repeat: no-repeat;
 
 }
-.social-icons a.twitter
-{
+
+.social-icons a.twitter {
   background-image: url("https://cdn-icons-png.flaticon.com/512/124/124021.png");
-  background-size: 100% 120% ;
+  background-size: 100% 120%;
   background-repeat: no-repeat;
 }
-.social-icons a.linkedin
-{
+
+.social-icons a.linkedin {
 
   background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/768px-Instagram_logo_2016.svg.png");
-  background-size: 100% 100% ;
+  background-size: 100% 100%;
   background-repeat: no-repeat;
- 
+
 }
-.social-icons a.dribbble:hover
-{
-  background-color:#ea4c89
+
+.social-icons a.dribbble:hover {
+  background-color: #ea4c89
 }
-@media (max-width:767px)
-{
-  .social-icons li.title
-  {
-    display:block;
-    margin-right:0;
-    font-weight:600
+
+@media (max-width:767px) {
+  .social-icons li.title {
+    display: block;
+    margin-right: 0;
+    font-weight: 600
   }
 }
 
@@ -388,13 +366,20 @@ width: 80%;
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 
-  
+
 }
 
+
+
+
+
+
+/*EMPIEZA PROFILE/EDITAR */
 /*Parte de la pagina de Editar Perfil */
 @font-face {
   font-family: QuicksandMedium;
@@ -406,63 +391,46 @@ width: 80%;
 }
 
 .label {
-  text-align: left; /*Este es el que desplaza el texto*/
+  text-align: left;
+  /*Este es el que desplaza el texto*/
 }
 
-.screen-3 .button {
-  background-color: #00f83a;
-  color: white;
-  border-radius: 5px;
-  border: none;
-  width: 50%;
-  height: 100%;
-
-  padding: 2.5%;
-}
-
-.screen-3  {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  overflow-y: hidden;
+.screen-profile{
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 60vh;
-  padding: 2em;
-  display: flex;
   flex-direction: column;
-  gap: 2em;
-  background-color: #FFF;
-  background-size: 100% 100%;
-  size: 100vh 100vh;
-  
-}
-.contenedor_recover{
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  
-}
-.contenedor_recover div{
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  
+  margin-top: 5%;
+  margin-bottom: 5%;
+  padding: 2em;
 }
 
-.screen-3 .form-input { /*insertar email*/
+.form-profile {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.form-profile div{
+  display: flex;
+  justify-content: start;
+}
+
+
+
+.screen-profile .form-input {
+  /*insertar email*/
   background: transparent;
   margin-bottom: 8%;
   display: flex;
   flex-direction: column;
   border-radius: 20px;
   color: #4d4d4d;
- 
+
 }
 
-.screen-3 .form-input input {/*insertar email campo texto*/
+.screen-profile .form-input input {
+  /*insertar email campo texto*/
   margin-top: 5px;
   background: transparent;
   border: none;
@@ -470,25 +438,29 @@ width: 80%;
   color: grey;
 
 }
-.screen-3 .form-input input::-moz-placeholder {
+
+.screen-profile .form-input input::-moz-placeholder {
   color: rgb(48, 27, 164);
   font-size: 0.9em;
 
 }
-.screen-3 .form-input input:-ms-input-placeholder {
+
+.screen-profile .form-input input:-ms-input-placeholder {
   color: grey;
   font-size: 0.9em;
 }
-.screen-3 .form-input input::placeholder {
+
+.screen-profile .form-input input::placeholder {
   color: grey;
   font-size: 0.9em;
 }
-.screen-3 .form-input ion-icon {
+
+.screen-profile .form-input ion-icon {
   color: #4d4d4d;
   margin-bottom: -0.2em;
 }
 
-.screen-3 .form-input input::placeholder {
+.screen-profile .form-input input::placeholder {
   color: grey;
   font-size: 0.9em;
 }
@@ -497,8 +469,26 @@ width: 80%;
   width: 50%;
 }
 
+.button-div button{
+  display: flex;
+  justify-content: center;
+  margin: auto;
+}
+
+.screen-profile .button {
+  background-color: #00f83a;
+  color: white;
+  border-radius: 5px;
+  border: none;
+  width: 50%;
+  height: 100%;
+  padding: 2.5%;
+}
+/*TERMINA PROFILE/EDITAR */
+
+
 /*CSS para la pagina de los administradores*/
-.admin_page{
+.admin_page {
   margin-top: 20px;
 }
 
@@ -530,7 +520,7 @@ width: 80%;
   margin-left: -80px;
 }
 
-.popup .popuptext .input{
+.popup .popuptext .input {
   margin-top: 20px;
   background: transparent;
   border: none;
@@ -538,13 +528,13 @@ width: 80%;
   color: grey;
 }
 
-.popup .popuptext .button{
+.popup .popuptext .button {
   background-color: #00f83a;
   color: white;
   border-radius: 5px;
   border: none;
   width: 50%;
-  height:40px;
+  height: 40px;
   /*margin-left: 90px;*/
   margin-top: 40px;
 }
@@ -560,26 +550,37 @@ width: 80%;
 
 /* Add animation (fade in the popup) */
 @-webkit-keyframes fadeIn {
-  from {opacity: 0;}
-  to {opacity: 1;}
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes fadeIn {
-  from {opacity: 0;}
-  to {opacity:1 ;}
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
+
 /*Codigo para la pagina de registrar usuarios*/
-.page_body{
+.page_body {
   height: 100%;
   margin-bottom: 250px;
 }
 
-.radio_button{
+.radio_button {
   margin-left: 10px;
 }
 
-.radio_button_text{
+.radio_button_text {
   font-size: small;
 }
 
@@ -591,14 +592,11 @@ width: 80%;
   color: grey;
 }
 
-.link_recuperar{
+.link_recuperar {
   margin-bottom: 100px;
   color: black;
 }
 
-#password_rc{
+#password_rc {
   display: none
 }
-
-
-

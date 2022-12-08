@@ -101,7 +101,7 @@ class UserRegister extends React.Component{
 
         if (this.props.currentUser[0].Tipo=== "admin") {
             return(
-                <div className="screen-3 page_body">
+                <div className="screen-profile page_body">
                     <h4 className="h4">Registrar nuevos perfiles</h4>  
     
                     <Form className="form">
@@ -152,13 +152,7 @@ class UserRegister extends React.Component{
                         </div>
     
                         <div>
-{/*                         <input onChange={this.handleChanges} type="radio" value="admin_c" name="type" className='radio_button'/>
-                        <label className='radio_button_text'>admin_c</label>
-                        <br/>
-    
-                        <input onChange={this.handleChanges} type="radio" value="admin" name="type" className='radio_button'/>
-                        <label className='radio_button_text'>admin</label>
-                        <br/> */}
+
     
                         <input onChange={this.handleChanges} type="radio" value="user" name="type" className='radio_button'/>
                         <label className='radio_button_text'>usuario</label>
@@ -169,7 +163,7 @@ class UserRegister extends React.Component{
                         </div>
                         </div>
                         
-                        <div>
+                        <div className='button-div'>
                             <button type="button" value="enviar" className='button' onClick={this.user_add}>Guardar</button>
                         </div>
                         
