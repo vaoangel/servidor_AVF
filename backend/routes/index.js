@@ -1,6 +1,6 @@
 // Import our Controllers
 
-const arduino  = require("../handlers/arduino.controller")
+const arduino  = require("../handlers/arduino.handler")
 const login = require("../handlers/login.handler")
 const user = require("../handlers/user.handler")
 const sensor = require("../handlers/sensor.handler")
@@ -9,29 +9,7 @@ const admin = require("../handlers/admin.handler")
 
 //Declaramos todas las rutas
 const routes = [
-    {
 
-        method:"POST",
-        path:"/insertar_valor",
-        handler: arduino.insert_arduino_value
-    },
- 
-    { 
-        method:"GET",
-        path:"/obtener_mediciones",
-        handler: arduino.obtener_mediciones
-    },
- 
-    {
-        method:"POST",
-        path: "/eliminar_medicion_id",
-        handler: arduino.eliminar_medicion_id
-    },
-    {
-        method:"POST",
-        path: "/obtener_medicion_id",
-        handler: arduino.obtener_medicion_id
-    },
     {  
         method:"POST",
         path: "/login",
@@ -109,7 +87,13 @@ const routes = [
         method: "POST",
         path: "/get_measurements_by_type",
         handler: sensor.get_measurements_by_type
+    }, 
+    {
+        method: "POST",
+        path: "/insert_measure1",
+        handler: arduino.insert_measure1
     }
+
    
 
    
