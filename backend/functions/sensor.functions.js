@@ -2,15 +2,121 @@ const mysql = require('../config/db')
 
 
 /*
+    {date: DATE, id_user:int} -> f() -> json_array : JsonArray
+
+    Esta funcion recoge todos los valores de las mediciones tomadas por el usuario en una fecha concreta
+*/
+exports.get_higher_measurements_db_call = async (data) => {
+console.log("sadsa");
+    //Devuelve las ids de los sensores que tiene el usuario
+    console.log("Select idSensor from db.sensores where idUsuario = '" + data.id_user + "'")
+    var query = mysql.query("Select idSensor from db.sensores where idUsuario = '" + data.id_user + "'").then((data, error) => {
+
+        if (data) {
+            return data.results
+        } else {
+            return false
+        }
+    })
+
+         
+
+    var results = await query;
+    if (results) {
+        console.log(results);
+        console.log("Numero de sensores del usuario: " + results.length);
+
+        json_array_mediciones = []
+        valores_maximos = []
+        for (let i = 0; i < results.length; i++) {
+            console.log("Select * from db.mediciones where idSensor = '" + results[i].idSensor + "' and Fecha = '" + data.date + "'");
+            var query2 = mysql.query("Select * from db.mediciones where idSensor = '" + results[i].idSensor + "' and Fecha = '" + data.date + "'").then((data, error) => {
+
+                if (data) {
+
+                    return data.results
+
+                } else {
+                    return false
+                }
+            })
+
+
+
+            var esp = await query2
+
+            console.log(esp);
+            console.log(esp.length);
+
+            //AQUÍ YA ESTAMOS OBTENIENDO TODAS LAS MEDICIONES EN json_array_mediciones
+            //por cada elemento del sensor se añade en el array a devolver final
+            esp.forEach(element => {
+                json_array_mediciones.push(element)
+            });
+
+
+        }
+
+
+        json_array_mediciones.forEach((element, index) => {  //siendo un element -> jsonmedicion
+            json_array_mediciones.forEach((element2, index2) => {
+                if (element.Latitud == element2.Latitud && element.Longitud == element2.Longitud) {
+                    console.log("Latitudes y Longitudes iguales en: " + index + " y " + index2);
+                    //si son iguales hay que guardar la de mayor valor
+
+                    //hay que comprobar cual de las los medidas es mayor
+                    if (element.Valor >= element2.Valor) {
+                        console.log(element);
+                        if (!valores_maximos.includes(element)) {
+
+                            console.log("No incluye")
+                            valores_maximos.push(element)
+                            
+
+                        }
+                    } else {
+                        if (!valores_maximos.includes(element2)) {
+                            valores_maximos.push(element2)
+
+                        }
+                    }
+
+
+
+                } else {
+                    console.log("Latitudes/Longitudes diferentes");
+                    //si son diferentes no pasa nada
+                    if (valores_maximos.includes(element2) == false) {
+                        valores_maximos.push(element2)
+
+                    }
+
+                }
+            });
+        });
+
+
+
+
+    }
+
+    console.log(json_array_mediciones)
+    return valores_maximos
+
+
+}
+
+
+/*
     {date: DATE, type: text, id_user:int} -> f() -> json_array : JsonArray
 
     Esta funcion recoge todos los valores de las mediciones tomadas por el sensor del tipo en concreto en una fecha concreta
 */
-exports.get_measurements_by_type_db_call = async(data) =>{
+exports.get_measurements_by_type_db_call = async (data) => {
 
     //Devuelve las ids de los sensores que tiene el usuario
-    console.log("Select idSensor from db.sensores where idUsuario = '"+data.id_user+"'")
-    var query = mysql.query("Select idSensor from db.sensores where idUsuario = '"+data.id_user+"' and Tipo = '"+data.type+"'").then((data, error) => {
+    console.log("Select idSensor from db.sensores where idUsuario = '" + data.id_user + "'")
+    var query = mysql.query("Select idSensor from db.sensores where idUsuario = '" + data.id_user + "' and Tipo = '" + data.type + "'").then((data, error) => {
 
         if (data) {
             return data.results
@@ -20,21 +126,19 @@ exports.get_measurements_by_type_db_call = async(data) =>{
     })
 
     var results = await query;
-    if(results)
-    {
+    if (results) {
         console.log(results);
         console.log("Numero de sensores del usuario: " + results.length);
 
-        json_array=[]
-        for(let i = 0; i<results.length;i++)
-        {
-            console.log("Select * from db.mediciones where idSensor = '"+results[i].idSensor+"' and Fecha = '"+data.date+"'");
-            var query2  = mysql.query("Select * from db.mediciones where idSensor = '"+results[i].idSensor+"' and Fecha = '"+data.date+"'").then((data, error) => {
-    
+        json_array = []
+        for (let i = 0; i < results.length; i++) {
+            console.log("Select * from db.mediciones where idSensor = '" + results[i].idSensor + "' and Fecha = '" + data.date + "'");
+            var query2 = mysql.query("Select * from db.mediciones where idSensor = '" + results[i].idSensor + "' and Fecha = '" + data.date + "'").then((data, error) => {
+
                 if (data) {
-                    
+
                     return data.results
-                    
+
                 } else {
                     return false
                 }
@@ -51,42 +155,16 @@ exports.get_measurements_by_type_db_call = async(data) =>{
             esp.forEach(element => {
                 json_array.push(element)
             });
-            
-            
+
+
         }
 
-        
+
 
 
     }
 
     return json_array
-    
-    // var esp = await query
-    // var suma = 0;
-    // var valoralto = 0;
-    // var json_result = {};
-
-
-    // for (let i = 0; i < esp.length; i++) {
-    //     suma += esp[i].Valor
-    //     if(esp[i].Valor > valoralto)
-    //     {
-    //         valoralto = esp[i].Valor;
-    //     }
-    
-    // }
-    // var media = suma/esp.length;
-
-    // json_result = {
-
-    //     "media":media,
-    //     "valoralto": valoralto
-    // }
-    
-    // return json_result
-    
-    
 
 }
 
@@ -97,8 +175,8 @@ exports.get_measurements_by_type_db_call = async(data) =>{
 */
 exports.average_measurements_db_call = async (data) => {
 
-   
-    var query = mysql.query("Select Valor from db.mediciones where idSensor = '"+data.id_sensor+"' and Fecha = '"+data.date+"' ").then((data, error) => {
+
+    var query = mysql.query("Select Valor from db.mediciones where idSensor = '" + data.id_sensor + "' and Fecha = '" + data.date + "' ").then((data, error) => {
 
         if (data) {
             return data.results
@@ -107,7 +185,7 @@ exports.average_measurements_db_call = async (data) => {
         }
     })
 
-    
+
     var esp = await query
     var suma = 0;
     var valoralto = 0;
@@ -116,30 +194,29 @@ exports.average_measurements_db_call = async (data) => {
 
     for (let i = 0; i < esp.length; i++) {
         suma += esp[i].Valor
-        if(esp[i].Valor > valoralto)
-        {
+        if (esp[i].Valor > valoralto) {
             valoralto = esp[i].Valor;
         }
-    
+
     }
-    var media = suma/esp.length;
+    var media = suma / esp.length;
 
     json_result = {
 
-        "media":media,
+        "media": media,
         "valoralto": valoralto
     }
-    
+
     return json_result
-    
-    
+
+
 
 }
 
 
 exports.insert_sensor_db_call = async (data) => {
 
-    var checkExistent = mysql.query("Select * from db.sensores where idUsuario = (Select idUsuario from db.usuarios where Usuario = '"+data.username+"') ").then((data, error) => {
+    var checkExistent = mysql.query("Select * from db.sensores where idUsuario = (Select idUsuario from db.usuarios where Usuario = '" + data.username + "') ").then((data, error) => {
 
 
         if (data) {
@@ -149,35 +226,35 @@ exports.insert_sensor_db_call = async (data) => {
         }
     })
 
- var results =  await checkExistent
+    var results = await checkExistent
 
 
 
 
     if (results == false) {
-        var query = mysql.query("Insert into db.sensores (Tipo, idUsuario, Nombre) VALUES('"+data.type+"', (Select idUsuario from db.usuarios where Usuario = '"+data.username+"'), '"+data.name+"'  )").then((data, error) => {
+        var query = mysql.query("Insert into db.sensores (Tipo, idUsuario, Nombre) VALUES('" + data.type + "', (Select idUsuario from db.usuarios where Usuario = '" + data.username + "'), '" + data.name + "'  )").then((data, error) => {
 
- 
+
             if (data) {
                 return true
             } else {
                 return false
             }
         })
-    
+
         await query
         return query
-    }else{
-        var query = mysql.query("Update db.sensores set Nombre = '"+data.name+"', Tipo = '"+data.type+"' where idUsuario = (Select idUsuario from db.usuarios where Usuario = '"+data.username+"')").then((data, error) => {
+    } else {
+        var query = mysql.query("Update db.sensores set Nombre = '" + data.name + "', Tipo = '" + data.type + "' where idUsuario = (Select idUsuario from db.usuarios where Usuario = '" + data.username + "')").then((data, error) => {
 
- 
+
             if (data) {
                 return true
             } else {
                 return false
             }
         })
-    
+
         await query
         return query
     }
@@ -188,8 +265,8 @@ exports.insert_sensor_db_call = async (data) => {
 }
 
 
-exports.get_one_sensor_db_call = async (data) =>{
-    var checkExistent = mysql.query("Select * from db.sensores where idUsuario = (Select idUsuario from db.usuarios where Usuario = '"+data.username+"') ").then((data, error) => {
+exports.get_one_sensor_db_call = async (data) => {
+    var checkExistent = mysql.query("Select * from db.sensores where idUsuario = (Select idUsuario from db.usuarios where Usuario = '" + data.username + "') ").then((data, error) => {
 
 
         if (data) {

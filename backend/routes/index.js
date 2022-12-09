@@ -109,6 +109,11 @@ const routes = [
         method: "POST",
         path: "/get_measurements_by_type",
         handler: sensor.get_measurements_by_type
+    },
+    {
+        method: "POST",
+        path: "/get_higher_measurements",
+        handler: sensor.get_higher_measurements
     }
    
 
