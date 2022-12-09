@@ -30,7 +30,7 @@ console.log("sadsa");
         valores_maximos = []
         for (let i = 0; i < results.length; i++) {
             console.log("Select * from db.mediciones where idSensor = '" + results[i].idSensor + "' and Fecha = '" + data.date + "'");
-            var query2 = mysql.query("Select * from db.mediciones where idSensor = '" + results[i].idSensor + "' and Fecha = '" + data.date + "'").then((data, error) => {
+            var query2 = mysql.query("Select * from db.mediciones as a , db.sensores as b  where a.idSensor=b.idSensor  and  a.idSensor = '" + results[i].idSensor + "' and a.Fecha = '" + data.date + "'").then((data, error) => {
 
                 if (data) {
 
