@@ -94,11 +94,31 @@ const TemperatureApi={
 /*      console.log(info);
  */        return info
     },
+
+    get_measurements_by_type:(data)=>{
+        /*console.log("date" + data.date);
+        console.log("id_user" + data.id_user);
+        console.log("type" + data.type);*/
+        const info = request.post('/get_measurements_by_type', {
+            "id_user": data.id_user,
+            "type": data.type,
+            "date": data.date
+        }).then(function(data){
+            console.log(data);
+
+            return data
+        }).catch(function(error){
+            console.log(error);
+            return error
+        })
+/*      console.log(info);
+ */        return info
+    }
 }
 
 const LoginApi={
      login:(data)=>{
-        console.log(data);
+        //console.log(data);
         
         const info = request.post('login', {
             "username":data.username, 
