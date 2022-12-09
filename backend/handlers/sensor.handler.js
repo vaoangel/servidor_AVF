@@ -24,7 +24,7 @@ exports.get_higher_measurements = async req=>{
 
 
         var results = await sensor_function.get_higher_measurements_db_call(parsedData);
-         console.log(results);
+         //console.log(results);
         if (results != '') {
             return results
         }else{

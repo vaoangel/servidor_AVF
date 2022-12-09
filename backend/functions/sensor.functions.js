@@ -9,7 +9,7 @@ const mysql = require('../config/db')
 exports.get_higher_measurements_db_call = async (data) => {
 console.log("sadsa");
     //Devuelve las ids de los sensores que tiene el usuario
-    console.log("Select idSensor from db.sensores where idUsuario = '" + data.id_user + "'")
+   //console.log("Select idSensor from db.sensores where idUsuario = '" + data.id_user + "'")
     var query = mysql.query("Select idSensor from db.sensores where idUsuario = '" + data.id_user + "'").then((data, error) => {
 
         if (data) {
@@ -23,8 +23,8 @@ console.log("sadsa");
 
     var results = await query;
     if (results) {
-        console.log(results);
-        console.log("Numero de sensores del usuario: " + results.length);
+/*         console.log(results);
+ */        console.log("Numero de sensores del usuario: " + results.length);
 
         json_array_mediciones = []
         valores_maximos = []
@@ -45,8 +45,7 @@ console.log("sadsa");
 
             var esp = await query2
 
-            console.log(esp);
-            console.log(esp.length);
+          
 
             //AQUÍ YA ESTAMOS OBTENIENDO TODAS LAS MEDICIONES EN json_array_mediciones
             //por cada elemento del sensor se añade en el array a devolver final
@@ -57,51 +56,39 @@ console.log("sadsa");
 
         }
 
+var maxima 
+var array_final =[]
+        for (let i = 0; i < json_array_mediciones.length; i++) {
+            maxima = json_array_mediciones[i]
+            for (let j = 0; j < json_array_mediciones.length; j++) {
+                
 
-        json_array_mediciones.forEach((element, index) => {  //siendo un element -> jsonmedicion
-            json_array_mediciones.forEach((element2, index2) => {
-                if (element.Latitud == element2.Latitud && element.Longitud == element2.Longitud) {
-                    console.log("Latitudes y Longitudes iguales en: " + index + " y " + index2);
-                    //si son iguales hay que guardar la de mayor valor
+                if ((json_array_mediciones[i].Latitud == json_array_mediciones[j].Latitud)  &&  (json_array_mediciones[i].Longitud == json_array_mediciones[j].Longitud)) {
+                    
+                    if(maxima.Valor<=json_array_mediciones[j].Valor){
 
-                    //hay que comprobar cual de las los medidas es mayor
-                    if (element.Valor >= element2.Valor) {
-                        console.log(element);
-                        if (!valores_maximos.includes(element)) {
-
-                            console.log("No incluye")
-                            valores_maximos.push(element)
-                            
-
-                        }
-                    } else {
-                        if (!valores_maximos.includes(element2)) {
-                            valores_maximos.push(element2)
-
-                        }
-                    }
-
-
-
-                } else {
-                    console.log("Latitudes/Longitudes diferentes");
-                    //si son diferentes no pasa nada
-                    if (valores_maximos.includes(element2) == false) {
-                        valores_maximos.push(element2)
+                        maxima =json_array_mediciones[j]
 
                     }
-
+                    
                 }
-            });
-        });
+            }
+            if (!array_final.includes(maxima)) {
+                array_final.push(maxima)
+    
+            }
+        }
+
+
+       
+
 
 
 
 
     }
 
-    console.log(json_array_mediciones)
-    return valores_maximos
+    return array_final
 
 
 }
