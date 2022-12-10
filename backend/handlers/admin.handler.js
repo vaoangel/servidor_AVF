@@ -3,7 +3,7 @@
 const admin_functions = require("../functions/admin.functions")
 
 
-//Este método no recibe nada, solo devuelve info
+//Este método no recibe nada, se encarga de llamar a su método de base de datos correspondiente
 exports.get_all_enterprises = async ()=>{
 
 
@@ -18,6 +18,8 @@ exports.get_all_enterprises = async ()=>{
 
     
 }
+//Este método recibe un idEmpresa y lo manda a su método de base de datos correspondiente
+
 exports.delete_one_enterprise = async req=>{
 
 
@@ -32,6 +34,9 @@ exports.delete_one_enterprise = async req=>{
 
 
 }
+
+//Este método recibe un nombreEmpresa y lo manda a su método de base de datos correspondiente
+
 
 exports.add_one_enterprise = async req=>{
 
@@ -50,6 +55,9 @@ exports.add_one_enterprise = async req=>{
 //Devuelve un JSON con la info de las empresas
 
 
+
+//Este método recibe un idEmpresa y lo manda a su método de base de datos correspondiente
+
 exports.get_all_users_by_enterprise = async req=>{
 
 
@@ -65,6 +73,7 @@ exports.get_all_users_by_enterprise = async req=>{
 
 }
 
+//Este método recibe un idEmpresa y idUsuario dentro de req.body y lo manda a su método de base de datos correspondiente
 
 exports.delete_users_by_enterprise = async req=>{
 
