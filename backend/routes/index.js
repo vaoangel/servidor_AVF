@@ -1,7 +1,6 @@
 // Import our Controllers
 
 const arduino  = require("../handlers/arduino.handler")
-const arduino2  = require("../handlers/arduino2.handler")
 
 const login = require("../handlers/login.handler")
 const user = require("../handlers/user.handler")
@@ -94,12 +93,8 @@ const routes = [
         method: "POST",
         path: "/insert_measure1",
         handler: arduino.insert_measure1
-    },
-    {
-        method: "POST",
-        path: "/insert_measure2",
-        handler: arduino2.insert_measure2
     }
+ 
    
 
    

@@ -9,12 +9,11 @@ exports.insert_measure1  = async req=>{
     
             return false
         }else{
-// HIJO DE PUTA .DATA.
-            var idsensor = req.body.data.idsensor
-            var valor = req.body.data.valor
-            var fecha = req.body.data.fecha
-            var latitud = req.body.data.latitud
-            var longitud = req.body.data.longitud
+            var idsensor = req.body.idsensor
+            var valor = req.body.valor
+            var fecha = req.body.fecha
+            var latitud = req.body.latitud
+            var longitud = req.body.longitud
 
      
     
