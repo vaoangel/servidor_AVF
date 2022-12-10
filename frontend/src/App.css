@@ -604,5 +604,6 @@ padding-left: 10%;
 .mapa{
   margin-top: 20px;
   height: 80vh;
+  z-index: 1;
 }
 
