@@ -26,7 +26,7 @@ class ChangePassC extends React.Component {
         this.validateData = this.validateData.bind(this);
     }
 
-
+    //Comprueba que los dos campos de contraseña antigua y de nueva contraseña sean correctos antes de cambiarla en la base de datos
     validateData(e) {
         const regexp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
         var json = {

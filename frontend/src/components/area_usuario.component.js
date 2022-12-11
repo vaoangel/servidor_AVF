@@ -1,5 +1,5 @@
 import React from "react";
-import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
+//import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
 import * as L from "leaflet";
 import 'leaflet/dist/leaflet.css';
 import "leaflet.heat";
@@ -45,6 +45,9 @@ class AreaUSuario extends React.Component{
    
     }
 
+    /*Realiza tres llamadas al servidor para obtener los conjuntos de medidas separados por el tipo de contaminante y dichas medidas se envían
+    * al método para crear el mapa
+    */
     validateData(e){
         var json = {
             date: this.state.measurements_data.date,
@@ -91,6 +94,13 @@ class AreaUSuario extends React.Component{
         
     }
 
+    /*Utiliza las medidas separadas por tipos para generar diferentes capas y representarlas en un mapa
+    * points_O3: [[R,R,R],...], points_CO2: [[R,R,R],...], points_NO2: [[R,R,R],...] -> crear_mapa()
+    *
+    * param1 points_03: array con los valores de latitud, longitud y valor de cada medida de 03
+    * param2 points_CO2: array con los valores de latitud, longitud y valor de cada medida de CO2
+    * param3 points_NO2: array con los valores de latitud, longitud y valor de cada medida de NO2
+    */
     crear_mapa(points_O3, points_CO2, points_NO2){
         var littleton = L.marker([39.61, -105.02]).bindPopup('This is Littleton, CO.'),
             denver    = L.marker([39.74, -104.99]).bindPopup('This is Denver, CO.'),
@@ -161,7 +171,7 @@ class AreaUSuario extends React.Component{
 
     render(){
         return(
-            <div id="map" className="mapa"></div>
+            <div id="map" className="mapa" data-testid="mapa"></div>
        )
     }
 }
