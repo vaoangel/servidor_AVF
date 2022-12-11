@@ -4,92 +4,149 @@ const mysql = require('../config/db')
 /*
     {date: DATE, id_user:int} -> f() -> json_array : JsonArray
 
-    Esta funcion recoge todos los valores de las mediciones tomadas por el usuario en una fecha concreta
+    Esta funcion recoge todos los valores de las mediciones tomadas por el usuario en una fecha concreta en caso de pasarle un id_User
+    Si el id_User que recibe es 0 va a coger todas las medidas sin importar el usuario
+
 */
 exports.get_higher_measurements_db_call = async (data) => {
-console.log("sadsa");
+
     //Devuelve las ids de los sensores que tiene el usuario
-   //console.log("Select idSensor from db.sensores where idUsuario = '" + data.id_user + "'")
-    var query = mysql.query("Select idSensor from db.sensores where idUsuario = '" + data.id_user + "'").then((data, error) => {
+    //console.log("Select idSensor from db.sensores where idUsuario = '" + data.id_user + "'")
 
-        if (data) {
-            return data.results
-        } else {
-            return false
-        }
-    })
+    json_array_mediciones = []
+    valores_maximos = []
 
-         
+    if (data.id_user == 0)    //TODAS LAS MEDIDAS DE BBDD (MÉTODO PARA LA LANDING)
+    {
 
-    var results = await query;
-    if (results) {
-/*         console.log(results);
- */        console.log("Numero de sensores del usuario: " + results.length);
+        var query3 = mysql.query("Select * from db.mediciones as a , db.sensores as b  where a.idSensor=b.idSensor and a.Fecha like '" + data.date + "%'").then((data, error) => {
 
-        json_array_mediciones = []
-        valores_maximos = []
-        for (let i = 0; i < results.length; i++) {
-            console.log("Select * from db.mediciones where idSensor = '" + results[i].idSensor + "' and Fecha = '" + data.date + "'");
-            var query2 = mysql.query("Select * from db.mediciones as a , db.sensores as b  where a.idSensor=b.idSensor  and  a.idSensor = '" + results[i].idSensor + "' and a.Fecha = '" + data.date + "'").then((data, error) => {
+            if (data) {
 
-                if (data) {
+                return data.results
 
-                    return data.results
-
-                } else {
-                    return false
-                }
-            })
+            } else {
+                return false
+            }
+        })
 
 
 
-            var esp = await query2
+        var esp2 = await query3 //todas las mediciones
+        esp2.forEach(element => {
+            json_array_mediciones.push(element)
+        });
 
-          
+        console.log(json_array_mediciones);
+            var maxima
+            var array_final = []
+            for (let i = 0; i < json_array_mediciones.length; i++) {
+                console.log("entra al for");
+                maxima = json_array_mediciones[i]
+                for (let j = 0; j < json_array_mediciones.length; j++) {
 
-            //AQUÍ YA ESTAMOS OBTENIENDO TODAS LAS MEDICIONES EN json_array_mediciones
-            //por cada elemento del sensor se añade en el array a devolver final
-            esp.forEach(element => {
-                json_array_mediciones.push(element)
-            });
 
+                    if ((json_array_mediciones[i].Latitud == json_array_mediciones[j].Latitud) && (json_array_mediciones[i].Longitud == json_array_mediciones[j].Longitud)) {
 
-        }
+                        if (maxima.Valor <= json_array_mediciones[j].Valor) {
 
-var maxima 
-var array_final =[]
-        for (let i = 0; i < json_array_mediciones.length; i++) {
-            maxima = json_array_mediciones[i]
-            for (let j = 0; j < json_array_mediciones.length; j++) {
-                
+                            maxima = json_array_mediciones[j]
 
-                if ((json_array_mediciones[i].Latitud == json_array_mediciones[j].Latitud)  &&  (json_array_mediciones[i].Longitud == json_array_mediciones[j].Longitud)) {
-                    
-                    if(maxima.Valor<=json_array_mediciones[j].Valor){
-
-                        maxima =json_array_mediciones[j]
+                        }
 
                     }
-                    
+                }
+                if (!array_final.includes(maxima)) {
+                    array_final.push(maxima)
+
                 }
             }
-            if (!array_final.includes(maxima)) {
-                array_final.push(maxima)
-    
+
+            return array_final
+
+    } else {
+        //MEDIDAS DE UN USUARIO EN CONCRETO
+        var query = mysql.query("Select idSensor from db.sensores where idUsuario = '" + data.id_user + "'").then((data, error) => {
+
+            if (data) {
+                return data.results
+            } else {
+                return false
             }
+        })
+
+
+
+        var results = await query;
+        if (results) {
+             console.log("Numero de sensores del usuario: " + results.length);
+
+           
+            for (let i = 0; i < results.length; i++) {
+                console.log("Select * from db.mediciones as a , db.sensores as b  where a.idSensor=b.idSensor  and  a.idSensor = '" + results[i].idSensor + "' and a.Fecha like '" + data.date + "%'");
+                var query2 = mysql.query("Select * from db.mediciones as a , db.sensores as b  where a.idSensor=b.idSensor  and  a.idSensor = '" + results[i].idSensor + "' and a.Fecha like '" + data.date + "%'").then((data, error) => {
+
+                    if (data) {
+
+                        return data.results
+
+                    } else {
+                        return false
+                    }
+                })
+
+
+
+                var esp = await query2
+
+                console.log(esp);
+
+                //AQUÍ YA ESTAMOS OBTENIENDO TODAS LAS MEDICIONES EN json_array_mediciones
+                //por cada elemento del sensor se añade en el array a devolver final
+                esp.forEach(element => {
+                    json_array_mediciones.push(element)
+                });
+
+
+            }
+
+            console.log(json_array_mediciones);
+            var maxima
+            var array_final = []
+            for (let i = 0; i < json_array_mediciones.length; i++) {
+                console.log("entra al for");
+                maxima = json_array_mediciones[i]
+                for (let j = 0; j < json_array_mediciones.length; j++) {
+
+
+                    if ((json_array_mediciones[i].Latitud == json_array_mediciones[j].Latitud) && (json_array_mediciones[i].Longitud == json_array_mediciones[j].Longitud)) {
+
+                        if (maxima.Valor <= json_array_mediciones[j].Valor) {
+
+                            maxima = json_array_mediciones[j]
+
+                        }
+
+                    }
+                }
+                if (!array_final.includes(maxima)) {
+                    array_final.push(maxima)
+
+                }
+            }
+
+
+
+
+
+
+
+
         }
 
-
-       
-
-
-
-
+        return array_final
 
     }
-
-    return array_final
-
 
 }
 
