@@ -40,10 +40,10 @@ exports.get_measurements_by_type = async req=>{
     //Si el body está vacio devuelve un false;
 
     if(!req.body){
-
+console.log("EL BODY ESTÁ VACÍO VACIO")
         return false
     }else{
-
+console.log("PARECE QUE HAY ALGO");
         //Se reciben los datos del body
         var date = req.body.date
         var type = req.body.type
@@ -60,7 +60,7 @@ exports.get_measurements_by_type = async req=>{
 
 
         var results = await sensor_function.get_measurements_by_type_db_call(parsedData);
-         console.log(results);
+         console.log("Resultado" + results[0].idSensor);
         if (results != '') {
             return results
         }else{

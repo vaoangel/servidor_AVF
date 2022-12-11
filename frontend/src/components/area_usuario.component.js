@@ -1,13 +1,159 @@
 import React from "react";
-import logo from '../assets/img/logo.png'
-import fotouser  from '../assets/img/usuario.png'
-import contra  from '../assets/img/contra.png'
+import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
+import * as L from "leaflet";
+import 'leaflet/dist/leaflet.css';
+import "leaflet.heat";
+import icon from "leaflet/dist/images/marker-icon.png";
+import iconShadow from "leaflet/dist/images/marker-shadow.png";
+import {connect} from 'react-redux'
+import Apis from '../router/index';
+
+const mapDispatchToProps = dispatch => ({
+    get_measurements_by_type: (id_user, date, type) =>
+    dispatch({ type: "MEASUREMENTS",method:"get_measurements_by_type",api:"TemperatureApi", payload:{id_user, date, type}})
+ 
+});
+
+const mapStateToProps = state => ({
+    currentUser: state.LoginReducer.currentUser,
+});
+
+let DefaultIcon = L.icon({
+    iconUrl: icon,
+    shadowUrl: iconShadow,
+    });
+
 class AreaUSuario extends React.Component{
 
 
     constructor(props){
         super(props);
+
+        this.state = {
+
+            measurements_data:{
+                id_user: this.props.currentUser[0].idUsuario,
+                date: "2022-11-23", 
+                type: "O3"
+            }
+
+
+        }
+
+        this.crear_mapa = this.crear_mapa.bind(this);
+        this.validateData = this.validateData.bind(this);
    
+    }
+
+    validateData(e){
+        var json = {
+            date: this.state.measurements_data.date,
+            id_user: this.state.measurements_data.id_user,
+            type: this.state.measurements_data.type
+        }
+
+        var points_O3 = [];
+        var points_CO2 = [];
+        var points_NO2 = [];
+
+        var result_O3 = Apis.TemperatureApi.get_measurements_by_type(json)
+        result_O3.then(value => {
+            value.data.forEach(element => {
+                points_O3.push([element.Latitud, element.Longitud, element.Valor]);
+            });
+
+
+            json.type = "CO2";
+            var result_CO2 = Apis.TemperatureApi.get_measurements_by_type(json)
+            result_CO2.then(value2 => {
+                value2.data.forEach(element2 => {
+                    points_CO2.push([element2.Latitud, element2.Longitud, element2.Valor]);
+                });
+                
+                json.type = "NO2";
+                var result_NO2 = Apis.TemperatureApi.get_measurements_by_type(json)
+                result_NO2.then(value3 => {
+                    value3.data.forEach(element3 => {
+                        points_NO2.push([element3.Latitud, element3.Longitud, element3.Valor]);
+                    });
+                    this.crear_mapa(points_O3, points_CO2, points_NO2);
+                    })  
+                })    
+            })
+            
+        
+
+    }
+
+    componentDidMount(){
+        this.validateData();
+        console.log("Current_user: " + this.state.measurements_data.date + this.state.measurements_data.id_user + this.state.measurements_data.type);
+        
+    }
+
+    crear_mapa(points_O3, points_CO2, points_NO2){
+        var littleton = L.marker([39.61, -105.02]).bindPopup('This is Littleton, CO.'),
+            denver    = L.marker([39.74, -104.99]).bindPopup('This is Denver, CO.'),
+            aurora    = L.marker([39.73, -104.8]).bindPopup('This is Aurora, CO.'),
+            golden    = L.marker([39.77, -105.23]).bindPopup('This is Golden, CO.');
+
+        var cities = L.layerGroup([littleton, denver, aurora, golden]);
+        var osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '© OpenStreetMap'
+        });
+
+
+        var map = L.map('map', {
+            center: [53, -76],
+            zoom: 10,
+            layers: osm
+        });
+
+        var heatMapPoints = [];
+
+        console.log("en crear_mapa "+ points_O3);
+            points_O3.forEach(element => {
+                console.log("latitud" + element[0]);
+                console.log("longitud" + element[1]);
+                console.log("valor" + element[2]);
+                heatMapPoints.push([element[0], element[1], element[2]]);
+        });
+        console.log(heatMapPoints);
+   
+        var O3 = L.heatLayer(points_O3,{gradient: {0.1: 'blue', 0.2: 'lime', 0.5: 'red'},
+            minOpacity:1,
+            radius: 50
+            }).addTo(map);
+
+        var NO = L.heatLayer(points_NO2,{gradient: {0.1: 'blue', 0.2: 'lime', 0.5: 'red'},
+        minOpacity:0.2,
+        radius: 50
+        });
+        var CO2 = L.heatLayer(points_CO2,{gradient: {0.1: 'blue', 0.2: 'lime', 0.5: 'red'},
+        minOpacity:0.2,
+        radius: 50
+        });
+
+        var baseMaps = {
+            "OpenStreetMap": osm,
+        };
+
+        var overlayMaps = {
+            "Ozono (O3)": O3,
+            "Dióxido de carbono (CO2)": CO2,
+            "Oxido de nitrogeno (NO)": NO
+
+        };
+        var layerControl = L.control.layers(overlayMaps).addTo(map);
+        L.Marker.prototype.options.icon = DefaultIcon;
+
+        var crownHill = L.marker([39.75, -105.09]).bindPopup('This is Crown Hill Park.'),
+            rubyHill = L.marker([39.68, -105.00]).bindPopup('This is Ruby Hill Park.');
+            
+        var parks = L.layerGroup([crownHill, rubyHill]);
+
+        layerControl.addOverlay(parks, "Medidas oficiales");
     }
 
 
@@ -15,22 +161,10 @@ class AreaUSuario extends React.Component{
 
     render(){
         return(
-
-               <div>
-                Jamón ipsum atún señorita una borrachos como cubas escanciando sidra farruco mi el armario chiringuito y caramba mis juerga posturitas epa horchata armando gresca más fútbol, con copazo y dolores tío persiana las roña colarse petardazo a botellón estopa eso no vale y las fabada, corriendo peluco nuestra comunidad sus como motos probando litros la Quijote honor.
-
-Estopa tiburón de la noche con tapas jamón aquí no hay tomate cara de malo, y las ligar cabra tío Barça mis máxima Lepe. Vecinos pero tus no pega ojo martes 13 bailarán epa. A camello escanciando sidra gordinflón las quillo amiga, el armario los friqui año pero vale tronco enchufe. Fabada tus dolores trae más fútbol sus orujo y rumbeo brutal a tope sus nuestra comunidad bingo goleador, trapicheo y tus tapas mola mazo lo suyo turrón el gorilla abanica soñar es gratis jamón.
-Piñazo canario mis colacao rumbeo a lo hecho, pecho. Por la cara vendió y los patata Costa Brava portería vecinos las siesta canturreando, lo suyo y Fallas tus vagueando vale. Atún tu guiri año como Camarón, un cabra fiesta pero picardía el asturiana litros Alonso con vamos escanciando sidra llega tarde pero café con leche a a lo hecho, pecho. Enróllate. Pinchito vale gazpacho turrón mucho de estopa, gato encerrado abanica la playita pero salmorejo gallego lacasitos corral, pacotilla tapas colarse pero a duro vale fiesta Alonso, sus charanga flipado corriendo atiborrarse canción ojos.
-Martes 13 fulano portería charanga máxima el salmorejo kinki. Y enchufe salta! Gorilla gordinflón tu descafeinado dolores café con leche y la resacón paella. Cómplice mis señorita bocadillo canción flipado y con picardía jodido chorizo sus tronco honor colarse mucho de tócate miedo a volar y Ibiza, mariposita guiri tapas roñica la brutal trae musculitos pero Rey tu aquí no hay tomate a lo hecho, pecho. Collección de. Honor mis a diestro y siniestro pinchito y guitarra, chorradas mucho de se lo van a dar Costa Brava Fallas tus lacasitos armando gresca así atún asturiana cien gaviotas.
-Paella lacasitos mis vagueando copazo entra que te entra un flipado y litros portería tu tócate abanica se lo van a dar, mucho de soñar es gratis piltrafilla resaca brutal liándola parda la tortilla y vino rioja barrio mi mete una bola. Bonachón piripi oveja negra clásico las caña vale fútbol calimocho morcilla.
-Vale Lepe maruja quinto pino mi chulapo roñica amiga y tomatito maneras de vivir, a Carnaval el armario a diestro y siniestro canturreando honor los truhán. Picha llega tarde pero corral talego. Las vale fregona pipas charanga fiesta pero macho kinki, genial tus martes 13 Nadal siesta un jodido. Y pinchito vamos cómplice sidra, canturreando a piñazo piltrafilla dolores pero estopa chiringuito. Mi tócate señor asturiana morcilla las farruco Carnaval. Pero mola mazo nuestra comunidad los playita jamón.
-               </div>
- 
-
-            
+            <div id="map" className="mapa"></div>
        )
     }
 }
 
 
-export default AreaUSuario
+export default connect(mapStateToProps, mapDispatchToProps)(AreaUSuario)

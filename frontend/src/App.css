@@ -490,12 +490,13 @@ padding-left: 10%;
 /*CSS para la pagina de los administradores*/
 .admin_page {
   margin-top: 20px;
+  width: 100vw;
 }
 
 /* Popup container */
 .popup {
   position: absolute;
-  margin-left: 500px;
+  margin-left: 50%;
   display: inline-block;
   cursor: pointer;
 }
@@ -504,7 +505,7 @@ padding-left: 10%;
 .popup .popuptext {
   visibility: hidden;
   height: 200px;
-  width: 400px;
+  width: 40%;
   background-color: white;
   border-radius: 5px;
   border-color: #000000;
@@ -515,9 +516,6 @@ padding-left: 10%;
   padding: 8px 0;
   position: absolute;
   z-index: 1;
-  bottom: 125%;
-  left: 50%;
-  margin-left: -80px;
 }
 
 .popup .popuptext .input {
@@ -599,4 +597,13 @@ padding-left: 10%;
 
 #password_rc {
   display: none
+
 }
+
+/*Codigo de la página de area_usuario*/
+.mapa{
+  margin-top: 20px;
+  height: 80vh;
+  z-index: 1;
+}
+

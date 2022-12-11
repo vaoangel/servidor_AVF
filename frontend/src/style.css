@@ -5,7 +5,6 @@
 
 .color-nav{
     background-color: black;
-    
 }
 
 body{
@@ -16,10 +15,14 @@ body{
     position: fixed;
     top: 0;
     width: 100%;
+    z-index: 2;
 }
 
 #imglogo{
-    margin-left: 20px;
+   /*margin-left: 20px;*/
+    /*position: absolute;
+    left: 1rem;
+    top: 0;*/
 }
 
 Nav.Link{
@@ -30,73 +33,110 @@ h5:hover{
     color: #65DF48;
 }
 
+#nav{
+    align-items: center;
+}
+
 #botonacercade{
+    margin-top: 5px;
     background-color: transparent;
-    border: 2px #b0b0b0 solid;
-    border-bottom: none;
-    border-top: none;
-    border-right: none;
-    border-radius: 0;
+    border: none;
 }
 
 #botonprofile{
+    margin-top: 5px;
     background-color: transparent;
-    border: 2px #b0b0b0 solid;
-    border-bottom: none;
-    border-top: none;
-    border-right: none;
-    border-radius: 0;
+    border: none;
+
 }
 
 #botonuserlist{
+    margin-top: 5px;
     background-color: transparent;
-    border: 2px #b0b0b0 solid;
-    border-bottom: none;
-    border-top: none;
-    border-right: none;
-    border-radius: 0;
+    border: none;
 }
 
 #botonlogin{
+    margin-top: 5px;
     background-color: transparent;
-    border: transparent;
-    box-shadow: none;
-    border: 2px #b0b0b0 solid;
-    border-bottom: none;
-    border-top: none;
-    border-right: none;
-    border-radius: 0;
+    border: none;
     
 }
 
 #botoncontactanos{
+    margin-top: 5px;
     background-color: transparent;
-    border: 2px #b0b0b0 solid;
-    border-bottom: none;
-    border-top: none;
-    border-right: none;
-    border-radius: 0;
+    border: none;
 }
 
 #botoninicio{
+    margin-top: 5px;
     background-color: transparent;
-    border: 2px #b0b0b0 solid;
-    border-bottom: none;
-    border-top: none;
-    border-right: none;
-    border-radius: 0;
+    border: none;
 }
 
 #botonmapa{
+    margin-top: 5px;
     background-color: transparent;
-    border: 2px #b0b0b0 solid;
-    border-bottom: none;
-    border-top: none;
-    border-right: none;
-    border-radius: 0;
+    border: none;
 }
 
 .linkText{
     color: white;
     font-family: fuenteweb;
 }
+
+.flex{
+    display: flex;
+    justify-content: space-between;
+}
+
+.toggle_menu{
+    display: none;
+}
+
+@media (max-width: 850px){
+    .toggle_menu{
+        display: block;
+        position: absolute;
+        right: 0.5rem;
+        top: 0.6rem;
+    }
+    
+
+   #nav{
+    display: none;
+   }
+      
+    #imglogo{
+        margin-left: 0;
+    }
+    #botonacercade{
+        border: none;
+    }
+    
+    #botonprofile{
+        border: none;
+    }
+    
+    #botonuserlist{
+        border: none;
+    }
+    
+    #botonlogin{
+        border: none;
+    }
+    
+    #botoncontactanos{
+        border: none;
+    }
+    
+    #botoninicio{
+        border: none;
+    }
+    
+    #botonmapa{
+        border: none;
+    }
+}
+
