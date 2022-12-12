@@ -4,6 +4,7 @@ const arduino  = require("../handlers/arduino.controller")
 const login = require("../handlers/login.handler")
 const user = require("../handlers/user.handler")
 const sensor = require("../handlers/sensor.handler")
+const map = require("../handlers/map.handler")
 
 const admin = require("../handlers/admin.handler")
 
@@ -114,6 +115,16 @@ const routes = [
         method: "POST",
         path: "/get_higher_measurements",
         handler: sensor.get_higher_measurements
+    },
+    {
+        method: "POST",
+        path: "/save_map",
+        handler: map.save_map
+    },
+    {
+        method: "POST",
+        path: "/load_map",
+        handler: map.load_map
     }
    
 
