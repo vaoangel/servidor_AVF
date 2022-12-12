@@ -170,7 +170,7 @@ exports.get_measurements_by_type_db_call = async (data) => {
     })
 
     var results = await query;
-    if (results) {
+    if (results != false) {
         console.log(results);
         console.log("Numero de sensores del usuario: " + results.length);
 
@@ -204,11 +204,13 @@ exports.get_measurements_by_type_db_call = async (data) => {
         }
 
 
+        return json_array
 
 
     }
 
-    return json_array
+    return results
+
 
 }
 

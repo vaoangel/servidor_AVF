@@ -60,7 +60,7 @@ console.log("PARECE QUE HAY ALGO");
 
 
         var results = await sensor_function.get_measurements_by_type_db_call(parsedData);
-         console.log("Resultado" + results[0].idSensor);
+        
         if (results != '') {
             return results
         }else{
