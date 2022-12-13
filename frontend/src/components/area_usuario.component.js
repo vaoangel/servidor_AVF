@@ -58,24 +58,31 @@ class AreaUSuario extends React.Component{
 
         var result_O3 = Apis.TemperatureApi.get_measurements_by_type(json)
         result_O3.then(value => {
+            if(value.data != false){
             value.data.forEach(element => {
                 points_O3.push([element.Latitud, element.Longitud, element.Valor]);
             });
+            }
 
 
             json.type = "CO2";
             var result_CO2 = Apis.TemperatureApi.get_measurements_by_type(json)
             result_CO2.then(value2 => {
-                value2.data.forEach(element2 => {
+                if(value2.data != false){
+                    value2.data.forEach(element2 => {
                     points_CO2.push([element2.Latitud, element2.Longitud, element2.Valor]);
                 });
+                }
+                
                 
                 json.type = "NO2";
                 var result_NO2 = Apis.TemperatureApi.get_measurements_by_type(json)
                 result_NO2.then(value3 => {
+                    if(value3.data != false){
                     value3.data.forEach(element3 => {
                         points_NO2.push([element3.Latitud, element3.Longitud, element3.Valor]);
                     });
+                    }
                     this.crear_mapa(points_O3, points_CO2, points_NO2);
                     })  
                 })    
