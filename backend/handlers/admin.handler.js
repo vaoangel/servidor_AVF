@@ -35,15 +35,30 @@ exports.delete_one_enterprise = async req=>{
 
 exports.add_one_enterprise = async req=>{
 
+   //Si el body está vacio devuelve un false;
+   if(!req.body){
 
+    return false
+}else{
 
-    var results = await admin_functions.add_one_enterprise_db_call(req.body.nombreEmpresa);
-     console.log(results);
-    if (results != '') {
-        return results
+    var idCiudad = req.body.idCiudad
+    var nombre = req.body.nombre
+
+    var parsedData = {
+        "idCiudad":idCiudad,
+        "nombre":nombre
+    }
+
+    console.log(parsedData);
+
+    var test = await admin_functions.add_one_enterprise_db_call(parsedData)
+
+    if (test != '') {
+        return test
     }else{
         return false
     }
+}
 
 
 }
