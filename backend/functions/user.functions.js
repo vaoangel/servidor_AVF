@@ -1,6 +1,10 @@
 const mysql = require('../config/db')
 
-//Recibe la información del handler en forma de JSON ya filtrada y realiza las querys de base de datos
+/*
+    {username: string, name: string, mail: string, phone:int} -> f() -> {JSON}
+
+    Esta funcion cambia los datos del usuario
+*/
 exports.update_user_db_call = async (data) => {
 
     console.log("Update db.usuarios set nombre = '" + data.name + "', mail = '" + data.mail + "', telefono = '" + data.phone + "' where usuario like '" + data.username + "';");
@@ -35,7 +39,13 @@ exports.update_user_db_call = async (data) => {
 }
 //Si el update va bien devuelve la información de la query con los datos del usuario en formato JSON
 
-//Función modificar contraseña
+
+
+/*
+    {username: string, oldpass: string, newpass:string} -> f()
+
+    Esta funcion modifica la contraseña del usuario
+*/
 
 exports.modificar_pass_db_call = async (data) => {
 
@@ -105,6 +115,13 @@ exports.modificar_pass_db_call = async (data) => {
 }
 
 
+
+
+/*
+    {username: string, name: string, mail:string, phone:int, password:string, enterprise:string, type:string} -> f()
+
+    Esta funcion añade un usuario
+*/
 exports.add_user_db_call = async (data) =>{
 
 
@@ -123,6 +140,12 @@ exports.add_user_db_call = async (data) =>{
 }
 
 
+
+/*
+    {user_id: int} -> f()
+
+    Esta funcion borra un usuario
+*/
 exports.delete_user_db_call = async (data) =>{
 
 

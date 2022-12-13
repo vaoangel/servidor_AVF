@@ -2,7 +2,12 @@
 
 const mysql = require('../config/db')
 
-//Refibe la información filtrada en formato JSON
+/*
+    {username: string,
+    password: string  } -> f() -> {respuesta: JSON}
+
+    Esta funcion recibe  un username y un password  y devuelve información del usuario
+*/
 exports.login_db_calls = async (data) =>{
     
 

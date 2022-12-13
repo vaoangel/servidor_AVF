@@ -2,7 +2,11 @@
 const mysql = require('../config/db')
 
 
-//No recibe nada
+/*
+    f()-> [{empresas:JSON}]
+
+    Esta funcion recoge todas las empresas dadas de alta en la base de datos
+*/
 exports.get_all_enterprises_db_call = async () =>{
     console.log("get_all_enterprises:          Entra");
 
@@ -26,13 +30,17 @@ exports.get_all_enterprises_db_call = async () =>{
         return results
 }
 
-//Devuelve la info de la base de datos
+//Devuelve la información de la query sql como JSON
 
 
 
 
 
-//No recibe nada
+/*
+    { id_empresa: int} ->f() 
+
+    Esta funcion recibe  un Id de empresa y ejecuta una query para eliminarla de la base de datos
+*/
 exports.delete_one_enterprise_db_call = async (data) =>{
     console.log("get_all_enterprises:          Entra");
 
@@ -66,6 +74,13 @@ exports.delete_one_enterprise_db_call = async (data) =>{
 
 }
 
+//Devuelve la información de todas las empresas una vez borrada la empresa en cuestión.
+
+/*
+    { nombreEmpresa: string } -> f()
+
+    Esta funcion recibe  un nombre de empresa y ejecuta una query para eliminarla de la base de datos
+*/
 exports.add_one_enterprise_db_call = async (data) =>{
     console.log("get_all_enterprises:          Entra");
 
@@ -99,7 +114,19 @@ exports.add_one_enterprise_db_call = async (data) =>{
 
 }
 
+//Devuelve la información de todas las empresas una vez añadida la empresa en cuestión.
 
+
+
+
+
+
+
+/*
+    { idEmpresa: int } -> f() -> [{usuarios}]
+
+    Esta funcion recibe  un Id de empresa y ejecuta una query para obtener todos los usuarios que pertenecen a dicha empresa
+*/
 exports.get_all_users_by_enterprise_db_call = async (data) =>{
     console.log("get_all_enterprises:          Entra");
 
@@ -114,12 +141,6 @@ exports.get_all_users_by_enterprise_db_call = async (data) =>{
             }
         })
 
-
-
-
-
-
-
         await results1
         console.log("get_all_enterprises:          Termina");
 
@@ -132,11 +153,20 @@ exports.get_all_users_by_enterprise_db_call = async (data) =>{
         return error
         
     }
-
-
-
 }
 
+//Devuelve la información de todos los usuarios que pertenecen a una empresa
+
+
+
+
+
+/*
+    {idUsuario: int,
+    idEmpresa: int  } -> f()
+
+    Esta funcion recibe  un Id de empresa y un IdUsuario  y elimina un usuario
+*/
 exports.delete_users_by_enterprise_db_call = async (data) =>{
     console.log("delete_users_by_enterprise_db_call:          Entra");
 
@@ -159,17 +189,16 @@ exports.delete_users_by_enterprise_db_call = async (data) =>{
 
         }
   
-
-
-        
     } catch (error) {
         console.log(error);
-        console.log("delete_users_by_enterprise_db_call:          Termina");
 
         return error
         
     }
+    console.log("delete_users_by_enterprise_db_call:          Termina");
 
 
 
 }
+
+//Devuelve la información de los usuarios de la empresa a la que pertenece el idEmpresa

@@ -259,7 +259,11 @@ exports.average_measurements_db_call = async (data) => {
 
 }
 
+/*
+    {username: string, type: string, name: string} -> f()
 
+    Esta funcion inserta un sensor en bbdd a un usurio
+*/
 exports.insert_sensor_db_call = async (data) => {
 
     var checkExistent = mysql.query("Select * from db.sensores where idUsuario = (Select idUsuario from db.usuarios where Usuario = '" + data.username + "') ").then((data, error) => {
@@ -310,7 +314,11 @@ exports.insert_sensor_db_call = async (data) => {
 
 }
 
+/*
+    {username: string} -> f() -> {respuesta: JSON}
 
+    Esta funcion recoge todos los sensores del usuario
+*/
 exports.get_one_sensor_db_call = async (data) => {
     var checkExistent = mysql.query("Select * from db.sensores where idUsuario = (Select idUsuario from db.usuarios where Usuario = '" + data.username + "') ").then((data, error) => {
 
