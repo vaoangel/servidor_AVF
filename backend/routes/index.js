@@ -118,13 +118,8 @@ const routes = [
     },
     {
         method: "POST",
-        path: "/save_map",
-        handler: map.save_map
-    },
-    {
-        method: "POST",
-        path: "/load_map",
-        handler: map.load_map
+        path: "/get_measurements_by_type_admin",
+        handler: sensor.get_measurements_by_type_admin
     }
    
 

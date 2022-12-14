@@ -71,6 +71,43 @@ console.log("PARECE QUE HAY ALGO");
 
 }
 
+
+
+exports.get_measurements_by_type_admin = async req=>{
+    //Si el body está vacio devuelve un false;
+
+    if(!req.body){
+console.log("EL BODY ESTÁ VACÍO VACIO")
+        return false
+    }else{
+console.log("PARECE QUE HAY ALGO");
+        //Se reciben los datos del body
+        var date = req.body.date
+        var type = req.body.type
+        var id_empresa = req.body.id_empresa
+
+    
+        //Se parsean los datos
+        var parsedData = {
+            "date":date,
+            "type":type,
+            "id_empresa":id_empresa
+
+        }
+
+
+        var results = await sensor_function.get_measurements_by_type_admin_db_call(parsedData);
+        
+        if (results != '') {
+            return results
+        }else{
+            return false
+        }
+
+    }
+
+}
+
 exports.average_measurements = async req=>{
     //Si el body está vacio devuelve un false;
 

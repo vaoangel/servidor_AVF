@@ -87,7 +87,7 @@ exports.add_one_enterprise_db_call = async (data) =>{
     try {
         //Ejecución de la query a base de datos
 
-        var results1=  await mysql.query("Insert into    db.empresas (Nombre)  VALUES('"+data+"');")
+        var results1=  await mysql.query("Insert into    db.empresas (idCiudad,Nombre)  VALUES('" + data.idCiudad + "','"+data.nombre+"');")
 
 
 
