@@ -66,19 +66,19 @@ class LoginC extends React.Component {
 
         if (this.props.currentUser) {
             console.log("entra");
-            if(this.props.currentUser[0].Tipo == "user"){
+            //if(this.props.currentUser[0].Tipo == "user"){
             return (
                 <div>
                     <Redirect to="/area_usuario" />
                 </div>
             )
-            } else{
+            /*} else{
                 return (
                     <div>
                         <Redirect to="/profile" />
                     </div>
                 )
-            }
+            }*/
         }
 
 

@@ -607,3 +607,7 @@ padding-left: 10%;
   z-index: 1;
 }
 
+/*.date-input{
+  z-index: 10;
+  background-color: red;
+}*/

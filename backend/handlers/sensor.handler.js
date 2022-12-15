@@ -4,7 +4,8 @@ const sensor_function = require("../functions/sensor.functions")
 
 exports.get_higher_measurements = async req=>{
     //Si el body está vacio devuelve un false;
-
+    console.log("LA FECHA ES " + req.body.date);
+console.log("QUIERO LAS PEORES");
     if(!req.body){
 
         return false

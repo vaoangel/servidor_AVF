@@ -4,7 +4,7 @@ const arduino  = require("../handlers/arduino.controller")
 const login = require("../handlers/login.handler")
 const user = require("../handlers/user.handler")
 const sensor = require("../handlers/sensor.handler")
-const map = require("../handlers/map.handler")
+//const map = require("../handlers/map.handler")
 
 const admin = require("../handlers/admin.handler")
 

@@ -11,6 +11,7 @@ const mysql = require('../config/db')
 exports.get_higher_measurements_db_call = async (data) => {
 
     //Devuelve las ids de los sensores que tiene el usuario
+    console.log("ID_USER " + data.id_user);
 
     json_array_mediciones = []
     valores_maximos = []
