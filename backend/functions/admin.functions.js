@@ -3,6 +3,8 @@ const mysql = require('../config/db')
 
 
 /*
+    f()-> [{empresas:JSON}]
+
     Esta funcion recoge todas las empresas dadas de alta en la base de datos
 */
 exports.get_all_enterprises_db_call = async () =>{
@@ -35,7 +37,7 @@ exports.get_all_enterprises_db_call = async () =>{
 
 
 /*
-    { data: int} 
+    { id_empresa: int} ->f() 
 
     Esta funcion recibe  un Id de empresa y ejecuta una query para eliminarla de la base de datos
 */
@@ -75,7 +77,7 @@ exports.delete_one_enterprise_db_call = async (data) =>{
 //Devuelve la información de todas las empresas una vez borrada la empresa en cuestión.
 
 /*
-    { data: string }
+    { nombreEmpresa: string } -> f()
 
     Esta funcion recibe  un nombre de empresa y ejecuta una query para eliminarla de la base de datos
 */
@@ -121,7 +123,7 @@ exports.add_one_enterprise_db_call = async (data) =>{
 
 
 /*
-    { data: int }
+    { idEmpresa: int } -> f() -> [{usuarios}]
 
     Esta funcion recibe  un Id de empresa y ejecuta una query para obtener todos los usuarios que pertenecen a dicha empresa
 */
@@ -160,8 +162,8 @@ exports.get_all_users_by_enterprise_db_call = async (data) =>{
 
 
 /*
-    { data.idUsuario: int,
-    data.idEmpresa: int  }
+    {idUsuario: int,
+    idEmpresa: int  } -> f()
 
     Esta funcion recibe  un Id de empresa y un IdUsuario  y elimina un usuario
 */
