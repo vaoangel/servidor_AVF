@@ -172,13 +172,14 @@ class AdminPage2 extends React.Component{
 
 
     render(){
+        console.log(this.props.currentUser);
         if (this.props.currentUser== null) {
             console.log("entra");
-            return(
+            /*return(
                 <div>
                 <Redirect to="/login" />
                 </div>
-            )
+            )*/
         }
 
         if (this.state.users_by_enterprise===undefined) {
