@@ -95,7 +95,14 @@ class UserRegister extends React.Component{
    
     render(){
     
-
+        if (this.props.currentUser== null) {
+            console.log("entra");
+            return(
+                <div>
+                <Redirect to="/login" />
+                </div>
+            )
+        }
         if (this.props.currentUser[0].Tipo=== "admin") {
             return(
                 <div className="screen-3 page_body">

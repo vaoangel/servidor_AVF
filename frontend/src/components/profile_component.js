@@ -19,19 +19,23 @@ class ProfileC extends React.Component{
     constructor(props){
         super(props);
 
-        this.state = {
-            profileData:{
-            phone: this.props.currentUser[0].telefono, 
-            username: this.props.currentUser[0].usuario,
-            name:this.props.currentUser[0].nombre,
-            mail:this.props.currentUser[0].mail
-            
-                    
+console.log(this.props.currentUser);
+         if (this.props.currentUser!==null) {
+            this.state = {
+                profileData:{
+                phone: this.props.currentUser[0].telefono, 
+                username: this.props.currentUser[0].usuario,
+                name:this.props.currentUser[0].nombre,
+                mail:this.props.currentUser[0].mail
+                
+                        
+                }
+                , 
+    
+                redirect :false
             }
-            , 
-
-            redirect :false
-        }
+         }
+ 
         this.handleChanges = this.handleChanges.bind(this);
         this.validateData = this.validateData.bind(this);
     }
@@ -86,8 +90,8 @@ class ProfileC extends React.Component{
    
     render(){
 
-        console.log(this.state.redirect);
-    if (!this.props.currentUser) {
+       
+    if (this.props.currentUser== null) {
             console.log("entra");
             return(
                 <div>

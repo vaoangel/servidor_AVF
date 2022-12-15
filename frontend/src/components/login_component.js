@@ -5,6 +5,7 @@ import {Link, Redirect } from "react-router-dom";
 import logo from '../assets/img/logo.png'
 import fotouser  from '../assets/img/usuario.png'
 import contra  from '../assets/img/contra.png'
+import UselocalStorage from '../hooks/localStorage.hook'
 const mapDispatchToProps = dispatch => ({
     login: (username, password) =>
     dispatch({ type: "LOGIN",method:"login",api:"LoginApi", payload:{username,password},
@@ -30,6 +31,7 @@ class LoginC extends React.Component {
         this.handleChanges = this.handleChanges.bind(this);
         this.validateData = this.validateData.bind(this);
 
+        
 
 
     }
@@ -62,9 +64,11 @@ class LoginC extends React.Component {
         console.log(this.state.loginData);
 
 
+
         if (this.props.currentUser) {
             console.log("entra");
             return(
+                
                 <div>
                 <Redirect to="/profile" />
                 </div>
