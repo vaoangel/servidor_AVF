@@ -45,7 +45,7 @@ class LandingC extends React.Component{
     
         {/* FIN MENU */}
         {/* SECCIÓN 1 */}
-        <div className="container-fluid">
+        <div className="container-fluid" data-testid="img-landing">
           <div className="row flex-items-xs-center slider-1 flex-items-xs-middle" id="sec-1">
             <div className="row">
               <div className="col-xs-12"><h1></h1></div>

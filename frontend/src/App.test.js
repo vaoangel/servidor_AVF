@@ -1,5 +1,5 @@
 import { render, fireEvent } from '@testing-library/react';
-//import '@testing-library/jest-dom/extend-expect'
+import '@testing-library/jest-dom/extend-expect'
 
 import MainFooter from './components/footer.component';
 import LandingC from './components/landing.component';
