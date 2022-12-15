@@ -1,5 +1,5 @@
 import React from 'react';
-import {  Link } from 'react-router-dom';
+import {  Link,Redirect } from 'react-router-dom';
 import { Nav, Navbar, Form, FormControl, Button } from 'react-bootstrap';
 import UselocalStorage from "../hooks/localStorage.hook"
 import ojo from '../assets/img/ojo.png'
@@ -172,7 +172,14 @@ class AdminPage2 extends React.Component{
 
 
     render(){
-
+        if (this.props.currentUser== null) {
+            console.log("entra");
+            return(
+                <div>
+                <Redirect to="/login" />
+                </div>
+            )
+        }
 
         if (this.state.users_by_enterprise===undefined) {
             return (

@@ -86,7 +86,7 @@ const TemperatureApi={
     Obtener_todas_mediciones:()=>{
         const info = request.get('/obtener_mediciones').then(function(data){
             console.log(data);
-
+            
             return data
         }).catch(function(error){
             return error

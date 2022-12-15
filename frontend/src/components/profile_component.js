@@ -23,16 +23,23 @@ class ProfileC extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            
-            profileData: {
-                phone: this.props.currentUser[0].Telefono,
-                username: this.props.currentUser[0].Usuario,
-                name: this.props.currentUser[0].Nombre,
-                mail: this.props.currentUser[0].mail
-
+console.log(this.props.currentUser);
+         if (this.props.currentUser!==null) {
+            this.state = {
+                profileData:{
+                phone: this.props.currentUser[0].telefono, 
+                username: this.props.currentUser[0].usuario,
+                name:this.props.currentUser[0].nombre,
+                mail:this.props.currentUser[0].mail
+                
+                        
+                }
+                , 
+    
+                redirect :false
             }
-        }
+         }
+ 
         this.handleChanges = this.handleChanges.bind(this);
         this.validateData = this.validateData.bind(this);
     }

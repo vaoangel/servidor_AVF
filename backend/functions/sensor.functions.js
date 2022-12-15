@@ -175,10 +175,10 @@ exports.get_measurements_by_type_db_call = async (data) => {
 
         json_array = []
         for (let i = 0; i < results.length; i++) {
-            console.log("Select Valor,Latitud,Longitud,LatitudCiudad,LongitudCiudad from db.mediciones as a , db.sensores as b, db.usuarios as u, db.empresas as e, db.ciudades as c  where a.idSensor=b.idSensor and u.idEmpresa=e.idEmpresa and  a.idSensor = '" + results[i].idSensor + "' and a.Fecha like '" + data.date + "%'");
-
+            console.log("Select Valor,Latitud,Longitud,LatitudCiudad,LongitudCiudad from db.mediciones as a , db.sensores as b, db.usuarios as u, db.empresas as e, db.ciudades as c  where a.idSensor=b.idSensor and u.idEmpresa=e.idEmpresa and b.idUsuario=u.idUsuario and e.idCiudad=c.idCiudad and  a.idSensor = '" + results[i].idSensor + "' and a.Fecha like '" + data.date + "%'");
+         
             //console.log("Select * from db.mediciones where idSensor = '" + results[i].idSensor + "' and Fecha = '" + data.date + "'");
-            var query2 = mysql.query("Select Valor,Latitud,Longitud,LatitudCiudad,LongitudCiudad from db.mediciones as a , db.sensores as b, db.usuarios as u, db.empresas as e, db.ciudades as c  where a.idSensor=b.idSensor and u.idEmpresa=e.idEmpresa and  a.idSensor = '" + results[i].idSensor + "' and a.Fecha like '" + data.date + "%'").then((data, error) => {
+            var query2 = mysql.query("Select Valor,Latitud,Longitud,LatitudCiudad,LongitudCiudad from db.mediciones as a , db.sensores as b, db.usuarios as u, db.empresas as e, db.ciudades as c  where a.idSensor=b.idSensor and u.idEmpresa=e.idEmpresa and b.idUsuario=u.idUsuario and e.idCiudad=c.idCiudad and  a.idSensor = '" + results[i].idSensor + "' and a.Fecha like '" + data.date + "%'").then((data, error) => {
 
                 if (data) {
 

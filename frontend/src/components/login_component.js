@@ -31,6 +31,7 @@ class LoginC extends React.Component {
         this.handleChanges = this.handleChanges.bind(this);
         this.validateData = this.validateData.bind(this);
 
+        
 
 
     }
@@ -62,6 +63,7 @@ class LoginC extends React.Component {
 
     render() {
         console.log(this.state.loginData);
+
 
 
         if (this.props.currentUser) {

@@ -21,6 +21,7 @@ const user = (state,action) =>{
  }
 
  const logout = (state)=>{
+
     return { ...state, 
         
         currentUser: null,
@@ -35,13 +36,18 @@ export default (state = initialState, action) =>{
         case Action.LOGIN:
             return user(state,action);
         case Action.LOGIN_SUCCESS:
+        console.log(action.payload[0]);
+        var jso = JSON.stringify(action.payload)
+            localStorage.setItem("user" ,jso)
+            console.log(action.payload);
             return {...state,currentUser:action.payload}
         case Action.UPDATE_PROFILE:
             return update_profile(state,action)
         case Action.UPDATE_PROFILE_SUCCESS:
             return {...state,currentUser:action.payload}
         case Action.LOGOUT:
-        
+        localStorage.setItem("user" ,null)
+
         return logout(state,action)
        
        
