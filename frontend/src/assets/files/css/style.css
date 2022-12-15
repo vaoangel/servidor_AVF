@@ -1,0 +1,57 @@
+
+
+body{
+	color:#fff;
+}
+.menu-1{
+	height: 60px;
+	background: #444;
+}
+.slider-1, .slider-2, .slider-3, .slider-4,.slider-5,.slider-6{
+	height: 100vh;
+	text-align: center;
+}
+.slider-1{
+	background-image:url("../../img/foto1.png");
+	background-size: 100% 100% ;
+background-repeat: no-repeat;
+}
+
+.slider-2{
+	background-color: #FFFF;
+	background-image:url("../../img/foto2.png");
+	background-size: contain;
+background-repeat: no-repeat;
+}
+.slider-3{
+	background-image:url("../../img/fondodevices.png");
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+.slider-4{
+	
+	background-image:url("../../img/mapa.png");
+	background-size: 100% 100%;
+background-repeat: no-repeat;
+}
+.slider-5{
+	
+	background-image:url("../../img/foto67.png");
+	background-size:100%;
+	background-repeat: no-repeat;
+}
+.slider-6{
+	
+	background-image:url("../../img/futo.png");
+	background-size:100% 100%;
+	background-repeat: no-repeat;
+}
+
+
+.footer{
+	background: #444;
+	color:#fff;
+	text-align: center;
+	padding: 10px;
+
+}
