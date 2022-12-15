@@ -1,17 +1,15 @@
 const mysql = require('../config/db')
 
 const { resolve } = require('promise');
-
+//JSON--->add_measure_db_call()-----> true
 exports.add_measure_db_call = async (data) =>{
-
-//jjjooottry
 
 
     var query = mysql.query("Insert into db.mediciones (idSensor, Valor, Fecha, Latitud, Longitud) VALUES('"+data.idsensor+"','"+data.valor+"','"+data.fecha+"','"+data.latitud+"','"+data.longitud+"')").then((data, error) => {
         
-        if (data) {
+        if (data) {//ha funcionado el metodo
             return true
-        } else {
+        } else {//no ha funcionado el metodo
             return false 
         }
     })

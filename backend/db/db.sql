@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.26, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.31, for Win64 (x86_64)
 --
 -- Host: localhost    Database: db
 -- ------------------------------------------------------
--- Server version	5.7.39
+-- Server version	5.7.40
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -16,6 +16,32 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `ciudades`
+--
+
+DROP TABLE IF EXISTS `ciudades`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ciudades` (
+  `idCiudad` int(11) NOT NULL AUTO_INCREMENT,
+  `Nombre` text NOT NULL,
+  `LatitudCiudad` float NOT NULL,
+  `LongitudCiudad` float NOT NULL,
+  PRIMARY KEY (`idCiudad`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ciudades`
+--
+
+LOCK TABLES `ciudades` WRITE;
+/*!40000 ALTER TABLE `ciudades` DISABLE KEYS */;
+INSERT INTO `ciudades` VALUES (1,'Gandia',38.25,-0.88),(2,'Valencia',10,-20);
+/*!40000 ALTER TABLE `ciudades` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `empresas`
 --
 
@@ -23,10 +49,13 @@ DROP TABLE IF EXISTS `empresas`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `empresas` (
-  `idEmpresa` int(11) NOT NULL AUTO_INCREMENT,
+  `idEmpresa` int(11) NOT NULL,
+  `idCiudad` int(11) NOT NULL,
   `Nombre` text NOT NULL,
-  PRIMARY KEY (`idEmpresa`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
+  PRIMARY KEY (`idEmpresa`),
+  KEY `restric_ciudad2` (`idCiudad`),
+  CONSTRAINT `restric_ciudad2` FOREIGN KEY (`idCiudad`) REFERENCES `ciudades` (`idCiudad`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -35,7 +64,7 @@ CREATE TABLE `empresas` (
 
 LOCK TABLES `empresas` WRITE;
 /*!40000 ALTER TABLE `empresas` DISABLE KEYS */;
-INSERT INTO `empresas` VALUES (3,'Empresa4'),(5,'Empresa8'),(6,'Cheste');
+INSERT INTO `empresas` VALUES (0,1,'Gandia'),(1,1,'EmpresaGandia'),(3,2,'empresaprueba');
 /*!40000 ALTER TABLE `empresas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -51,7 +80,7 @@ CREATE TABLE `logros` (
   `idUsuario` int(11) NOT NULL,
   `Horas activo` int(11) NOT NULL,
   `Distancia recorrida` int(11) NOT NULL,
-  `Fecha` date NOT NULL,
+  `Fecha` datetime NOT NULL,
   PRIMARY KEY (`idLogro`),
   KEY `logros_ibfk_1` (`idUsuario`),
   CONSTRAINT `logros_ibfk_1` FOREIGN KEY (`idUsuario`) REFERENCES `usuarios` (`idUsuario`) ON DELETE CASCADE ON UPDATE CASCADE
@@ -68,6 +97,34 @@ LOCK TABLES `logros` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `mapas`
+--
+
+DROP TABLE IF EXISTS `mapas`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `mapas` (
+  `idMapa` int(11) NOT NULL AUTO_INCREMENT,
+  `Fecha` datetime NOT NULL,
+  `idCiudad` int(11) NOT NULL,
+  `Puntos` text NOT NULL,
+  PRIMARY KEY (`idMapa`),
+  KEY `restric_ciudad` (`idCiudad`),
+  CONSTRAINT `restric_ciudad` FOREIGN KEY (`idCiudad`) REFERENCES `ciudades` (`idCiudad`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `mapas`
+--
+
+LOCK TABLES `mapas` WRITE;
+/*!40000 ALTER TABLE `mapas` DISABLE KEYS */;
+INSERT INTO `mapas` VALUES (1,'2023-02-02 00:00:00',2,'3.4');
+/*!40000 ALTER TABLE `mapas` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `mediciones`
 --
 
@@ -78,13 +135,13 @@ CREATE TABLE `mediciones` (
   `idMedicion` int(11) NOT NULL AUTO_INCREMENT,
   `idSensor` int(11) NOT NULL,
   `Valor` float NOT NULL,
-  `Fecha` date NOT NULL,
+  `Fecha` datetime NOT NULL,
   `Latitud` float NOT NULL,
   `Longitud` float NOT NULL,
   PRIMARY KEY (`idMedicion`),
   KEY `idSensor` (`idSensor`),
   CONSTRAINT `mediciones_ibfk_1` FOREIGN KEY (`idSensor`) REFERENCES `sensores` (`idSensor`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -93,7 +150,7 @@ CREATE TABLE `mediciones` (
 
 LOCK TABLES `mediciones` WRITE;
 /*!40000 ALTER TABLE `mediciones` DISABLE KEYS */;
-INSERT INTO `mediciones` VALUES (7,7,54.4,'2022-11-23',53,-76),(8,7,120,'2022-11-23',53,-76),(9,7,43,'2022-11-23',53,-76),(10,7,76,'2022-11-23',53,-76),(11,7,76,'2022-11-23',53,-76),(12,7,76,'2022-11-24',53,-76),(13,7,76,'2022-11-24',53,-76),(14,5,76,'2022-11-23',53,-76),(15,5,8,'2022-11-23',53,-76),(16,5,8,'2022-11-23',53,-76),(17,7,8,'2022-11-23',53,-76),(22,7,8,'2022-11-23',53,-76),(31,7,150,'2022-11-22',53,-76);
+INSERT INTO `mediciones` VALUES (7,7,54.4,'2022-11-23 00:00:00',53.1,-76),(8,7,120,'2022-11-23 00:00:00',53.2,-76),(9,7,68,'2022-11-23 00:00:00',53,-76.1),(10,7,76,'2022-11-23 00:00:00',53,-76.2),(11,7,76,'2022-11-23 00:00:00',53.1,-76.1),(12,7,76,'2022-11-24 00:00:00',53,-76),(13,7,76,'2022-11-24 00:00:00',53,-76),(14,5,42,'2022-11-23 00:00:00',53,-76),(15,5,41,'2022-11-23 00:00:00',53,-76),(16,5,5,'2022-11-23 00:00:00',53,-76),(17,7,8,'2022-11-23 00:00:00',53,-76),(22,7,8,'2022-11-23 00:00:00',53,-76),(31,7,150,'2022-11-22 00:00:00',53,-76),(32,10,0.1,'2022-11-23 00:00:00',53,-76),(33,10,0.5,'2022-11-23 00:00:00',53.2,-76.2),(34,7,53,'2022-12-13 23:07:26',53,-76.1),(35,7,53,'2022-11-23 00:00:00',53,-76.1),(36,11,53,'2022-11-23 00:00:00',53,-76.1),(37,11,53,'2022-11-23 00:00:00',53,-76.1);
 /*!40000 ALTER TABLE `mediciones` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -112,7 +169,7 @@ CREATE TABLE `sensores` (
   PRIMARY KEY (`idSensor`),
   KEY `sensores_ibfk_1` (`idUsuario`),
   CONSTRAINT `sensores_ibfk_1` FOREIGN KEY (`idUsuario`) REFERENCES `usuarios` (`idUsuario`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -121,6 +178,7 @@ CREATE TABLE `sensores` (
 
 LOCK TABLES `sensores` WRITE;
 /*!40000 ALTER TABLE `sensores` DISABLE KEYS */;
+INSERT INTO `sensores` VALUES (5,27,'CO2','GTI-3A-CO2'),(7,27,'O3','GTI-3A'),(10,22,'NO2','GTI-3A-NO2'),(11,22,'O3','sensorprueba');
 /*!40000 ALTER TABLE `sensores` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -152,7 +210,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (17,'admin',5,'name',600600600,'test@gmail.com','username','password'),(22,'user',3,'Cervezavao',232366,'vaoangel@gmail.com','vaoangel','aaaaaaaa'),(26,'admin_c',5,'name',600600600,'test@gmail.com','username33','password'),(27,'user',5,'Cervezavao',555555,'vaoangel@gmail.com','eustaquio','aaaaaaaa'),(28,'admin',6,'name',600600600,'test@gmail.com','username2','password');
+INSERT INTO `usuarios` VALUES (17,'admin',5,'name',600600600,'test@gmail.com','username','password'),(22,'user',3,'Cervezavao',232366,'vaoangel@gmail.com','vaoangel','aaaaaaaa'),(26,'admin_c',5,'name',600600600,'test@gmail.com','username33','password'),(27,'user',1,'Cervezavao',555555,'vaoangel@gmail.com','eustaquio','aaaaaaaa'),(28,'admin',6,'name',600600600,'test@gmail.com','username2','password');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -165,4 +223,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-11-25  0:27:52
+-- Dump completed on 2022-12-14  1:07:56
