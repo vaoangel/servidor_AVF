@@ -92,6 +92,14 @@ class LandingC extends React.Component{
           </div>
         </div>
         {/* FIN SECCIÓN */}
+                    {/* SECCIÓN 7 */}
+                    <div className="container-fluid">
+          <div className="row flex-items-xs-center slider-7 flex-items-xs-middle" id="sec-7">
+           
+        </div> </div>
+         
+          
+  {/* FIN SECCIÓN */}
 
    {/* SECCIÓN 6 */}
    <div className="container-fluid">
