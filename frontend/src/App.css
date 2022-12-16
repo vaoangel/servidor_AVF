@@ -14,6 +14,7 @@
   }
 }
 
+
 .App-header {
   background-color: #282c34;
   height: auto;
@@ -66,7 +67,7 @@
   padding: 2em;
   display: flex;
   flex-direction: column;
- 
+ height: 100%;
   
   gap: 2em;
 }
@@ -199,7 +200,9 @@ width: 80%;
 
 
 /*FOOTER*/
-
+.form{
+  height: 100%;
+}
 .site-footer
 {
   position:relative;
@@ -412,7 +415,8 @@ width: 80%;
   border-radius: 5px;
   border: none;
   width: 50%;
-  height:40px;
+  height: 100%;
+
   margin-left: 90px;
   margin-top: 20px;
 }
@@ -556,7 +560,7 @@ width: 80%;
 
 /*Codigo para la pagina de registrar usuarios*/
 .page_body{
-  height: 850px;
+  height: 100%;
   margin-bottom: 250px;
 }
 
@@ -567,4 +571,23 @@ width: 80%;
 .radio_button_text{
   font-size: small;
 }
+
+.screen-3 .form-input textarea {
+  margin-top: 5px;
+  background: transparent;
+  border: none;
+  border: 1px solid #000000;
+  color: grey;
+}
+
+.link_recuperar{
+  margin-bottom: 100px;
+  color: black;
+}
+
+#password_rc{
+  display: none
+}
+
+
 

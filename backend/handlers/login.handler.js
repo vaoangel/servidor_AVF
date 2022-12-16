@@ -17,6 +17,9 @@ exports.login_data_from_post = async req =>{
             "username":username,
             "password":password
         }
+
+        console.log(parsedData);
+
         var test = await login_functions.login_db_calls(parsedData)
 
         if (test != '') {
@@ -32,3 +35,27 @@ exports.login_data_from_post = async req =>{
    
 }
 //Si va todo bien  devuelve la información del usuario
+//{mail: Texto, password: Texto} -> recuperar_contrasena() -> Texto | VoF 
+exports.recuperar_contrasena = async req =>{
+
+    //Si el body está vacio devuelve un false;
+    if(!req.body){
+        return false
+    }else{
+
+        var mail = req.body.mail
+        var password = req.body.password
+
+        var parsedData = {
+            "mail":mail,
+            "password":password
+        }
+        var test = await login_functions.recuperar_contrasena_db_calls(parsedData)
+
+        if (test != '') {
+            return test
+        }else{
+            return false
+        }
+    }   
+}

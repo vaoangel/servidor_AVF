@@ -2,6 +2,7 @@ import axios from 'axios'
 
 let token = null
 let API = axios.create({
+    //baseURL: 'http://192.168.1.65:3000/',
     baseURL: 'http://localhost:3000/',
     headers: {
         'Authorization': token!==null ? `Token ${token}` : "",
@@ -15,7 +16,7 @@ const request ={
             console.log(data);
             
             if(data!==undefined){
-                alert("Operación realizada correctamente")
+                //alert("Operación realizada correctamente")
                    resolve(data)
                    
             }else{
@@ -136,7 +137,27 @@ const ProfileApi={
        return info
    
        
-   }
+   },
+
+   change_password:(data)=>{
+    console.log(data);
+    
+    const info = request.post('change_password', {
+
+     "username": data.username,
+     "oldpass": data.oldpass,
+     "newpass": data.newpass
+    }).then(function(data){
+        
+        console.log(data);
+        return data.data 
+    }).catch(function(error){
+        return error
+    })
+    return info
+
+    
+}
 }
 
 const AdminApi={
@@ -178,6 +199,63 @@ const AdminApi={
     return info
 
     
+},
+
+
+get_all_users_by_enterprise:(data)=>{
+       
+    const info = request.post('get_all_users_by_enterprise',{"idEmpresa":data}).then(function(data){
+        
+        console.log(data.data);
+        return data.data
+    }).catch(function(error){
+        return error
+    })
+    return info
+
+    
+},
+delete_users_by_enterprise:(data)=>{
+       
+    const info = request.post('delete_users_by_enterprise',{"idUsuario":data.idUsuario, "idEmpresa":data.idEmpresa}).then(function(data){
+        
+        return data.data
+    }).catch(function(error){
+        return error
+    })
+    return info
+
+    
+}
+,
+
+add_user:(data)=>{
+       
+    const info = request.post('add_user',{data}).then(function(data){
+        
+        return data.data
+    }).catch(function(error){
+        return error
+    })
+    return info
+
+    
+},
+}
+
+const RecoverApi={
+    recover_password:(data)=>{
+       
+    const info = request.post('recover_password',{"mail":data.mail, "password":data.password}).then(function(data){
+        
+        return data.data
+    }).catch(function(error){
+        return error
+    })
+    return info
+
+    
+   console.log(data);
 }
 }
 
@@ -186,6 +264,7 @@ export {
     TemperatureApi,
     LoginApi,
     ProfileApi,
-    AdminApi
+    AdminApi,
+    RecoverApi
     
 }

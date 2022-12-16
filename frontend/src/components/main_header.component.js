@@ -40,6 +40,11 @@ class MainHeader extends React.Component {
 
         //MENU USUARIO ADMINISTRADOR MASTER
         if (this.props.currentUser) {
+
+            console.log(this.props.currentUser[0].Tipo);
+
+        //MENU USUARIO ADMINISTRADOR
+         if (this.props.currentUser[0].Tipo === "admin") {
             return (
 
                 <div class="Header">
@@ -48,9 +53,33 @@ class MainHeader extends React.Component {
                             <img id="imglogo" src={logo} alt='imagenicono' width={"50"}></img>
 
                             <Nav className="ml-auto menu">
-                                <Button class="btn btn-outline" id="botoninicio" size="md" variant="info" as={Link} to="/area_admin_master"><h5 className="linkText">Inicio</h5></Button>
+                                <Button class="btn btn-outline" id="botoncontactanos" size="md" variant="info" as={Link} to="/contactanos"><h5 className="linkText">Contáctanos</h5></Button>
                                 <Button class="btn btn-outline" id="botonprofile" size="md" variant="info" as={Link} to="/profile"><h5 className="linkText">Editar perfil</h5></Button>
-                                <Button class="btn btn-outline" id="botonuserlist" size="md" variant="info" as={Link} to="/admin_list_master"><h5 className="linkText">Lista de administradores</h5></Button>
+                                <Button class="btn btn-outline" id="botoncontactanos" size="md" variant="info" as={Link} to="/change_pass"><h5 className="linkText">Cambiar Contraseña</h5></Button>
+                                <Button class="btn btn-outline" id="botonuserlist" size="md" variant="info" as={Link}to={`${"admin_page2"}${this.props.currentUser[0].idEmpresa}`}><h5 className="linkText">Lista de usuarios</h5></Button>
+                                <Button class="btn btn-outline" size="md" id="botonlogin" onClick={this.props.logout} variant="info" as={Link} to="/">
+                                    <img src={imagenlogin} alt="imagen login" width="30" />
+                                </Button>
+                            </Nav>
+                        </Nav>
+                    </Navbar>
+                </div>
+
+
+
+            )
+        }
+        if (this.props.currentUser[0].Tipo=== "admin_c") {
+            return (
+
+                <div class="Header">
+                    <Navbar className="color-nav">
+                        <Nav className="container-fluid" >
+                            <img id="imglogo" src={logo} alt='imagenicono' width={"50"}></img>
+
+                            <Nav className="ml-auto menu">
+                                <Button class="btn btn-outline" id="botonprofile" size="md" variant="info" as={Link} to="/profile"><h5 className="linkText">Editar perfil</h5></Button>
+                                <Button class="btn btn-outline" id="botonuserlist" size="md" variant="info" as={Link} to="/admin_page"><h5 className="linkText">Lista de administradores</h5></Button>
                                 <Button class="btn btn-outline" size="md" id="botonlogin" onClick={this.props.logout} variant="info" as={Link} to="/">
                                     <img src={imagenlogin} alt="imagen login" width="30" />
                                 </Button>
@@ -65,7 +94,8 @@ class MainHeader extends React.Component {
         }
 
         //MENU USUARIO USER
-        if (this.props.currentUser) {
+       if (this.props.currentUser[0].Tipo === "user") {
+        console.log("entra");
             return (
 
                 <div class="Header">
@@ -74,10 +104,13 @@ class MainHeader extends React.Component {
                             <img id="imglogo" src={logo} alt='imagenicono' width={"50"}></img>
 
                             <Nav className="ml-auto menu">
-                                <Button class="btn btn-outline" id="botoninicio" size="md" variant="info" as={Link} to="/area_admin"><h5 className="linkText">Inicio</h5></Button>
-                                <Button class="btn btn-outline" id="botonacercade" size="md" variant="info" as={Link} to="/acercadenosotros"><h5 className="linkText">Acerca de nosotros</h5></Button>
+{/*                                 <Button class="btn btn-outline" id="botoninicio" size="md" variant="info" as={Link} to="/"><h5 className="linkText">Inicio</h5></Button>
+ */}                                <Button class="btn btn-outline" id="botonacercade" size="md" variant="info" as={Link} to="/acercadenosotros"><h5 className="linkText">Acerca de nosotros</h5></Button>
+
                                 <Button class="btn btn-outline" id="botoncontactanos" size="md" variant="info" as={Link} to="/contactanos"><h5 className="linkText">Contáctanos</h5></Button>
+
                                 <Button class="btn btn-outline" id="botonprofile" size="md" variant="info" as={Link} to="/profile"><h5 className="linkText">Editar perfil</h5></Button>
+                                <Button class="btn btn-outline" id="botonadministrar" size="md" variant="info" as={Link} to="/change_pass"><h5 className="linkText">Cambiar Contraseña</h5></Button>
                                 <Button class="btn btn-outline" size="md" id="botonlogin" onClick={this.props.logout} variant="info" as={Link} to="/">
                                     <img src={imagenlogin} alt="imagen login" width="30" />
                                 </Button>
@@ -94,37 +127,11 @@ class MainHeader extends React.Component {
 
 
 
-        //MENU USUARIO ADMINISTRADOR
-        if (this.props.currentUser) {
-            return (
-
-                <div class="Header">
-                    <Navbar className="color-nav">
-                        <Nav className="container-fluid" >
-                            <img id="imglogo" src={logo} alt='imagenicono' width={"50"}></img>
-
-                            <Nav className="ml-auto menu">
-                                <Button class="btn btn-outline" id="botoninicio" size="md" variant="info" as={Link} to="/area_admin"><h5 className="linkText">Inicio</h5></Button>
-                                <Button class="btn btn-outline" id="botonacercade" size="md" variant="info" as={Link} to="/acercadenosotros"><h5 className="linkText">Acerca de nosotros</h5></Button>
-                                <Button class="btn btn-outline" id="botoncontactanos" size="md" variant="info" as={Link} to="/contactanos"><h5 className="linkText">Contáctanos</h5></Button>
-                                <Button class="btn btn-outline" id="botonprofile" size="md" variant="info" as={Link} to="/profile"><h5 className="linkText">Editar perfil</h5></Button>
-                                <Button class="btn btn-outline" id="botonuserlist" size="md" variant="info" as={Link} to="/user_list_admin"><h5 className="linkText">Lista de usuarios</h5></Button>
-                                <Button class="btn btn-outline" size="md" id="botonlogin" onClick={this.props.logout} variant="info" as={Link} to="/">
-                                    <img src={imagenlogin} alt="imagen login" width="30" />
-                                </Button>
-                            </Nav>
-                        </Nav>
-                    </Navbar>
-                </div>
 
 
+    }else{
+                //MENU USUARIO SIN LOGUEAR
 
-            )
-        }
-
-
-
-        //MENU USUARIO SIN LOGUEAR
         return (
             <div class="Header">
                 <Navbar className="color-nav">
@@ -136,7 +143,6 @@ class MainHeader extends React.Component {
                             <Button class="btn btn-outline" id="botonmapa" size="md" variant="info" as={Link} to="/mapa"><h5 className="linkText">Ver mapa</h5></Button>
                             <Button class="btn btn-outline" id="botonacercade" size="md" variant="info" as={Link} to="/acercadenosotros"><h5 className="linkText">Acerca de nosotros</h5></Button>
                             <Button class="btn btn-outline" id="botoncontactanos" size="md" variant="info" as={Link} to="/contactanos"><h5 className="linkText">Contáctanos</h5></Button>
-                            <Button class="btn btn-outline" id="botonadministrar" size="md" variant="info" as={Link} to="/admin_page"><h5 className="linkText">Lista de usuarios</h5></Button>
                             <Button class="btn btn-outline" size="md" id="botonlogin" variant="info" as={Link} to="/login">
                                 <img src={imagenlogin} alt="imagen login" width="30" />
                             </Button>
@@ -146,6 +152,9 @@ class MainHeader extends React.Component {
             </div>
 
         )
+
+    }
+
 
 
     }

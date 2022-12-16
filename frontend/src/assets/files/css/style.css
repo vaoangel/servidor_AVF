@@ -7,7 +7,7 @@ body{
 	height: 60px;
 	background: #444;
 }
-.slider-1, .slider-2, .slider-3, .slider-4,.slider-5,.slider-6{
+.slider-1, .slider-2, .slider-3, .slider-4,.slider-5,.slider-6,.slider-7{
 	height: 100vh;
 	text-align: center;
 }
@@ -46,7 +46,20 @@ background-repeat: no-repeat;
 	background-size:100% 100%;
 	background-repeat: no-repeat;
 }
-
+.slider-7{
+	background-color: #FFFF;
+	background-image:url("../../img/INFO.png");
+	background-size: 91%;
+	background-repeat: no-repeat;
+}
+.slider-7 .gas {
+	margin-left: 5%;
+	
+	}
+.slider-7 .h2{
+	text-align: center;
+	display: inline-block;
+}
 
 .footer{
 	background: #444;

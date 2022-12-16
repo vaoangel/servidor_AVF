@@ -6,6 +6,7 @@ const user = require("../handlers/user.handler")
 const sensor = require("../handlers/sensor.handler")
 
 const admin = require("../handlers/admin.handler")
+const measures = require("../handlers/get_measures_gandia.handler.js")
 
 //Declaramos todas las rutas
 const routes = [
@@ -44,8 +45,8 @@ const routes = [
     },
     {
         method:"POST",
-        path: "/change_password",
-        handler: user.update_password
+        path: "/update_password",
+        handler: user.change_password
     },
     {
         method:"POST",
@@ -83,8 +84,33 @@ const routes = [
         method: "POST",
         path: "/add_enterprise",
         handler: admin.add_one_enterprise
-    }
-   
+    },
+    {
+        method: "POST",
+        path: "/recover_password",
+        handler: login.recuperar_contrasena
+        
+    }, 
+    {
+        method: "POST",
+        path: "/average_measurements",
+        handler: sensor.average_measurements
+    },
+    {
+        method: "POST",
+        path: "/get_all_users_by_enterprise",
+        handler: admin.get_all_users_by_enterprise
+    },
+    {
+        method: "POST",
+        path: "/delete_users_by_enterprise",
+        handler: admin.delete_users_by_enterprise
+    },
+    {
+        method: "GET",
+        path: "/get_measures_gandia",
+        handler: measures.get_measures_gandia
+    } 
 ]
  
   

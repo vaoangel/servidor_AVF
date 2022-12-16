@@ -11,17 +11,17 @@ services:
 
 
 
-  fastify:
-    networks:
-      test9:
-          ipv4_address: 15.0.0.3     
-    build: ../backend
+  # fastify:
+  #   networks:
+  #     test9:
+  #         ipv4_address: 15.0.0.3     
+  #   build: ../backend
  
-    restart: always
-    ports:
-      - 3000:3000
-    volumes:
-      - ../backend:/usr/src/app
+  #   restart: always
+  #   ports:
+  #     - 3000:3000
+  #   volumes:
+  #     - ../backend:/usr/src/app
 
   db:
     image: mysql:5.7

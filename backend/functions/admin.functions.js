@@ -41,7 +41,7 @@ exports.delete_one_enterprise_db_call = async (data) =>{
 
         var results1=  await mysql.query("Delete from  db.empresas where idEmpresa = "+data)
 
-
+ 
 
         if (results1) {
             var results=  await mysql.query("Select * from db.empresas").then((data,error)=>{
@@ -96,5 +96,80 @@ exports.add_one_enterprise_db_call = async (data) =>{
 
 
     console.log("get_all_enterprises:          Termina");
+
+}
+
+
+exports.get_all_users_by_enterprise_db_call = async (data) =>{
+    console.log("get_all_enterprises:          Entra");
+
+    try {
+        //Ejecución de la query a base de datos
+
+        var results1=  await mysql.query("Select * from     db.usuarios where idEmpresa = "+data).then((data,error)=>{
+
+
+            if (data.results) {
+                return data.results
+            }
+        })
+
+
+
+
+
+
+
+        await results1
+        console.log("get_all_enterprises:          Termina");
+
+        return results1
+        
+    } catch (error) {
+        console.log(error);
+        console.log("get_all_enterprises:          Termina");
+
+        return error
+        
+    }
+
+
+
+}
+
+exports.delete_users_by_enterprise_db_call = async (data) =>{
+    console.log("delete_users_by_enterprise_db_call:          Entra");
+
+    try {
+        //Ejecución de la query a base de datos
+
+        var results1=  await mysql.query("delete from    db.usuarios where idUsuario = "+data.idUsuario)
+
+
+        if (results1) {
+            var results=  await mysql.query("Select * from db.usuarios where idEmpresa ="+data.idEmpresa).then((data,error)=>{
+
+ 
+                if (data.results) {
+                    return data.results
+                }
+            }) 
+
+            return results
+
+        }
+  
+
+
+        
+    } catch (error) {
+        console.log(error);
+        console.log("delete_users_by_enterprise_db_call:          Termina");
+
+        return error
+        
+    }
+
+
 
 }
