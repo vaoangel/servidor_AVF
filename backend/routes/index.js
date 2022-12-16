@@ -103,7 +103,12 @@ const routes = [
         method: "POST",
         path: "/insert_measure1",
         handler: arduino.insert_measure1
-    }
+    },
+    {
+        method: "GET",
+        path: "/get_measures_gandia",
+        handler: measures.get_measures_gandia
+    } 
 
    
 
