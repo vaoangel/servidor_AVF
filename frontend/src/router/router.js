@@ -3,7 +3,7 @@ import { Route } from 'react-router-dom'
 import AreaUSuario from '../components/area_usuario.component'
 
 import Contactanos from '../components/contact_us.component'
-import {Home,Header,TestC, Login, Profile, AdminPageC, AdminPage2C, UserRegisterC, UserEditC,LandingC,ContactanosC, RecoverPassC, ChangePassC} from '../components/index'
+import {Home,Header,TestC, Login, Profile, AdminPageC, AdminPage2C, UserRegisterC, UserEditC,LandingC,ContactanosC, RecoverPassC, ChangePassC, MapaC} from '../components/index'
 
 
 
@@ -24,6 +24,7 @@ const BaseRouter = () => {
             <Route exact path="/contactanos" component={ContactanosC}/>
             <Route exact path="/recover_pass" component={RecoverPassC}/>
             <Route exact path="/change_pass" component={ChangePassC}/>
+            <Route exact path="/mapa" component={MapaC}/>
 
 
             

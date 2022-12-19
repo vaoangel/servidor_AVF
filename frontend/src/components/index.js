@@ -12,6 +12,7 @@ import Landing from "./landing.component";
 import Contactanos from "./contact_us.component";
 import RecoverPass from "./recover_password.component";
 import ChangePass from "./change_password.component";
+import Mapa from "./mapa_anonimo.component";
  export const Header = MainHeader;
  export const Home = MainHome;
  export const Login = LoginC
@@ -26,4 +27,5 @@ export const LandingC= Landing
 export const ContactanosC = Contactanos
 export const RecoverPassC = RecoverPass
 export const ChangePassC = ChangePass
+export const MapaC = Mapa
 

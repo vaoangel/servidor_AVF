@@ -93,10 +93,11 @@ class MainHeader extends React.Component {
     }
     
     render() {
+        console.log(this.props.currentUser);
         var device = "PC";
         if (this.props.currentUser == null) var max_width = 670;
-        else if(this.props.currentUser[0].Tipo == "admin") var max_width = 810;
-        else if(this.props.currentUser[0].Tipo == "admin_c") var max_width = 525;
+        //else if(this.props.currentUser[0].Tipo == "admin") var max_width = 810;
+        //else if(this.props.currentUser[0].Tipo == "admin_c") var max_width = 525;
         else var max_width = 837;
         console.log("Anchura maxima actual" + max_width);
    
@@ -146,6 +147,7 @@ class MainHeader extends React.Component {
                         <img id="imglogo" src={logo} alt='imagenicono' width={"50"}></img>
                     </div>
                     <Nav className="flex main-menu" id="nav">
+                        <Button id="botonmapa" onClick={this.change_page} size="md" variant="info" as={Link} to="/area_usuario"><h5 className="linkText">Histórico de mapas</h5></Button>
                         <Button id="botoncontactanos" onClick={this.change_page} size="md" variant="info" as={Link} to="/contactanos"><h5 className="linkText">Contáctanos</h5></Button>
                         <Button id="botonprofile" onClick={this.change_page} size="md" variant="info" as={Link} to="/profile"><h5 className="linkText">Editar perfil</h5></Button>
                         <Button id="botoncontactanos" onClick={this.change_page} size="md" variant="info" as={Link} to="/change_pass"><h5 className="linkText">Cambiar Contraseña</h5></Button>
@@ -191,6 +193,7 @@ class MainHeader extends React.Component {
                     <img id="imglogo" src={logo} alt='imagenicono' width={"50"}></img>
                 </div>
                 <Nav className="flex main-menu" id="nav">
+                <Button id="botonmapa" onClick={this.change_page} size="md" variant="info" as={Link} to="/area_usuario"><h5 className="linkText">Ver mapa</h5></Button>
                 <Button id="botonacercade" onClick={this.change_page} size="md" variant="info" as={Link} to="/acercadenosotros"><h5 className="linkText">Acerca de nosotros</h5></Button>
                 <Button id="botoncontactanos" onClick={this.change_page} size="md" variant="info" as={Link} to="/contactanos"><h5 className="linkText">Contáctanos</h5></Button>
                 <Button id="botonprofile" onClick={this.change_page} size="md" variant="info" as={Link} to="/profile"><h5 className="linkText">Editar perfil</h5></Button>

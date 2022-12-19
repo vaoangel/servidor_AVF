@@ -171,6 +171,10 @@ class AreaUSuario extends React.Component{
     }
 
     componentDidMount(){
+        if(this.props.currentUser[0].Tipo == "user"){
+            document.getElementById("date").style.display = "none";
+            document.getElementById("date_button").style.display = "none";
+        }
         this.validateData();
         console.log("Current_user: " + this.state.measurements_data.date + this.state.measurements_data.id_user + this.state.measurements_data.type);
         
@@ -202,35 +206,58 @@ class AreaUSuario extends React.Component{
         
         
    if(worst_points.length > 0){
-    var worst = L.heatLayer(worst_points,{gradient: {0.1: 'blue', 0.4: 'lime', 0.7: 'red'},
-    minOpacity:1,
-    radius: 50,
-    max:150
+    var worst = L.heatLayer(worst_points,{gradient: {0.3: 'blue', 0.6: 'lime', 1: 'red'},
+    minOpacity:0.7,
+    radius: 25,
+    max:8
     }).addTo(map);
 console.log("Peores " + worst_points);
    }
        
+if(worst_points.length > 0){
+    var O3 = L.heatLayer(points_O3,{gradient: {0.3: 'blue', 0.6: 'lime', 1: 'red'},
+    minOpacity:0.7,
+    radius: 25,
+    max: 8
+    });
+    console.log("Ozono " + points_O3);
 
-        var O3 = L.heatLayer(points_O3,{gradient: {0.1: 'blue', 0.4: 'lime', 0.7: 'red'},
-            minOpacity:1,
-            radius: 50,
-            max:150
-            });
-            console.log("Ozono " + points_O3);
+    var NO2 = L.heatLayer(points_NO2,{gradient: {0.3: 'blue', 0.6: 'lime', 1: 'red'},
+    minOpacity:0.7,
+    radius: 25,
+    max:20
+    });
+    console.log("NO2 " + points_NO2);
 
-        var NO2 = L.heatLayer(points_NO2,{gradient: {0.1: 'blue', 0.4: 'lime', 0.7: 'red'},
-        minOpacity:0.2,
-        radius: 50,
-        max:150
-        });
-        console.log("NO2 " + points_NO2);
+    var CO2 = L.heatLayer(points_CO2,{gradient: {0.3: 'blue', 0.6: 'lime', 1: 'red'},
+    minOpacity:0.7,
+    radius: 25,
+    max:8
+    });
+    console.log("CO2 " + points_CO2);
+} else {
+    var O3_markers = [];
+    points_O3.forEach(O3 => {
+        O3_markers.push(L.marker([O3[0], O3[1]]).bindPopup(String(O3[2])));
+    });
+        var O3 = L.layerGroup(O3_markers)/*.addTo(map)*/;
+        console.log("Marcadores_O3 " + O3);
 
-        var CO2 = L.heatLayer(points_CO2,{gradient: {0.1: 'blue', 0.2: 'lime', 0.7: 'red'},
-        minOpacity:0.2,
-        radius: 50,
-        max:150
-        });
-        console.log("CO2 " + points_CO2);
+    var CO2_markers = [];
+    points_CO2.forEach(CO2 => {
+        CO2_markers.push(L.marker([CO2[0], CO2[1]]).bindPopup(String(CO2[2])));
+    });
+    var CO2 = L.layerGroup(CO2_markers);
+
+    var NO2_markers = [];
+    points_NO2.forEach(NO2 => {
+        NO2_markers.push(L.marker([NO2[0], NO2[1]]).bindPopup(String(NO2[2])));
+    });
+        var NO2 = L.layerGroup(NO2_markers);
+
+        
+}
+        
 
         
 
@@ -253,6 +280,12 @@ if(worst_points.length > 0){
         "Oxido de nitrogeno (NO2)": NO2
 
     };
+
+    var overlayMaps = {
+        "Ozono (O3)": O3,
+        "Dióxido de carbono (CO2)": CO2,
+        "Oxido de nitrogeno (NO2)": NO2
+    };
 }
         /*var overlayMaps = {
             "Mayor contaminación (máximos)": worst,
@@ -265,10 +298,14 @@ if(worst_points.length > 0){
         var layerControl = L.control.layers(overlayMaps).addTo(map);
         L.Marker.prototype.options.icon = DefaultIcon;
 
-        var crownHill = L.marker([39.75, -105.09]).bindPopup('This is Crown Hill Park.'),
-            rubyHill = L.marker([39.68, -105.00]).bindPopup('This is Ruby Hill Park.');
+        var crownHill = L.marker([38.96797739, -0.19109882]).bindPopup('El valor actual de la estación de Gandia es: 0,056 ppm');
+            //rubyHill = L.marker([39.68, -105.00]).bindPopup('This is Ruby Hill Park.');
             
-        var parks = L.layerGroup([crownHill, rubyHill]);
+        var parks = L.layerGroup([crownHill]);
+
+        /*layerControl.addOverlay(O3, "Valores O3");
+        layerControl.addOverlay(CO2, "Valores CO2");
+        layerControl.addOverlay(NO2, "Valores NO2");*/
 
         layerControl.addOverlay(parks, "Medidas oficiales");
     }
@@ -281,7 +318,7 @@ if(worst_points.length > 0){
         return(
             <div>
                 <input className="date_input" id="date"></input>
-                <input type="submit" onClick={this.validateData}></input>
+                <input type="submit" id="date_button" onClick={this.validateData}></input>
                 <div id="map" className="mapa">
                     
                 </div>

@@ -182,7 +182,7 @@ class UserRegister extends React.Component{
         }else if(this.props.currentUser[0].Tipo=== "admin_c")
         {
         return(
-            <div className="screen-3 page_body">
+            <div className="screen-profile page_body">
                 <h4 className="h4">Registrar nuevos perfiles</h4>  
 
                 <Form className="form">

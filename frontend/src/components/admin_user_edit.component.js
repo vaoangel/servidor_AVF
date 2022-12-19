@@ -16,7 +16,7 @@ class UserEdit extends React.Component{
     render(){
     
         return(
-            <div className="screen-3 page_body">
+            <div className="screen-profile page_body">
                 <h4 className="h4">Editar información del usuario</h4>  
 
                 <Form className="form">
