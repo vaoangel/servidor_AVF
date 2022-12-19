@@ -30,7 +30,8 @@
     "mysql": "^2.18.1",
     "passport": "0.3.2",
     "passport-local": "1.0.0",
-    "promise": "^8.2.0"
+    "promise": "^8.2.0",
+    "react-leaflet": "^4.2.0"
   },
   "devDependencies": {
     "nodemon": "^1.19.0"

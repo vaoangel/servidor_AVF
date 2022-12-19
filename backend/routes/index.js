@@ -4,6 +4,8 @@ const arduino  = require("../handlers/arduino.handler")
 const login = require("../handlers/login.handler")
 const user = require("../handlers/user.handler")
 const sensor = require("../handlers/sensor.handler")
+const measures = require("../handlers/get_measures_gandia.handler")
+
 //const map = require("../handlers/map.handler")
 
 const admin = require("../handlers/admin.handler")
@@ -103,7 +105,12 @@ const routes = [
         method: "POST",
         path: "/insert_measure1",
         handler: arduino.insert_measure1
-    }
+    },
+    {
+        method: "GET",
+        path: "/get_measures_gandia",
+        handler: measures.get_measures_gandia
+    } 
 
    
 
