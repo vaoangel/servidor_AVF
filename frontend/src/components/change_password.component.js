@@ -35,10 +35,10 @@ class ChangePassC extends React.Component {
             newpass: this.state.change_passwordData.newpass
         }
 
-        if (document.getElementById("oldpass1").value == "" || document.getElementById("oldpass2").value == "" || document.getElementById("newpass").value == "") {
+        if (document.getElementById("oldpass").value == "" || document.getElementById("newpass1").value == "" || document.getElementById("newpass2").value == "") {
             alert("Hay campos vacíos")
-        } else if (document.getElementById("oldpass1").value != document.getElementById("oldpass2").value) {
-            alert("Las contraseñas actuales no coinciden")
+        } else if (document.getElementById("newpass1").value != document.getElementById("newpass2").value) {
+            alert("Los campos de la nueva contraseña no coinciden")
         } else {
             var result = Apis.ProfileApi.change_password(json)
             result.then(value => {
@@ -71,19 +71,19 @@ class ChangePassC extends React.Component {
                             <label className="label-text">Antigua contraseña</label>
                         </div>
                         <div className="form-input">
-                            <input type="password" name="oldpass" onChange={this.handleChanges} id="oldpass1"></input>
-                        </div>
-                        <div className="label">
-                            <label className="label-text">Antigua contraseña</label>
-                        </div>
-                        <div className="form-input">
-                            <input type="password" name="oldpass" onChange={this.handleChanges} id="oldpass2"></input>
+                            <input type="password" name="oldpass" onChange={this.handleChanges} id="oldpass"></input>
                         </div>
                         <div className="label">
                             <label className="label-text">Nueva contraseña</label>
                         </div>
                         <div className="form-input">
-                            <input type="password" name="newpass" onChange={this.handleChanges} id="newpass"></input>
+                            <input type="password" name="oldpass" onChange={this.handleChanges} id="newpass1"></input>
+                        </div>
+                        <div className="label">
+                            <label className="label-text">Nueva contraseña</label>
+                        </div>
+                        <div className="form-input">
+                            <input type="password" name="newpass" onChange={this.handleChanges} id="newpass2"></input>
                         </div>
 
                         <div className='button-div'>
