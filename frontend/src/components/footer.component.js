@@ -1,5 +1,5 @@
 import React from 'react';
-import {  Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Nav, Navbar, Form, FormControl, Button } from 'react-bootstrap';
 import UselocalStorage from "../hooks/localStorage.hook"
 import contra  from '../assets/img/contra.png'
@@ -40,6 +40,10 @@ class MainFooter extends React.Component{
                     <ul className="footer-links">
                       <li><a href="">Acerca de nosotros</a></li>
                       
+                      <li>
+                        <Link to="/medidas_oficiales">MEDIDAS OFICIALES</Link>
+                        
+                        <a href="/medidas_oficiales">Estacion de medidas</a></li>
                     </ul>
                   </div>
                   <div className="col-xs-6 col-md-3">

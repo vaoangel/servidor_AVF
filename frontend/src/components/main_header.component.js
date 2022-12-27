@@ -142,7 +142,7 @@ class MainHeader extends React.Component {
         //MENU USUARIO ADMINISTRADOR
          if (this.props.currentUser[0].Tipo === "admin") {
             return (
-                <div class="Header container-fluid color-nav flex" id="Header">
+                <div className="Header container-fluid color-nav flex" id="Header">
                     <div className='logo'>
                         <img id="imglogo" src={logo} alt='imagenicono' width={"50"}></img>
                     </div>
@@ -164,7 +164,7 @@ class MainHeader extends React.Component {
         }
         if (this.props.currentUser[0].Tipo=== "admin_c") {
             return (
-                <div class="Header container-fluid color-nav flex" id="Header">
+                <div className="Header container-fluid color-nav flex" id="Header">
                     <div className='logo'>
                         <img id="imglogo" src={logo} alt='imagenicono' width={"50"}></img>
                     </div>
@@ -188,7 +188,7 @@ class MainHeader extends React.Component {
        if (this.props.currentUser[0].Tipo === "user") {
         console.log("entra");
             return (
-                <div class="Header container-fluid color-nav flex" id="Header">
+                <div className="Header container-fluid color-nav flex" id="Header">
                 <div className='logo'>
                     <img id="imglogo" src={logo} alt='imagenicono' width={"50"}></img>
                 </div>
@@ -217,7 +217,7 @@ class MainHeader extends React.Component {
                 //MENU USUARIO SIN LOGUEAR
 
         return (
-            <div class="Header container-fluid color-nav flex" id="Header">
+            <div className="Header container-fluid color-nav flex" id="Header">
                 <div className='logo'>
                     <img id="imglogo" src={logo} alt='imagenicono' width={"50"}></img>
                 </div>

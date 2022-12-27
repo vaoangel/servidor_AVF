@@ -27,7 +27,6 @@ const BaseRouter = () => {
             <Route exact path="/change_pass" component={ChangePassC}/>
             <Route exact path="/mapa" component={MapaC}/>
             <Route exact path="/medidas_oficiales" component={datosOficiales}/>
-
         </div>
     )
 }
