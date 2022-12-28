@@ -104,25 +104,27 @@ class AdminPage2 extends React.Component{
 
         let html =[]
                
+if ( this.state.users_by_enterprise!==false) {
+    this.state.users_by_enterprise.map((elements) =>{
+        return html = [
+            ...html,
+            <tr key={elements.idUsuario}>
+                <td>{elements.Nombre}</td>
+                    <td>{elements.mail}</td>
+                    <td>{elements.Telefono}</td>
+                    <td>{elements.Usuario}</td>
+                    <td>{elements.Tipo}</td>
+                    <td>{elements.idEmpresa}</td>
+                    <td className='text-center'>
+                <img id={elements.idUsuario} src={x} alt="x roja" name={elements.idEmpresa}height="20" width="20"  onClick={this.user_delete}></img>
+                    </td>
+                </tr>
 
+        ]
+    })
+}
        
-        this.state.users_by_enterprise.map((elements) =>{
-            return html = [
-                ...html,
-                <tr key={elements.idUsuario}>
-                    <td>{elements.Nombre}</td>
-                        <td>{elements.mail}</td>
-                        <td>{elements.Telefono}</td>
-                        <td>{elements.Usuario}</td>
-                        <td>{elements.Tipo}</td>
-                        <td>{elements.idEmpresa}</td>
-                        <td className='text-center'>
-                    <img id={elements.idUsuario} src={x} alt="x roja" name={elements.idEmpresa}height="20" width="20"  onClick={this.user_delete}></img>
-                        </td>
-                    </tr>
 
-            ]
-        })
      
         return html
     }
@@ -172,7 +174,7 @@ class AdminPage2 extends React.Component{
 
 
     render(){
-        console.log(this.props.currentUser);
+        console.log(this.state.users_by_enterprise);
         if (this.props.currentUser== null) {
             console.log("entra");
             /*return(

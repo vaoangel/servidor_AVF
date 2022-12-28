@@ -135,9 +135,10 @@ class MainHeader extends React.Component {
 
 
         //MENU USUARIO ADMINISTRADOR MASTER
-        if (this.props.currentUser) {
+        console.log(this.props.currentUser);
 
-            console.log(this.props.currentUser[0].Tipo);
+        if (this.props.currentUser!=null) {
+
 
         //MENU USUARIO ADMINISTRADOR
          if (this.props.currentUser[0].Tipo === "admin") {
