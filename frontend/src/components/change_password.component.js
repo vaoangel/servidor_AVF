@@ -80,7 +80,7 @@ class ChangePassC extends React.Component {
                             <input type="password" name="newpass" onChange={this.handleChanges} id="newpass1"></input>
                         </div>
                         <div className="label">
-                            <label className="label-text">Nueva contraseña</label>
+                            <label className="label-text">Confirmar nueva contraseña</label>
                         </div>
                         <div className="form-input">
                             <input type="password" name="newpass" onChange={this.handleChanges} id="newpass2"></input>
