@@ -38,7 +38,7 @@ class Mapa extends React.Component{
 
     validateData(e){
             var json = {
-                date: "2022-11-23",
+                date: "2022-12-25",
                 id_user: 0
                 
             }
@@ -102,6 +102,44 @@ class Mapa extends React.Component{
             zoom: 13,
             layers: osm
         });
+
+        L.control.Legend({
+            title:"Leyenda",
+             position: "bottomleft",
+             legends: [
+                {
+                    label: "Contaminación baja",
+                    type: "circle",
+                    radius: 6,
+                    color: "blue",
+                    fillColor: "blue",
+                    fillOpacity: 1,
+                    weight: 1,
+                    inactive: true,
+                },
+                {
+                    label: "Contaminación media",
+                    type: "circle",
+                    radius: 6,
+                    color: "lime",
+                    fillColor: "lime",
+                    fillOpacity: 1,
+                    weight: 1,
+                    inactive: true,
+                },
+                {
+                    label: "Contaminación alta",
+                    type: "circle",
+                    radius: 6,
+                    color: "red",
+                    fillColor: "red",
+                    fillOpacity: 1,
+                    weight: 1,
+                    inactive: true,
+                }
+            ]
+         })
+        .addTo(map);
     
         
         
@@ -132,7 +170,7 @@ console.log("Peores " + worst_points);
         
 if(worst_points.length > 0){
     var overlayMaps = {
-        "Mayor contaminación (máximos)": worst,
+        "Calidad del aire global": worst,
     };
 }
 

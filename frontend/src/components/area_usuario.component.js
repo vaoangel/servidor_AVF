@@ -7,6 +7,8 @@ import "leaflet.heat";
 import icon from "leaflet/dist/images/marker-icon.png";
 import iconShadow from "leaflet/dist/images/marker-shadow.png";
 import {connect} from 'react-redux'
+import 'leaflet-legend';
+import '@gnatih/leaflet.legend';
 import Apis from '../router/index';
 
 const mapDispatchToProps = dispatch => ({
@@ -37,7 +39,7 @@ class AreaUSuario extends React.Component{
 
             measurements_data:{
                 id_user: this.props.currentUser[0].idUsuario,
-                date: "2022-11-23", 
+                date: "2022-12-25", 
                 type: "O3"
             }
 
@@ -202,6 +204,48 @@ class AreaUSuario extends React.Component{
             zoom: 13,
             layers: osm
         });
+
+        L.control.Legend({
+            title:"Leyenda",
+             position: "bottomleft",
+             legends: [
+                {
+                    label: "Contaminación baja",
+                    type: "circle",
+                    radius: 6,
+                    color: "blue",
+                    fillColor: "blue",
+                    fillOpacity: 1,
+                    weight: 1,
+                    inactive: true,
+                },
+                {
+                    label: "Contaminación media",
+                    type: "circle",
+                    radius: 6,
+                    color: "lime",
+                    fillColor: "lime",
+                    fillOpacity: 1,
+                    weight: 1,
+                    inactive: true,
+                },
+                {
+                    label: "Contaminación alta",
+                    type: "circle",
+                    radius: 6,
+                    color: "red",
+                    fillColor: "red",
+                    fillOpacity: 1,
+                    weight: 1,
+                    inactive: true,
+                }
+            ]
+         })
+        .addTo(map);
+      
+          
+          
+          
     
         
         
@@ -267,7 +311,7 @@ if(worst_points.length > 0){
         
 if(worst_points.length > 0){
     var overlayMaps = {
-        "Mayor contaminación (máximos)": worst,
+        "Calidad del aire global": worst,
         "Ozono (O3)": O3,
         "Dióxido de carbono (CO2)": CO2,
         "Oxido de nitrogeno (NO2)": NO2
