@@ -376,9 +376,7 @@ exports.get_one_sensor_db_call = async (data) => {
 */
 exports.get_sensors_by_inactivity_db_call = async (data) => {
     var checkExistent = mysql.query("Select m.Fecha, m.idSensor from db.usuarios as u, db.sensores as s, db.mediciones as m where u.idEmpresa = '" + data.enterprise + "' and u.idUsuario = s.idUsuario and s.idSensor = m.idSensor").then((data, error) => {
-    //var checkExistent = mysql.query("Select m.idSensor from db.mediciones as m , db.sensores as s, db.usuarios as u, db.empresas as e, where m.idSensor=s.idSensor  and  u.idEmpresa = '" + data.enterprise + "'  and s.idUsuario=u.idUsuario %'").then((data, error) => {
-//("Select * from db.sensores where idUsuario = (Select idUsuario from db.usuarios where Usuario = '" + data.username + "') ")
-//("Select idSensor,Fecha from db.mediciones as m , db.sensores as s, db.usuarios as u, db.empresas as e, where m.idSensor=s.idSensor  and  u.idEmpresa = '" + data.enterprise + "'  and s.idUsuario=u.idUsuario + "%'")
+   
     if (data) {
             return data.results
         } else {
@@ -387,7 +385,29 @@ exports.get_sensors_by_inactivity_db_call = async (data) => {
     })
 
 
-    await checkExistent
+    var valores = await checkExistent
+    
+    var lista_ultima_fecha = []
+    var ultima_fecha = 0;
+    var sensores = new Set()
+    valores.forEach(element => {
+        sensores.add(element.idSensor)
+    });
+    
+    sensores.forEach(sensor => {
+        valores.forEach(valor => {
+            if(valor.Fecha > ultima_fecha && valor.idSensor == sensor){
+                ultima_fecha = valor.Fecha
+            }
+        });
+        
+        lista_ultima_fecha.push({ 
+            "idSensor" : sensor,
+            "Fecha" : ultima_fecha
+        });
 
-    return checkExistent
+        ultima_fecha = 0;
+    });
+
+    return lista_ultima_fecha
 }
