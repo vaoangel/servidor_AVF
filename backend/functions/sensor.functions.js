@@ -368,3 +368,26 @@ exports.get_one_sensor_db_call = async (data) => {
 
     return checkExistent
 }
+
+/*
+    {username: string} -> f() -> {respuesta: JSON}
+
+    Esta funcion recoge todos los sensores del usuario
+*/
+exports.get_sensors_by_inactivity_db_call = async (data) => {
+    var checkExistent = mysql.query("Select m.Fecha, m.idSensor from db.usuarios as u, db.sensores as s, db.mediciones as m where u.idEmpresa = '" + data.enterprise + "' and u.idUsuario = s.idUsuario and s.idSensor = m.idSensor").then((data, error) => {
+    //var checkExistent = mysql.query("Select m.idSensor from db.mediciones as m , db.sensores as s, db.usuarios as u, db.empresas as e, where m.idSensor=s.idSensor  and  u.idEmpresa = '" + data.enterprise + "'  and s.idUsuario=u.idUsuario %'").then((data, error) => {
+//("Select * from db.sensores where idUsuario = (Select idUsuario from db.usuarios where Usuario = '" + data.username + "') ")
+//("Select idSensor,Fecha from db.mediciones as m , db.sensores as s, db.usuarios as u, db.empresas as e, where m.idSensor=s.idSensor  and  u.idEmpresa = '" + data.enterprise + "'  and s.idUsuario=u.idUsuario + "%'")
+    if (data) {
+            return data.results
+        } else {
+            return error
+        }
+    })
+
+
+    await checkExistent
+
+    return checkExistent
+}

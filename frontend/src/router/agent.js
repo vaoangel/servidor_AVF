@@ -298,6 +298,19 @@ add_user:(data)=>{
 
     
 },
+
+get_sensors_by_inactivity:(data)=>{
+       
+    const info = request.post('get_sensors_by_inactivity',{data}).then(function(data){
+        
+        return data.data
+    }).catch(function(error){
+        return error
+    })
+    return info
+
+    
+},
 }
 
 const RecoverApi={
