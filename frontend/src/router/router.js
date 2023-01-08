@@ -4,7 +4,7 @@ import AreaUSuario from '../components/area_usuario.component'
 import datosOficiales from '../components/datos_oficiales_component'
 
 import Contactanos from '../components/contact_us.component'
-import {Home,Header,TestC, Login, Profile, AdminPageC, AdminPage2C, UserRegisterC, UserEditC,LandingC,ContactanosC, RecoverPassC, ChangePassC, MapaC} from '../components/index'
+import {Home,Header,TestC, Login, Profile, AdminPageC, AdminPage2C, UserRegisterC, UserEditC,LandingC,ContactanosC, RecoverPassC, ChangePassC, MapaC, AdminNodesPageC} from '../components/index'
 
 
 
@@ -27,6 +27,7 @@ const BaseRouter = () => {
             <Route exact path="/change_pass" component={ChangePassC}/>
             <Route exact path="/mapa" component={MapaC}/>
             <Route exact path="/medidas_oficiales" component={datosOficiales}/>
+            <Route exact path="/admin_nodes_page" component={AdminNodesPageC}/>
 
         </div>
     )

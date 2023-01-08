@@ -152,6 +152,7 @@ class MainHeader extends React.Component {
                         <Button id="botonprofile" onClick={this.change_page} size="md" variant="info" as={Link} to="/profile"><h5 className="linkText">Editar perfil</h5></Button>
                         <Button id="botoncontactanos" onClick={this.change_page} size="md" variant="info" as={Link} to="/change_pass"><h5 className="linkText">Cambiar Contraseña</h5></Button>
                         <Button id="botonuserlist" onClick={this.change_page} size="md" variant="info" as={Link}to={`${"admin_page2"}${this.props.currentUser[0].idEmpresa}`}><h5 className="linkText">Lista de usuarios</h5></Button>
+                        <Button id="botonnodos" onClick={this.change_page} size="md" variant="info" as={Link}to="/admin_nodes_page"><h5 className="linkText">Informe de nodos</h5></Button>
                         <Button size="md" id="botonlogin" onClick={this.props.logout} variant="info" as={Link} to="/">
                             <img src={imagenlogin} onClick={this.change_page} alt="imagen login" width="30" />
                         </Button>    

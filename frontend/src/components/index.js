@@ -13,6 +13,7 @@ import Contactanos from "./contact_us.component";
 import RecoverPass from "./recover_password.component";
 import ChangePass from "./change_password.component";
 import Mapa from "./mapa_anonimo.component";
+import AdminNodesPage from "./admin_nodes.component";
  export const Header = MainHeader;
  export const Home = MainHome;
  export const Login = LoginC
@@ -28,4 +29,5 @@ export const ContactanosC = Contactanos
 export const RecoverPassC = RecoverPass
 export const ChangePassC = ChangePass
 export const MapaC = Mapa
+export const AdminNodesPageC = AdminNodesPage
 

@@ -218,7 +218,7 @@ if(!req.body){
 }else{
     console.log(req.body);
 console.log("Hay algo ");
-var enterprise = req.body.enterprise
+var enterprise = req.body.data.enterprise
 var parsedData = {
     "enterprise":enterprise,
     }

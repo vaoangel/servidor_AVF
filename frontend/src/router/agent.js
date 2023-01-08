@@ -20,14 +20,14 @@ const request ={
                    resolve(data)
                    
             }else{
-                alert("La operación ha fallado")
+                //alert("La operación ha fallado")
 
                 reject("error")
             }
        })
     
     }).catch((e)=>{
-        alert("La operación ha fallado")
+        //alert("La operación ha fallado")
 
     }),
     patch:(url) =>API.patch(url).then(function (data){       
@@ -310,7 +310,7 @@ get_sensors_by_inactivity:(data)=>{
     return info
 
     
-},
+}
 }
 
 const RecoverApi={
