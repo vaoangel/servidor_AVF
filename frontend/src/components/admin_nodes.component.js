@@ -46,6 +46,7 @@ class AdminNodesPage extends React.Component{
 
             var nodes = Apis.AdminApi.get_sensors_by_inactivity(json)
             nodes.then(value4 => {
+                if(this.state.check == false){
                 console.log(value4);
                 console.log(value4[0].Fecha);
                 console.log("ME METO EN EL LOOP");
@@ -58,10 +59,11 @@ class AdminNodesPage extends React.Component{
                     </tr>
                     `;
                 }
+            }
                 
-
+                this.setState({check:true})
             })
-            this.setState({check:true})
+            
             console.log(this.state.check);
         } else{
             console.log("Segunda iteracion");
