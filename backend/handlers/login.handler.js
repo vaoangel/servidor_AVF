@@ -1,6 +1,7 @@
 
 const login_functions = require("../functions/login.functions")
-
+var md5 = require('md5');
+ 
 // Recibe la información en el body del post en formato JSON
 exports.login_data_from_post = async req =>{
 
@@ -11,7 +12,7 @@ exports.login_data_from_post = async req =>{
     }else{
 
         var username = req.body.username
-        var password = req.body.password
+        var password = md5(req.body.password);
 
         var parsedData = {
             "username":username,

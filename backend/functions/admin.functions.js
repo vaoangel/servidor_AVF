@@ -1,5 +1,6 @@
 
 const mysql = require('../config/db')
+var md5 = require('md5');
 
 
 /*
