@@ -254,7 +254,7 @@ exports.get_measurements_by_type_admin_db_call = async (data) => {
 exports.average_measurements_db_call = async (data) => {
 
 
-    var query = mysql.query("Select Valor from db.mediciones where idSensor = '" + data.id_sensor + "' and Fecha = '" + data.date + "' ").then((data, error) => {
+    var query = mysql.query("Select Valor from db.mediciones where idSensor = '" + data.id_sensor + "' and Fecha like '" + data.date + "%' ").then((data, error) => {
 
         if (data) {
             return data.results
