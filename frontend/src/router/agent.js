@@ -231,6 +231,19 @@ const AdminApi={
    
        
    },
+   get_cities:()=>{
+       
+    const info = request.get('get_cities').then(function(data){
+        
+     console.log("metodo get_cities: " + data);
+        return data 
+    }).catch(function(error){
+        return error
+    })
+    return info
+
+    
+},
 
    delete_enterprise:(data)=>{
        
@@ -246,14 +259,22 @@ const AdminApi={
 },
 
     add_enterprise:(data)=>{
-       
-    const info = request.post('add_enterprise',{"nombreEmpresa":data}).then(function(data){
+        //console.log(data);
         
-        return data.data
-    }).catch(function(error){
-        return error
-    })
-    return info
+        const info = request.post('add_enterprise', {
+            "idCiudad":data.idCiudad, 
+            "nombre": data.nombre
+        }).then(function(data){
+            
+            console.log(data);
+            return data.data 
+        }).catch(function(error){
+            return error
+        })
+        return info
+    
+        
+    
 
     
 },

@@ -56,6 +56,11 @@ const routes = [
         handler: admin.get_all_enterprises
     },
     {
+        method: "GET",
+        path: "/get_cities",
+        handler: admin.get_all_cities
+    },
+    {
         method: "POST",
         path: "/delete_enterprise",
         handler: admin.delete_one_enterprise

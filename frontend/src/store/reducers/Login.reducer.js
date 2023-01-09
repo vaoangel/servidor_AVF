@@ -39,7 +39,7 @@ export default (state = initialState, action) =>{
         console.log(action.payload[0]);
         var jso = JSON.stringify(action.payload)
             localStorage.setItem("user" ,jso)
-            console.log(action.payload);
+            console.log("login payload: " + action.payload);
             return {...state,currentUser:action.payload}
         case Action.UPDATE_PROFILE:
             return update_profile(state,action)
