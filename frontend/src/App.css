@@ -495,9 +495,7 @@ padding-left: 10%;
 
 /* Popup container */
 .popup {
-  position: absolute;
-  margin-left: 50%;
-  display: inline-block;
+  margin-left: 25%;
   cursor: pointer;
 }
 
