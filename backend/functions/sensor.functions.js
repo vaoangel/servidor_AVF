@@ -375,7 +375,7 @@ exports.get_one_sensor_db_call = async (data) => {
     Esta funcion recoge todos los sensores del usuario
 */
 exports.get_sensors_by_inactivity_db_call = async (data) => {
-    var checkExistent = mysql.query("Select m.Fecha, m.idSensor from db.usuarios as u, db.sensores as s, db.mediciones as m where u.idEmpresa = '" + data.enterprise + "' and u.idUsuario = s.idUsuario and s.idSensor = m.idSensor").then((data, error) => {
+    var checkExistent = mysql.query("Select m.Fecha, s.Nombre, u.Usuario from db.usuarios as u, db.sensores as s, db.mediciones as m where u.idEmpresa = '" + data.enterprise + "' and u.idUsuario = s.idUsuario and s.idSensor = m.idSensor").then((data, error) => {
    
     if (data) {
             return data.results
@@ -389,24 +389,28 @@ exports.get_sensors_by_inactivity_db_call = async (data) => {
     
     var lista_ultima_fecha = []
     var ultima_fecha = 0;
+    var usuario = ""
     var sensores = new Set()
     valores.forEach(element => {
-        sensores.add(element.idSensor)
+        sensores.add(element.Nombre)
     });
     
     sensores.forEach(sensor => {
         valores.forEach(valor => {
-            if(valor.Fecha > ultima_fecha && valor.idSensor == sensor){
+            if(valor.Fecha > ultima_fecha && valor.Nombre == sensor){
                 ultima_fecha = valor.Fecha
+                usuario = valor.Usuario
             }
         });
         
         lista_ultima_fecha.push({ 
-            "idSensor" : sensor,
-            "Fecha" : ultima_fecha
+            "Sensor" : sensor,
+            "Fecha" : ultima_fecha,
+            "Usuario" : usuario
         });
 
         ultima_fecha = 0;
+        usuario = ""
     });
 
     return lista_ultima_fecha

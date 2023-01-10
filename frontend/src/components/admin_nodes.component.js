@@ -9,8 +9,6 @@ import boton_verde from '../assets/img/boton_cruz_verde.png'
 import Apis from '../router/index';
 
 const mapDispatchToProps = dispatch => ({
-
-    //onload:(data)=>dispatch({type: "CHANGE ", method:"get_sensors_by_inactivity",api: "AdminApi", payload:(data)}),
 });
 
 const mapStateToProps = state => ({
@@ -30,16 +28,14 @@ class AdminNodesPage extends React.Component{
 
         }
 
-        this.enterprise_list = this.enterprise_list.bind(this)
+        this.sensors_list = this.sensors_list.bind(this)
     }
 
-    //Función que  renderiza las empresas
-    enterprise_list(){
-        console.log("ENTRO");
+    /*
+    Función que renderiza la lista de nodos de la empresa
+    */
+    sensors_list(){
         if(this.state.check == false){
-            console.log("Primero iteracion");
-            console.log("ME METO EN LA FUNCION");
-
             var json = {
                 enterprise: this.state.enterprises
             }
@@ -47,27 +43,39 @@ class AdminNodesPage extends React.Component{
             var nodes = Apis.AdminApi.get_sensors_by_inactivity(json)
             nodes.then(value4 => {
                 if(this.state.check == false){
-                console.log(value4);
-                console.log(value4[0].Fecha);
-                console.log("ME METO EN EL LOOP");
-                for(let i = 0; i < value4.length; i++){
-                    console.log(i);
-                    document.getElementById("table-body").innerHTML += `
-                    <tr>
-                        <td>` + value4[i].idSensor + `</td>
-                        <td>` + value4[i].Fecha + `</td>
-                    </tr>
-                    `;
+                    for(let i = 0; i < value4.length; i++){
+                        //Se eliminan las letras que se crean por defecto en la fecha
+                        let fecha = value4[i].Fecha.replace(/T/g, ' ').replace(/Z/g, ' ')
+
+                        //Se genera una variable de tipo Date a partir de la fecha en la base de datos
+                        var fecha_bbdd = new Date(fecha)
+                        
+                        //Se obtiene la fecha actual para compararla con la de la bbdd
+                        let fecha_actual = new Date()
+
+                        //Se calcula cuantas horas han pasado desde que se tomó la última medida
+                        var horas_desde_ultima_medida =(fecha_actual - fecha_bbdd)/(1000*60*60)
+
+                        //Si han pasado más de 24 horas, se considera inactivo
+                        if(horas_desde_ultima_medida > 24) var estado = "Inactivo"
+                        else var estado = "Activo"
+
+                        //Se añade la información 
+                        document.getElementById("table-body").innerHTML += `
+                        <tr>
+                            <td>` + value4[i].Sensor + `</td>
+                            <td>` + value4[i].Usuario + `</td>
+                            <td>` + fecha + `</td>
+                            <td>` + estado + `</td>
+                        </tr>
+                        `;
+                    }
                 }
-            }
                 
                 this.setState({check:true})
             })
             
-            console.log(this.state.check);
-        } else{
-            console.log("Segunda iteracion");
-        }
+        } 
         
         
     }
@@ -84,7 +92,7 @@ class AdminNodesPage extends React.Component{
             )
         }else{
             return(
-                <div class="container-fluid admin_page">
+                <div class="container admin_page">
                     <div className='row'>
                         <h2 className=' col-11 text-center my-auto'>Lista de nodos</h2>
                     </div>
@@ -94,12 +102,14 @@ class AdminNodesPage extends React.Component{
                         <thead className='text-center'>
                         <tr>
                             <th class="col-2">Nodo</th>
-                            <th class="col-6 bg-success">Última medicion</th>
+                            <th class="col-4 bg-success">Usuario</th>
+                            <th class="col-4 bg-success">Última medicion</th>
+                            <th class="col-2 bg-success">Estado</th>
                         </tr>
                         </thead>
                         <tbody id="table-body">
                         
-                                {this.enterprise_list()}
+                                {this.sensors_list()}
     
                         </tbody>
                     </table>
