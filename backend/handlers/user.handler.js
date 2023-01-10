@@ -44,8 +44,8 @@ exports.change_password = async req=>{
     }else{
 
         var username = req.body.username
-        var oldpass = req.body.oldpass
-        var newpass = req.body.newpass
+        var oldpass = md5(req.body.oldpass)
+        var newpass = md5(req.body.newpass)
 
         var parsedData = {
             "username":username,
