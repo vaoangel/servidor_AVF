@@ -189,6 +189,7 @@ class AreaUSuario extends React.Component {
 
     }
 
+    
     crear_mapa(worst_points, points_O3, points_CO2, points_NO2, latitud_ciudad, longitud_ciudad) {
         /*var littleton = L.marker([39.61, -105.02]).bindPopup('This is Littleton, CO.'),
             denver    = L.marker([39.74, -104.99]).bindPopup('This is Denver, CO.'),
@@ -196,8 +197,10 @@ class AreaUSuario extends React.Component {
             golden    = L.marker([39.77, -105.23]).bindPopup('This is Golden, CO.');
 
         var cities = L.layerGroup([littleton, denver, aurora, golden]);*/
-        console.log("VALOR DEL worst: " + JSON.stringify(worst_points));
-
+        
+        //------------------------------------------------------
+        //-----------------PARA INTERPOLAR EL WORST----------------
+        //------------------------------------------------------
         var geojson = {
             "type": "FeatureCollection",
             "features": []
@@ -221,16 +224,134 @@ class AreaUSuario extends React.Component {
 
         // //INTERPOLAR DATOS
         var options = { gridType: 'points', property: 'solRad', units: 'meters' };
-        var grid = turf.interpolate(geojson, 20, options);
+        var grid = turf.interpolate(geojson, 100, options);
 
         grid.features.forEach(function (feature) {
             var centroid = turf.centroid(feature);
             heatmapData.push([centroid.geometry.coordinates[1], centroid.geometry.coordinates[0], feature.properties.solRad]);
         });
-        console.log("VALOR DEL GRID: " + JSON.stringify(grid));
-        console.log("VALOR DEL geojson: " + JSON.stringify(geojson));
 
-        console.log("VALOR DEL HEATMAPDATA: " + JSON.stringify(heatmapData));
+        // console.log("VALOR DEL GRID: " + JSON.stringify(grid));
+        // console.log("VALOR DEL geojson: " + JSON.stringify(geojson));
+
+        // console.log("VALOR DEL HEATMAPDATA: " + JSON.stringify(heatmapData));
+
+
+
+        //------------------------------------------------------
+        //-----------------PARA INTERPOLAR EL O3----------------
+        //------------------------------------------------------
+         var geojson_o3 = {
+            "type": "FeatureCollection",
+            "features": []
+        };
+        var heatmapData_o3 = []
+
+        //PASAR A GEOJSON
+        points_O3.forEach(function (points_O3) {
+            geojson_o3.features.push({
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [points_O3[1], points_O3[0]]
+                },
+                "properties": {
+                    "solRad": points_O3[2]
+                }
+            });
+
+        })
+
+        // //INTERPOLAR DATOS
+       var grid_o3 = turf.interpolate(geojson_o3, 100, options);
+
+       grid_o3.features.forEach(function (feature) {
+            var centroid_o3 = turf.centroid(feature);
+            heatmapData_o3.push([centroid_o3.geometry.coordinates[1], centroid_o3.geometry.coordinates[0], feature.properties.solRad]);
+        });
+        // console.log("VALOR DEL GRID_o3: " + JSON.stringify(grid_o3));
+        // console.log("VALOR DEL geojson_o3: " + JSON.stringify(geojson_o3));
+
+        // console.log("VALOR DEL HEATMAPDATA_o3: " + JSON.stringify(heatmapData_o3));
+
+
+
+
+        
+        //------------------------------------------------------
+        //-----------------PARA INTERPOLAR EL NO2----------------
+        //------------------------------------------------------
+        var geojson_no2 = {
+            "type": "FeatureCollection",
+            "features": []
+        };
+        var heatmapData_no2 = []
+
+        //PASAR A GEOJSON
+        points_NO2.forEach(function (points_NO2) {
+            geojson_no2.features.push({
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [points_NO2[1], points_NO2[0]]
+                },
+                "properties": {
+                    "solRad": points_NO2[2]
+                }
+            });
+
+        })
+
+        // //INTERPOLAR DATOS
+       var grid_no2 = turf.interpolate(geojson_no2, 100, options);
+
+       grid_no2.features.forEach(function (feature) {
+            var centroid_no2 = turf.centroid(feature);
+            heatmapData_no2.push([centroid_no2.geometry.coordinates[1], centroid_no2.geometry.coordinates[0], feature.properties.solRad]);
+        });
+        // console.log("VALOR DEL GRID_no2: " + JSON.stringify(geojson_no2));
+        // console.log("VALOR DEL geojson_no2: " + JSON.stringify(geojson_no2));
+
+        // console.log("VALOR DEL HEATMAPDATA_no2: " + JSON.stringify(heatmapData_no2));
+
+
+        //------------------------------------------------------
+        //-----------------PARA INTERPOLAR EL CO2----------------
+        //------------------------------------------------------
+        var geojson_co2 = {
+            "type": "FeatureCollection",
+            "features": []
+        };
+        var heatmapData_co2 = []
+
+        //PASAR A GEOJSON
+        points_CO2.forEach(function (points_CO2) {
+            geojson_co2.features.push({
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [points_CO2[1], points_CO2[0]]
+                },
+                "properties": {
+                    "solRad": points_CO2[2]
+                }
+            });
+
+        })
+
+        // //INTERPOLAR DATOS
+       var grid_co2 = turf.interpolate(geojson_co2, 100, options);
+
+       grid_co2.features.forEach(function (feature) {
+            var centroid_co2 = turf.centroid(feature);
+            heatmapData_co2.push([centroid_co2.geometry.coordinates[1], centroid_co2.geometry.coordinates[0], feature.properties.solRad]);
+        });
+        // console.log("VALOR DEL GRID_o3: " + JSON.stringify(grid_co2));
+        // console.log("VALOR DEL geojson_o3: " + JSON.stringify(geojson_co2));
+
+        // console.log("VALOR DEL HEATMAPDATA_o3: " + JSON.stringify(heatmapData_co2));
+
+
 
 
         var osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -288,39 +409,39 @@ class AreaUSuario extends React.Component {
             .addTo(map);
 
 
-        if (heatmapData.length > 0) {
+        if (worst_points.length > 0) {
             var worst = L.heatLayer(heatmapData, {
                 gradient: { 0.3: 'blue', 0.6: 'lime', 1: 'red' },
                 minOpacity: 0.4,
                 radius: 25
             }).addTo(map);
-            console.log("Peores " + heatmapData);
+            //console.log("Peores " + heatmapData);
         }
 
-        if (heatmapData.length > 0) {
-            var O3 = L.heatLayer(points_O3, {
+        if (worst_points.length > 0) {
+            var O3 = L.heatLayer(heatmapData_o3, {
                 gradient: { 0.3: 'blue', 0.6: 'lime', 1: 'red' },
                 minOpacity: 0.7,
                 radius: 25,
                 max: 8
             });
-            console.log("Ozono " + points_O3);
+            //console.log("Ozono " + heatmapData_o3);
 
-            var NO2 = L.heatLayer(points_NO2, {
+            var NO2 = L.heatLayer(heatmapData_no2, {
                 gradient: { 0.3: 'blue', 0.6: 'lime', 1: 'red' },
                 minOpacity: 0.7,
                 radius: 25,
                 max: 20
             });
-            console.log("NO2 " + points_NO2);
+            //console.log("NO2 " + heatmapData_no2);
 
-            var CO2 = L.heatLayer(points_CO2, {
+            var CO2 = L.heatLayer(heatmapData_co2, {
                 gradient: { 0.3: 'blue', 0.6: 'lime', 1: 'red' },
                 minOpacity: 0.7,
                 radius: 25,
                 max: 8
             });
-            console.log("CO2 " + points_CO2);
+            //console.log("CO2 " + heatmapData_co2);
         } else {
             var O3_markers = [];
             points_O3.forEach(O3 => {
