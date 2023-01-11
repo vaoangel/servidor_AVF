@@ -18,6 +18,23 @@ exports.get_all_enterprises = async ()=>{
 
     
 }
+
+
+//Este método no recibe nada, se encarga de llamar a su método de base de datos correspondiente
+exports.get_all_cities = async ()=>{
+
+
+
+    var results = await admin_functions.get_all_cities_db_call();
+     console.log(results);
+    if (results != '') {
+        return results
+    }else{
+        return false
+    }
+
+
+}
 //Este método recibe un idEmpresa y lo manda a su método de base de datos correspondiente
 
 exports.delete_one_enterprise = async req=>{

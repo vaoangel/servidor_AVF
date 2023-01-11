@@ -48,3 +48,15 @@ exports.recuperar_contrasena_db_calls = async (data) =>{
    }
 
 //Si vatodo bien devuelve la información de base de datos en formato JSON 
+
+/* 
+
+    {pass: string,
+     } -> f() -> {respuesta: JSON}
+
+    Esta funcion recibe  un password  y lo devuelve encriptado
+*/
+
+exports.encrypt_pass = async (pass)=>{
+
+}

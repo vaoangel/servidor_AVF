@@ -22,11 +22,12 @@ class Mapa extends React.Component{
 
         this.state = {
 
+            /*
             measurements_data:{
                 id_empresa: 0,
                 date: "2022-11-23", 
                 type: "O3"
-            }
+            }*/
 
 
         }
@@ -37,13 +38,16 @@ class Mapa extends React.Component{
     }
 
     validateData(e){
+        let date = new Date();
+        var fechaactual = date.toISOString().split('T')[0];
+
             var json = {
-                date: "2022-11-23",
+                date: fechaactual,
                 id_user: 0
                 
             }
        
-            console.log(json);
+            console.log("JSON: "+ json.date + " " + json.id_user);
 
             var points_O3 = [];
             var points_CO2 = [];
@@ -75,9 +79,9 @@ class Mapa extends React.Component{
         document.getElementById("date").style.display = "none";
         document.getElementById("date_button").style.display = "none";
         
-        this.validateData();
-        console.log("Current_user: " + this.state.measurements_data.date + this.state.measurements_data.id_user + this.state.measurements_data.type);
         
+        this.validateData();
+        //console.log("Current_user: " + this.state.measurements_data.date + this.state.measurements_data.id_user + this.state.measurements_data.type);
     }
 
     crear_mapa(worst_points, latitud_ciudad, longitud_ciudad){
@@ -102,6 +106,44 @@ class Mapa extends React.Component{
             zoom: 13,
             layers: osm
         });
+
+        L.control.Legend({
+            title:"Leyenda",
+             position: "bottomleft",
+             legends: [
+                {
+                    label: "Contaminación baja",
+                    type: "circle",
+                    radius: 6,
+                    color: "blue",
+                    fillColor: "blue",
+                    fillOpacity: 1,
+                    weight: 1,
+                    inactive: true,
+                },
+                {
+                    label: "Contaminación media",
+                    type: "circle",
+                    radius: 6,
+                    color: "lime",
+                    fillColor: "lime",
+                    fillOpacity: 1,
+                    weight: 1,
+                    inactive: true,
+                },
+                {
+                    label: "Contaminación alta",
+                    type: "circle",
+                    radius: 6,
+                    color: "red",
+                    fillColor: "red",
+                    fillOpacity: 1,
+                    weight: 1,
+                    inactive: true,
+                }
+            ]
+         })
+        .addTo(map);
     
         
         
@@ -132,7 +174,7 @@ console.log("Peores " + worst_points);
         
 if(worst_points.length > 0){
     var overlayMaps = {
-        "Mayor contaminación (máximos)": worst,
+        "Calidad del aire global": worst,
     };
 }
 

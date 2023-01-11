@@ -1,5 +1,6 @@
 const user_functions = require("../functions/user.functions")
- 
+var md5 = require('md5');
+
  
 // Recibe el body de una petición post
 exports.update_user = async req=>{
@@ -43,8 +44,8 @@ exports.change_password = async req=>{
     }else{
 
         var username = req.body.username
-        var oldpass = req.body.oldpass
-        var newpass = req.body.newpass
+        var oldpass = md5(req.body.oldpass)
+        var newpass = md5(req.body.newpass)
 
         var parsedData = {
             "username":username,
@@ -77,7 +78,7 @@ console.log(req.body);
         var name = req.body.data.name
         var mail = req.body.data.mail
         var phone = req.body.data.phone
-        var password = req.body.data.password
+        var password = md5(req.body.data.password);
         var enterprise = req.body.data.enterprise
         var type = req.body.data.type
  

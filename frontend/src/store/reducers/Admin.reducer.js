@@ -2,7 +2,7 @@ import ActionTypes from '../ActionTypes'
 
 const initialState = {
     allEnterprises: undefined,
-
+    allCities:undefined,
     users_by_enterprise: undefined
 }
 
@@ -14,6 +14,13 @@ const get_enterprise = (state,action) =>{
      }
  }
  
+ const get_cities = (state,action) =>{
+    
+    return{
+        ...state,
+        allCities:  action.error ? null : action.payload
+    }
+}
 
  const delete_enterprise = (state,action)=>{
     return{
@@ -54,6 +61,11 @@ export default (state = initialState, action) =>{
             return get_enterprise(state,action);
         case Action.GET_ENTERPRISE_SUCCESS:
         return {...state,allEnterprises:action.payload}
+
+        case Action.GET_CITIES:
+            return get_cities(state,action);
+        case Action.GET_CITIES_SUCCESS:
+        return {...state,allCities:action.payload}
 
         case Action.DELETE_ENTERPRISE:
             return delete_enterprise(state,action);
