@@ -110,6 +110,11 @@ const routes = [
         method: "GET",
         path: "/get_measures_gandia",
         handler: measures.get_measures_gandia
+    },
+    {
+        method: "POST",
+        path: "/get_sensors_by_inactivity",
+        handler: sensor.get_sensors_by_inactivity
     } 
 
    

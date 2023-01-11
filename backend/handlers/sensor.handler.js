@@ -206,4 +206,32 @@ exports.get_one_sensor= async req=>{
     }
 }
 
+//Recibe la id de la empresa a la que pertence el administrador para obtener la fecha de la última medida de todos los sensores
+//pertenecientes a la empresa
+
+exports.get_sensors_by_inactivity= async req=>{
+    //Si el body está vacio devuelve un false;
+    
+if(!req.body){
+    console.log("Body vacio");
+    return false
+}else{
+    console.log(req.body);
+console.log("Hay algo ");
+var enterprise = req.body.data.enterprise
+var parsedData = {
+    "enterprise":enterprise,
+    }
+
+    var results = await sensor_function.get_sensors_by_inactivity_db_call(parsedData);
+     console.log(results);
+    if (results != '') {
+        return results
+    }else{
+        return false
+    }
+
+}
+}
+
 //Devuelve true o false dependiendo de si ha ido bien la operación
