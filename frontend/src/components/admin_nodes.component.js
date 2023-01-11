@@ -57,7 +57,8 @@ class AdminNodesPage extends React.Component{
                         var horas_desde_ultima_medida =(fecha_actual - fecha_bbdd)/(1000*60*60)
 
                         //Si han pasado más de 24 horas, se considera inactivo
-                        if(horas_desde_ultima_medida > 24) var estado = "Inactivo"
+                        //if(horas_desde_ultima_medida > 24) var estado = "Inactivo"
+                        if(horas_desde_ultima_medida > 5/60) var estado = "Inactivo"
                         else var estado = "Activo"
 
                         //Se añade la información 
