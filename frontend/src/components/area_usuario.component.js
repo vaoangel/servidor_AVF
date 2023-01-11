@@ -9,6 +9,8 @@ import iconShadow from "leaflet/dist/images/marker-shadow.png";
 import { connect } from 'react-redux'
 import 'leaflet-legend';
 import '@gnatih/leaflet.legend';
+import '@turf/interpolate';
+import * as turf from '@turf/turf';
 import Apis from '../router/index';
 
 const mapDispatchToProps = dispatch => ({
@@ -39,7 +41,7 @@ class AreaUSuario extends React.Component {
 
         this.state = {
 
-            
+
             measurements_data: {
                 id_user: this.props.currentUser[0].idUsuario,
                 date: fechaactual,
@@ -62,7 +64,7 @@ class AreaUSuario extends React.Component {
                 type: this.state.measurements_data.type
             }
 
-            
+
             var points_O3 = [];
             var points_CO2 = [];
             var points_NO2 = [];
@@ -117,7 +119,7 @@ class AreaUSuario extends React.Component {
                     })
                 })
             })
-            console.log("JSON: "+ json.date + " " + json.id_user + " " + json.type);
+            console.log("JSON: " + json.date + " " + json.id_user + " " + json.type);
 
 
         } else {    //ES UN USUARIO DE UNA EMPRESA
@@ -194,6 +196,43 @@ class AreaUSuario extends React.Component {
             golden    = L.marker([39.77, -105.23]).bindPopup('This is Golden, CO.');
 
         var cities = L.layerGroup([littleton, denver, aurora, golden]);*/
+        console.log("VALOR DEL worst: " + JSON.stringify(worst_points));
+
+        var geojson = {
+            "type": "FeatureCollection",
+            "features": []
+        };
+        var heatmapData = []
+
+        //PASAR A GEOJSON
+        worst_points.forEach(function (worst_points) {
+            geojson.features.push({
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [worst_points[1], worst_points[0]]
+                },
+                "properties": {
+                    "solRad": worst_points[2]
+                }
+            });
+
+        })
+
+        // //INTERPOLAR DATOS
+        var options = { gridType: 'points', property: 'solRad', units: 'meters' };
+        var grid = turf.interpolate(geojson, 20, options);
+
+        grid.features.forEach(function (feature) {
+            var centroid = turf.centroid(feature);
+            heatmapData.push([centroid.geometry.coordinates[1], centroid.geometry.coordinates[0], feature.properties.solRad]);
+        });
+        console.log("VALOR DEL GRID: " + JSON.stringify(grid));
+        console.log("VALOR DEL geojson: " + JSON.stringify(geojson));
+
+        console.log("VALOR DEL HEATMAPDATA: " + JSON.stringify(heatmapData));
+
+
         var osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
             attribution: '© OpenStreetMap'
@@ -249,22 +288,16 @@ class AreaUSuario extends React.Component {
             .addTo(map);
 
 
-
-
-
-
-
-        if (worst_points.length > 0) {
-            var worst = L.heatLayer(worst_points, {
+        if (heatmapData.length > 0) {
+            var worst = L.heatLayer(heatmapData, {
                 gradient: { 0.3: 'blue', 0.6: 'lime', 1: 'red' },
-                minOpacity: 0.7,
-                radius: 25,
-                max: 8
+                minOpacity: 0.4,
+                radius: 25
             }).addTo(map);
-            console.log("Peores " + worst_points);
+            console.log("Peores " + heatmapData);
         }
 
-        if (worst_points.length > 0) {
+        if (heatmapData.length > 0) {
             var O3 = L.heatLayer(points_O3, {
                 gradient: { 0.3: 'blue', 0.6: 'lime', 1: 'red' },
                 minOpacity: 0.7,
