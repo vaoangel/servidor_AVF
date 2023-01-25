@@ -98,7 +98,7 @@ class MainHeader extends React.Component {
         if (this.props.currentUser == null) var max_width = 670;
         //else if(this.props.currentUser[0].Tipo == "admin") var max_width = 810;
         //else if(this.props.currentUser[0].Tipo == "admin_c") var max_width = 525;
-        else var max_width = 837;
+        else var max_width = 1231;
         console.log("Anchura maxima actual" + max_width);
    
        //Ajustes al header cuando cambia de anchura
