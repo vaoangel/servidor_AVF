@@ -31,6 +31,8 @@ class AdminNodesPage extends React.Component{
 
         this.sensors_list = this.sensors_list.bind(this)
         this.handleChanges = this.handleChanges.bind(this)
+        this.filter_table_by_date = this.filter_table_by_date.bind(this)
+        this.filter_table_by_state = this.filter_table_by_state.bind(this)
     }
 
     handleChanges(e){
@@ -138,13 +140,14 @@ class AdminNodesPage extends React.Component{
         
     }
 
-    filter_table() {
+    filter_table_by_state() {
         if(this.state.check == true){
-        console.log("Me meto en filter_table");
+        //console.log("Me meto en filter_table");
+        //console.log("Filtrar por fecha " + document.getElementById("date").value);
         var input, filter, table, tr, td, i, j, visible;
         input = this.state.selectValue;
         filter = input;
-        console.log("filter: " + filter);
+        //console.log("filter: " + filter);
         table = document.getElementById("table-body")
         tr = table.getElementsByTagName("tr");
       
@@ -166,6 +169,37 @@ class AdminNodesPage extends React.Component{
         }
       }
     }
+
+    filter_table_by_date() {
+      console.log("Me meto en filtrar por fecha");
+      if(this.state.check == true){
+      console.log("Me meto en filter_table");
+      //console.log("Filtrar por fecha " + document.getElementById("date").value);
+      var input, filter, table, tr, td, i, j, visible;
+      input = document.getElementById("date").value;
+      filter = input;
+      //console.log("filter: " + filter);
+      table = document.getElementById("table-body")
+      tr = table.getElementsByTagName("tr");
+    
+
+      for (i = 0; i < tr.length; i++) {
+        visible = false;
+    
+        td = tr[i].getElementsByTagName("td");
+        for (j = 0; j < td.length; j++) {
+          if (td[j] && td[j].innerHTML.indexOf(filter) > -1) {
+            visible = true;
+          }
+        }
+        if (visible === true) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }
+    }
+  }
 
 
     render(){
@@ -192,7 +226,8 @@ class AdminNodesPage extends React.Component{
                         <tr id='tabla'>
                             <th class="col-2">Nodo</th>
                             <th class="col-4 bg-success">Usuario</th>
-                            <th class="col-4 bg-success">Última medicion</th>
+                            <th class="col-4 bg-success">Última medicion
+                            <input id="date"></input><button type="button" id="date_filter" onClick={this.filter_table_by_date}>Filtrar por fecha</button></th>
                             <th class="col-2 bg-success">Estado
                             <div>
                                 <select 
@@ -210,7 +245,7 @@ class AdminNodesPage extends React.Component{
                         </thead>
                         <tbody id="table-body">
                                 {this.sensors_list()}
-                                {this.filter_table()}
+                                {this.filter_table_by_state()}
     
                         </tbody>
                     </table>
