@@ -14,7 +14,7 @@ exports.get_measures_gandia = async () => {
         headers: {
           accept: 'application/json',
           'content-type': 'application/json',
-          "cookie": "JSESSIONID=GHTvWWIA0gSEqA1Z5i8s_6PyDcdU8N8J9rGS07OE.CMA01; jbosscma7101=ffffffffaf17985c45525d5f4f58455e445a4a422d8d; _gid=GA1.2.699603922.1673602545; _gat_gtag_UA_44948824_1=1; __session:iframe-92826634:=https:; __session:iframe-92826634:selectedTab=0; _ga_LCS5LCNLN6=GS1.1.1673602544.1.1.1673602564.0.0.0; _ga=GA1.2.952790878.1673602544",
+          "cookie": "JSESSIONID=SlpPKu-TADjOx0gO2Vo-srDgKXzo4JKANTisXfz1.CMA01; _gid=GA1.2.1570651465.1675297060; jbosscma7101=ffffffffaf17985c45525d5f4f58455e445a4a422d8d; __session:iframe-92826634:selectedTab=0; _ga_LCS5LCNLN6=GS1.1.1675354901.4.1.1675355032.0.0.0; _ga=GA1.2.566290743.1675297060; _gat_gtag_UA_44948824_1=1; __session:iframe-92826634:=https:",
         },
         method: 'POST',
       })
