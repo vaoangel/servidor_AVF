@@ -1,8 +1,8 @@
 import React from 'react';
 import {  Link } from 'react-router-dom';
 import {connect} from 'react-redux'
-
-
+import "bootstrap/dist/css/bootstrap.min.css";
+import Dropdown from "react-bootstrap/Dropdown";
 import ojo from '../assets/img/ojo.png'
 import x from '../assets/img/x_roja.png'
 import boton_verde from '../assets/img/boton_cruz_verde.png'
@@ -24,12 +24,69 @@ class AdminNodesPage extends React.Component{
 
         this.state = {
             enterprises: this.props.currentUser[0].idEmpresa,
-            check: false
+            check: false,
+            selectValue: ""
 
         }
 
         this.sensors_list = this.sensors_list.bind(this)
+        this.handleChanges = this.handleChanges.bind(this)
+        this.filter_table_by_date = this.filter_table_by_date.bind(this)
+        this.filter_table_by_state = this.filter_table_by_state.bind(this)
     }
+
+    handleChanges(e){
+        this.setState({selectValue:e.target.value});
+
+        /*console.log("Me meto en filter_table");
+        var input, filter, table, tr, td, i, j, visible;
+        input = this.state.selectValue;
+        filter = input;
+        console.log("filter: " + filter);
+        table = document.getElementById("table-body")
+        tr = table.getElementsByTagName("tr");
+      
+
+        for (i = 0; i < tr.length; i++) {
+          visible = false;
+      
+          td = tr[i].getElementsByTagName("td");
+          for (j = 0; j < td.length; j++) {
+            if (td[j] && td[j].innerHTML.indexOf(filter) > -1) {
+              visible = true;
+            }
+          }
+          if (visible === true) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }*/
+ 
+        /*var input, filter, table, tr, td, i, j, visible;
+        input = this.state.selectValue;
+        filter = input;
+        console.log("filter: " + filter);
+        table = document.getElementById("tabla");
+        tr = table.getElementsByTagName("tr");
+      
+
+        for (i = 0; i < tr.length; i++) {
+          visible = false;
+      
+          td = tr[i].getElementsByTagName("td");
+          for (j = 0; j < td.length; j++) {
+            if (td[j] && td[j].innerHTML.indexOf(filter) > -1) {
+              visible = true;
+            }
+          }
+          if (visible === true) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }*/
+      }
 
     /*
     Función que renderiza la lista de nodos de la empresa
@@ -57,8 +114,8 @@ class AdminNodesPage extends React.Component{
                         var horas_desde_ultima_medida =(fecha_actual - fecha_bbdd)/(1000*60*60)
 
                         //Si han pasado más de 24 horas, se considera inactivo
-                        //if(horas_desde_ultima_medida > 24) var estado = "Inactivo"
-                        if(horas_desde_ultima_medida > 5/60) var estado = "Inactivo"
+                        if(horas_desde_ultima_medida > 24) var estado = "Inactivo"
+                        //if(horas_desde_ultima_medida > 5/60) var estado = "Inactivo"
                         else var estado = "Activo"
 
                         //Se añade la información 
@@ -75,11 +132,75 @@ class AdminNodesPage extends React.Component{
                 
                 this.setState({check:true})
             })
+
+            
             
         } 
         
         
     }
+
+    filter_table_by_state() {
+        if(this.state.check == true){
+        //console.log("Me meto en filter_table");
+        //console.log("Filtrar por fecha " + document.getElementById("date").value);
+        var input, filter, table, tr, td, i, j, visible;
+        input = this.state.selectValue;
+        filter = input;
+        //console.log("filter: " + filter);
+        table = document.getElementById("table-body")
+        tr = table.getElementsByTagName("tr");
+      
+
+        for (i = 0; i < tr.length; i++) {
+          visible = false;
+      
+          td = tr[i].getElementsByTagName("td");
+          for (j = 0; j < td.length; j++) {
+            if (td[j] && td[j].innerHTML.indexOf(filter) > -1) {
+              visible = true;
+            }
+          }
+          if (visible === true) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    }
+
+    filter_table_by_date() {
+      console.log("Me meto en filtrar por fecha");
+      if(this.state.check == true){
+      console.log("Me meto en filter_table");
+      //console.log("Filtrar por fecha " + document.getElementById("date").value);
+      var input, filter, table, tr, td, i, j, visible;
+      input = document.getElementById("date").value;
+      filter = input;
+      //console.log("filter: " + filter);
+      table = document.getElementById("table-body")
+      tr = table.getElementsByTagName("tr");
+    
+
+      for (i = 0; i < tr.length; i++) {
+        visible = false;
+    
+        td = tr[i].getElementsByTagName("td");
+        for (j = 0; j < td.length; j++) {
+          if (td[j] && td[j].innerHTML.indexOf(filter) > -1) {
+            visible = true;
+          }
+        }
+        if (visible === true) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }
+    }
+  }
+
 
     render(){
         
@@ -92,6 +213,7 @@ class AdminNodesPage extends React.Component{
                 </h1>
             )
         }else{
+            var message='You selected '+this.state.selectValue;
             return(
                 <div class="container admin_page">
                     <div className='row'>
@@ -101,20 +223,33 @@ class AdminNodesPage extends React.Component{
     
                     <table class="table table-bordered">
                         <thead className='text-center'>
-                        <tr>
+                        <tr id='tabla'>
                             <th class="col-2">Nodo</th>
                             <th class="col-4 bg-success">Usuario</th>
-                            <th class="col-4 bg-success">Última medicion</th>
-                            <th class="col-2 bg-success">Estado</th>
+                            <th class="col-4 bg-success">Última medicion
+                            <input id="date"></input><button type="button" id="date_filter" onClick={this.filter_table_by_date}>Filtrar por fecha</button></th>
+                            <th class="col-2 bg-success">Estado
+                            <div>
+                                <select 
+                                    onChange={this.handleChanges}
+                                    value={this.state.selectValue} 
+                                >
+                                <option value="Activo">Activo</option>
+                                <option value="Inactivo">Inactivo</option>
+                                </select>
+                                
+                                </div>
+                               
+                            </th>
                         </tr>
                         </thead>
                         <tbody id="table-body">
-                        
                                 {this.sensors_list()}
+                                {this.filter_table_by_state()}
     
                         </tbody>
                     </table>
-    
+                    
                 </div>
                 
             )
