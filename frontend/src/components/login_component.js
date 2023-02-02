@@ -65,8 +65,9 @@ class LoginC extends React.Component {
         console.log(this.props.currentUser);
 
 
-if((this.props.currentUser == false) || (this.props.currentUser == null)){
+if((this.props.currentUser == undefined) || (this.props.currentUser == null) || (this.props.currentUser[0] == undefined) ){
 
+    
 }else{
     if (this.props.currentUser[0].Tipo == "admin" || this.props.currentUser[0].Tipo == "user") {
         console.log("entra");

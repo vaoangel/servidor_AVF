@@ -149,26 +149,29 @@ class AdminPage extends React.Component {
 
         let html = []
 
+if (this.state.enterprises !== undefined) {
+    console.log(this.state.enterprises);
+    this.state.enterprises.map((elements) => {
+        return html = [
+            ...html,
+            <tr key={elements.idEmpresa}>
+                <td>{elements.idEmpresa}</td>
+                <td>{elements.Nombre}</td>
+                <td className='text-center'>
+                    <Link to={`${"admin_page2"}${elements.idEmpresa}`}>
+                        <img src={ojo} alt="ojo verde" height="20" width="20"></img>
+                    </Link>
+                </td>
+                <td className='text-center'>
+                    <img id={elements.idEmpresa} src={x} alt="x roja" height="20" width="20" onClick={this.enterprise_delete}></img>
+                </td>
+            </tr>
 
+        ]
+    })
+}
 
-        this.state.enterprises.map((elements) => {
-            return html = [
-                ...html,
-                <tr key={elements.idEmpresa}>
-                    <td>{elements.idEmpresa}</td>
-                    <td>{elements.Nombre}</td>
-                    <td className='text-center'>
-                        <Link to={`${"admin_page2"}${elements.idEmpresa}`}>
-                            <img src={ojo} alt="ojo verde" height="20" width="20"></img>
-                        </Link>
-                    </td>
-                    <td className='text-center'>
-                        <img id={elements.idEmpresa} src={x} alt="x roja" height="20" width="20" onClick={this.enterprise_delete}></img>
-                    </td>
-                </tr>
-
-            ]
-        })
+     
 
         return html
     }
